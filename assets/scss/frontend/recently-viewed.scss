@@ -1,0 +1,16 @@
+/* "Recently viewed" strip on single product pages. Cards reuse the existing
+ * .storeengine-products--grid styles; this only handles section spacing. */
+.storeengine-recently-viewed {
+	margin-top: 48px;
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__title {
+		font-size: 22px;
+		font-weight: 500;
+		margin: 0 0 20px;
+		color: var(--storeengine-text-color);
+	}
+}

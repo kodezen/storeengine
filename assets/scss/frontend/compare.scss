@@ -1,0 +1,439 @@
+/* Product compare: toggle button, docked tray, and the comparison table. */
+
+.storeengine-compare-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 10px 0 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--storeengine-subtitle-color, #64748b);
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: color 0.15s ease;
+
+	&__icon {
+		position: relative;
+		width: 15px;
+		height: 15px;
+		border: 1.5px solid currentColor;
+		border-radius: 3px;
+
+		// Two bars, like a mini bar chart — reads as "compare" without an icon font.
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 2.5px;
+			width: 2.5px;
+			background: currentColor;
+		}
+		&::before {
+			left: 3px;
+			height: 4px;
+		}
+		&::after {
+			right: 3px;
+			height: 7px;
+		}
+	}
+
+	&:hover {
+		color: var(--storeengine-primary-color, #2563eb);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--storeengine-primary-color, #2563eb);
+		outline-offset: 3px;
+		border-radius: 4px;
+	}
+
+	&.is-active {
+		color: var(--storeengine-primary-color, #2563eb);
+
+		.storeengine-compare-btn__icon {
+			background: var(--storeengine-primary-color, #2563eb);
+			border-color: var(--storeengine-primary-color, #2563eb);
+
+			&::before,
+			&::after {
+				background: #fff;
+			}
+		}
+	}
+}
+
+/* ---- On shop cards: a circular overlay under the wishlist heart ----
+ * Absolutely positioned on purpose. `.storeengine-product__header` is the
+ * positioning context for the bottom-anchored Quick View button, so in-flow
+ * content here would inflate the header and drop that button onto the card
+ * body. Revealed on card hover, matching the wishlist and Quick View. */
+.storeengine-product__header {
+	.storeengine-compare-btn {
+		position: absolute;
+		// Clears the 32px wishlist heart at top:10px, plus a 6px gap.
+		top: 48px;
+		right: 10px;
+		z-index: 4;
+		width: 32px;
+		height: 32px;
+		margin: 0;
+		justify-content: center;
+		border: 1px solid var(--storeengine-border-color, #e5e7eb);
+		border-radius: 50%;
+		background: #fff;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		opacity: 0;
+		transition: opacity 0.2s ease, transform 0.15s ease;
+
+		&__label {
+			// Icon-only in the overlay; the title attribute carries the name.
+			display: none;
+		}
+
+		&__icon {
+			width: 15px;
+			height: 15px;
+			color: var(--storeengine-placeholder-color, #c9ccd1);
+		}
+
+		&:hover {
+			transform: scale(1.06);
+		}
+
+		&.is-active {
+			border-color: var(--storeengine-primary-color, #2563eb);
+		}
+	}
+}
+
+.storeengine-product:hover .storeengine-product__header .storeengine-compare-btn,
+.storeengine-product-wrapper:hover
+	.storeengine-product__header
+	.storeengine-compare-btn,
+.storeengine-product__header .storeengine-compare-btn:focus-visible,
+.storeengine-product__header .storeengine-compare-btn.is-active {
+	opacity: 1;
+}
+
+// Touch devices have no hover, so keep both controls reachable.
+@media (hover: none) {
+	.storeengine-product__header .storeengine-compare-btn {
+		opacity: 1;
+	}
+}
+
+/* ---- Docked tray ---- */
+.storeengine-compare-tray {
+	position: fixed;
+	left: 50%;
+	bottom: 16px;
+	transform: translateX(-50%);
+	z-index: 99990; // under the Quick View / size-guide modals
+	display: flex;
+	align-items: center;
+	gap: 16px;
+	max-width: calc(100vw - 32px);
+	padding: 12px 16px;
+	border-radius: 12px;
+	background: #fff;
+	box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__items {
+		display: flex;
+		gap: 10px;
+	}
+
+	&__item {
+		position: relative;
+		width: 56px;
+		height: 56px;
+		border: 1px solid var(--storeengine-border-color, #e5e7eb);
+		border-radius: 8px;
+		overflow: hidden;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			display: block;
+		}
+	}
+
+	&__remove {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 18px;
+		height: 18px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: 0;
+		border-bottom-left-radius: 6px;
+		background: rgba(17, 17, 17, 0.65);
+		color: #fff;
+		font-size: 13px;
+		line-height: 1;
+		cursor: pointer;
+
+		&:hover {
+			background: #dc2626;
+		}
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	&__clear {
+		border: 0;
+		background: none;
+		color: var(--storeengine-subtitle-color, #64748b);
+		font-size: 13px;
+		cursor: pointer;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+
+		&:hover {
+			color: #dc2626;
+		}
+	}
+
+	&__cta {
+		white-space: nowrap;
+	}
+
+	// Flashed when a pick evicts the oldest one because the list is full.
+	&.is-limit {
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+	}
+
+	@media (max-width: 600px) {
+		left: 8px;
+		right: 8px;
+		transform: none;
+		max-width: none;
+		flex-wrap: wrap;
+		justify-content: space-between;
+
+		&__items {
+			overflow-x: auto;
+		}
+	}
+}
+
+/* ---- Modal holding the comparison table ---- */
+.storeengine-compare-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 100020; // above the tray and Quick View
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.55);
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__dialog {
+		position: relative;
+		// Full width: four columns of measurements need the room, and a capped
+		// dialog forced the table to scroll sideways almost immediately.
+		width: 100%;
+		max-height: 90vh;
+		overflow: auto;
+		background: #fff;
+		border-radius: 12px;
+		padding: 28px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+
+		@media (max-width: 600px) {
+			padding: 20px 16px;
+		}
+	}
+
+	&__close {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		width: 36px;
+		height: 36px;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.06);
+		cursor: pointer;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 16px;
+			height: 2px;
+			background: #333;
+		}
+		&::before {
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+		&::after {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+		&:hover {
+			background: rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	&__title {
+		margin: 0 0 16px;
+		font-size: 22px;
+		padding-right: 40px;
+	}
+
+	&__loading {
+		min-height: 160px;
+		border-radius: 8px;
+		background: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0.06) 25%,
+			rgba(0, 0, 0, 0.03) 37%,
+			rgba(0, 0, 0, 0.06) 63%
+		);
+		background-size: 400% 100%;
+		animation: storeengine-cmp-shimmer 1.3s ease infinite;
+	}
+}
+
+@keyframes storeengine-cmp-shimmer {
+	0% {
+		background-position: 100% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+/* ---- Comparison table ---- */
+.storeengine-compare-page {
+	&__empty {
+		color: var(--storeengine-subtitle-color, #64748b);
+	}
+}
+
+// Wide comparisons scroll here rather than pushing the page sideways.
+.storeengine-compare-table__scroll {
+	overflow-x: auto;
+}
+
+.storeengine-compare-table {
+	width: 100%;
+	border-collapse: collapse;
+
+	th,
+	td {
+		border: 1px solid var(--storeengine-border-color, #e5e7eb);
+		padding: 14px 16px;
+		text-align: left;
+		vertical-align: top;
+	}
+
+	// Row label column: sticky so the shopper keeps their bearings while
+	// scrolling a wide comparison sideways.
+	> tbody > tr > th[scope='row'] {
+		position: sticky;
+		left: 0;
+		z-index: 1;
+		width: 160px;
+		min-width: 140px;
+		background: var(--storeengine-background-color, #f8fafc);
+		font-weight: 600;
+		white-space: nowrap;
+	}
+
+	td {
+		min-width: 200px;
+	}
+
+	tr:nth-child(even) td {
+		background: var(--storeengine-background-color, #fbfcfd);
+	}
+
+	// Small thumbnail. At full column width the image pushed every actual
+	// measurement below the fold — this table is for comparing values, not for
+	// showcasing photos.
+	&__media {
+		display: block;
+		width: 96px;
+		max-width: 100%;
+		margin-bottom: 10px;
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+			aspect-ratio: var(--storeengine-product-image-ratio, 1 / 1);
+			object-fit: var(--storeengine-product-image-fit, cover);
+			border-radius: 8px;
+		}
+	}
+
+	&__title {
+		font-weight: 600;
+		text-decoration: none;
+		color: var(--storeengine-text-color, #1f2937);
+
+		&:hover {
+			color: var(--storeengine-primary-color, #2563eb);
+		}
+	}
+
+	&__remove {
+		float: right;
+		width: 24px;
+		height: 24px;
+		margin-left: 8px;
+		border: 0;
+		border-radius: 50%;
+		background: var(--storeengine-background-color, #f1f5f9);
+		color: #64748b;
+		font-size: 15px;
+		line-height: 1;
+		cursor: pointer;
+
+		&:hover {
+			background: #dc2626;
+			color: #fff;
+		}
+	}
+
+	&__stock {
+		font-weight: 500;
+
+		&.is-in {
+			color: #15803d;
+		}
+		&.is-out {
+			color: #b91c1c;
+		}
+	}
+
+	&__empty {
+		color: var(--storeengine-placeholder-color, #94a3b8);
+	}
+
+	// The add-to-cart row reuses the loop template, which is built for a card.
+	.storeengine-ajax-add-to-cart-form {
+		gap: 10px;
+	}
+}

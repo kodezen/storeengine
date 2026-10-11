@@ -1,0 +1,168 @@
+/**
+ * Status Styling.
+ * @example Common Usage.
+ * 		<span class="storeengine-status storeengine-status--active">Active</span>
+ * 		<span class="storeengine-status storeengine-status--pending">Pending Payment</span>
+ *
+ * @example With border (same color of text).
+ * 		<span class="storeengine-status storeengine-status--completed has-border">Completed</span>
+ */
+.storeengine-status {
+	--color: #2C3135; // var(--storeengine-text-color);
+	--bg: rgba(44, 49, 53, 0.12);
+	display: inline-block;
+	border-radius: 4px;
+	font-size: 0.875em;
+	padding: 4px 8px;
+	white-space: nowrap;
+	text-align: center;
+	color: var(--color);
+	background: var(--bg);
+
+	&:hover, &:focus, &:active {
+		/* Mix the primary color with 20% black */
+		color: color-mix(in srgb, var(--color), black 10%);
+		background: color-mix(in srgb, var(--bg), black 5%);
+	}
+
+	border: none;
+
+	&.has-border {
+		border: 1px solid currentColor;
+	}
+
+	&--debug,
+	&--disabled {
+		--color: var(--storeengine-placeholder-color);
+		--bg: var(--storeengine-border-color);
+	}
+
+	&--completed, &--publish, &--approved, &--approve,
+	&--pass, &--paid, &--active, &--completed,
+	&--renewed, &--released, &--recovered, &--success {
+		--color: #00AD6B;
+		--bg: rgba(0, 173, 107, 0.12);
+	}
+
+	&--info,
+	&--payment_confirmed {
+		--color: #C63FD4;
+		--bg: rgba(198, 63, 212, 0.12);
+	}
+
+	&--pending, &--pending_payment, &--unpaid, &--hold {
+		--color: #FF8B00;
+		--bg: rgba(255, 139, 0, 0.12);
+	}
+
+	&--processing, &--submitted, &--on_hold,
+	&--on-hold, &--revoked, &--beta-released,
+	&--abandoned {
+		--color: #FDB022;
+		--bg: rgba(253, 176, 34, 0.12);
+	}
+
+	&--partial, &--partially_paid, &--warning {
+		--color: #B45309;
+		--bg: rgba(180, 83, 9, 0.12);
+	}
+
+	&--draft, &--auto-draft,
+	&--private, &--archive {
+		--color: #0F0E16;
+		--bg: rgba(114, 114, 114, .12);
+	}
+
+	&--refunded {
+		--color: #64748B;
+		--bg: rgba(100, 116, 139, 0.12);
+	}
+
+	&--cancel, &--cancelled,
+	&--spam,
+	&--trash, &--failed,
+	&--inactive, &--expired,
+	&--unreleased {
+		--color: #FF4D4D;
+		--bg: rgba(244, 72, 63, 0.12);
+	}
+
+	&--rejected {
+		--color: #DC3545;
+		--bg: rgba(220, 53, 69, 0.12);
+	}
+
+	&--suspended {
+		--color: #B45309;
+		--bg: rgba(180, 83, 9, 0.12);
+	}
+
+	// Shipping.
+	&--ready_for_ship {
+		--color: #6C757D;
+		--bg: rgba(108, 117, 125, 0.12);
+	}
+
+	&--shipping,
+	&--awaiting_shipment {
+		--color: #FDB022;
+		--bg: rgba(236, 152, 20, 0.12);
+	}
+
+	&--shipped {
+		--color: #17A2B8;
+		--bg: rgba(23, 162, 184, 0.12);
+	}
+
+	&--on_the_way {
+		--color: #007BFF;
+		--bg: rgba(0, 123, 255, 0.12);
+	}
+
+	&--out_for_delivery {
+		--color: #6610F2;
+		--bg: rgba(102, 16, 242, 0.12);
+	}
+
+	&--delivered {
+		--color: #28A745;
+		--bg: rgba(40, 167, 69, 0.12);
+	}
+
+	&--critical, &--emergency,
+	&--alert,
+	&--returned, &--error {
+		--color: #DC3545;
+		--bg: rgba(220, 53, 69, 0.12);
+	}
+
+	// @deprecated styles.
+	&.storeengine {
+		&-completed,
+		&-active {
+			--color: #00AD6B;
+			--bg: rgba(36, 161, 72, 0.1);
+		}
+
+		&-payment_confirmed {
+			--color: #C63FD4;
+			--bg: rgba(217, 85, 231, 0.12);
+		}
+
+		&-pending_payment {
+			--color: #FF8B00;
+			--bg: rgba(229, 133, 18, 0.22);
+		}
+
+		&-processing,
+		&-on_hold {
+			--color: #FDB022;
+			--bg: rgba(236, 152, 20, 0.12);
+		}
+
+		&-cancelled {
+			--color: #FF4D4D;
+			--bg: rgba(244, 72, 63, 0.12);
+		}
+	}
+}

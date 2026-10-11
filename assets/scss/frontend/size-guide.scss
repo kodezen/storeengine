@@ -1,0 +1,314 @@
+/* Size guide: an inline trigger in the product summary + a shared modal that
+ * loads the chosen page's content. */
+.storeengine-size-guide-trigger {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 12px 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	color: var(--storeengine-primary-color, #2563eb);
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+
+	&__icon {
+		width: 16px;
+		height: 16px;
+		border: 1.5px solid currentColor;
+		border-radius: 3px;
+		position: relative;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			background: currentColor;
+		}
+		// little ruler ticks
+		&::before {
+			top: 2px;
+			bottom: 2px;
+			left: 4px;
+			width: 1.5px;
+		}
+		&::after {
+			top: 2px;
+			bottom: 2px;
+			left: 8px;
+			width: 1.5px;
+		}
+	}
+
+	&:hover {
+		opacity: 0.85;
+	}
+}
+
+.storeengine-size-guide-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 100020; // above Quick View + its lightbox
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.55);
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__dialog {
+		position: relative;
+		width: min(760px, 100%);
+		max-height: 88vh;
+		overflow: auto;
+		background: #fff;
+		border-radius: 12px;
+		padding: 28px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+	}
+
+	&__close {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		width: 36px;
+		height: 36px;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.06);
+		cursor: pointer;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 16px;
+			height: 2px;
+			background: #333;
+		}
+		&::before {
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+		&::after {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+		&:hover {
+			background: rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	&__title {
+		margin: 0 0 16px;
+		font-size: 22px;
+		padding-right: 40px;
+	}
+
+	&__content {
+		table {
+			width: 100%;
+			border-collapse: collapse;
+
+			th,
+			td {
+				border: 1px solid var(--storeengine-border-color, #e5e7eb);
+				padding: 8px 12px;
+				text-align: left;
+			}
+
+			thead th {
+				background: var(--storeengine-background-color, #f8fafc);
+				font-weight: 600;
+				white-space: nowrap;
+			}
+
+			tbody tr:nth-child(even) {
+				background: var(--storeengine-background-color, #fbfcfd);
+			}
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+	}
+
+	&__loading {
+		min-height: 120px;
+		border-radius: 8px;
+		background: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0.06) 25%,
+			rgba(0, 0, 0, 0.03) 37%,
+			rgba(0, 0, 0, 0.06) 63%
+		);
+		background-size: 400% 100%;
+		animation: storeengine-sg-shimmer 1.3s ease infinite;
+	}
+}
+
+/* ---- Resolved size chart (structured tables) ---- */
+
+// Wrapper around the trigger + its inline JSON payload.
+.storeengine-size-guide {
+	display: block;
+}
+
+// Unit switcher — only rendered when the chart mixes units (e.g. cm and in).
+.storeengine-size-guide-units {
+	display: inline-flex;
+	gap: 4px;
+	margin: 0 0 16px;
+	padding: 3px;
+	border-radius: 999px;
+	background: var(--storeengine-background-color, #f1f5f9);
+
+	&__btn {
+		padding: 5px 14px;
+		border: 0;
+		border-radius: 999px;
+		background: none;
+		color: #475569;
+		font-size: 13px;
+		font-weight: 500;
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease;
+
+		&.is-active {
+			background: #fff;
+			color: var(--storeengine-text-color, #1f2937);
+			box-shadow: none;
+		}
+	}
+}
+
+.storeengine-size-guide-table {
+	margin-bottom: 24px;
+
+	// No trailing gap at the foot of the panel.
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__title {
+		margin: 0 0 10px;
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	// A wide chart scrolls in its own container rather than the whole dialog.
+	&__scroll {
+		overflow-x: auto;
+	}
+}
+
+/* ---- Tabs: Size Charts / How to Measure ---- */
+.storeengine-size-guide-tabs {
+	display: flex;
+	gap: 24px;
+	margin: 0 0 20px;
+	border-bottom: 1px solid var(--storeengine-border-color, #e5e7eb);
+
+	&__tab {
+		position: relative;
+		padding: 10px 2px;
+		// Pull the tab's own underline down onto the container's rule so the
+		// active indicator replaces it rather than stacking below it.
+		margin-bottom: -1px;
+		border: 0;
+		background: none;
+		color: #64748b;
+		font-size: 15px;
+		font-weight: 500;
+		line-height: 1.4;
+		white-space: nowrap;
+		cursor: pointer;
+		transition: color 0.15s ease;
+
+		&::after {
+			content: '';
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			height: 2px;
+			border-radius: 2px 2px 0 0;
+			background: transparent;
+			transition: background 0.15s ease;
+		}
+
+		&:hover {
+			color: var(--storeengine-text-color, #1f2937);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--storeengine-primary-color, #2563eb);
+			outline-offset: 3px;
+			border-radius: 4px;
+		}
+
+		&.is-active {
+			color: var(--storeengine-primary-color, #2563eb);
+
+			&::after {
+				background: currentColor;
+			}
+		}
+	}
+}
+
+.storeengine-size-guide-panel {
+	&[hidden] {
+		display: none;
+	}
+
+	// Panels are focusable so a keyboard user can scroll a wide table; only
+	// show a ring for real keyboard focus, not the click that selects a tab.
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--storeengine-primary-color, #2563eb);
+		outline-offset: 4px;
+		border-radius: 4px;
+	}
+}
+
+.storeengine-size-guide-note {
+	color: #475569;
+	font-size: 14px;
+	line-height: 1.6;
+
+	> *:first-child {
+		margin-top: 0;
+	}
+	> *:last-child {
+		margin-bottom: 0;
+	}
+
+	// Uploaded measuring diagrams.
+	img {
+		border-radius: 8px;
+	}
+}
+
+@keyframes storeengine-sg-shimmer {
+	0% {
+		background-position: 100% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}

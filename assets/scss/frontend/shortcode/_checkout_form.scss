@@ -1,0 +1,334 @@
+.storeengine-ajax-checkout-form {
+	background-color: #fff;
+	border: 1px solid var(--storeengine-border-color, #dddedf);
+	border-radius: 8px;
+	box-shadow: none;
+	padding: 24px;
+	p {
+		margin: 0;
+		color : var(--storeengine-subtitle-color);
+	}
+
+	// Contact gate: the entered email belongs to an existing account and hasn't
+	// been resolved (log in, or switch to a different email). Dim + disable
+	// everything below the Contact section — mirrors the OTP verify lock — so
+	// the shopper can't proceed with a conflicting email. The Contact section
+	// itself stays interactive so they can click "Log in to continue" or edit
+	// the email. Hidden inputs are left alone (no visual, must keep posting).
+	&.storeengine-contact-locked {
+		> *:not(.storeengine-ajax-checkout-form__contact-information):not(input) {
+			opacity: 0.5;
+			pointer-events: none;
+			user-select: none;
+			transition: opacity 0.2s ease;
+		}
+	}
+
+	// input[type=date], input[type=email],
+	// input[type=url], input[type=text],
+	// input[type=tel], input[type=search],
+	// input[type=password], input[type=number],
+	// textarea, select {
+	// 	background-color: #fff;
+	// 	border: 1px solid var(--storeengine-border-color);
+	// 	border-radius: 4px;
+	// 	box-sizing: border-box;
+	// 	color: var(--storeengine-input-text-color);
+	// 	line-height: 1em;
+	// 	min-height: 0;
+	// 	margin-top: 12px;
+	// 	padding-inline: 1em;
+	// 	width: 100%;
+	// 	height: 40px;
+	// 	//margin-bottom: 20px;
+
+	// 	&:focus {
+	// 		outline: none;
+	// 	}
+	// }
+
+	&__input {
+		background-color: #fff;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 4px;
+		box-sizing: border-box;
+		color: var(--storeengine-input-text-color);
+		line-height: 1em;
+		min-height: 0;
+		padding-inline: 1em;
+		width: 100%;
+		height: 40px;
+	}
+
+	&__select {
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 4px;
+		width: 100%;
+		height: 40px;
+		padding: 0 1em;
+	}
+
+	input[type=radio] {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__heading {
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 140%;
+		color: var(--storeengine-text-color);
+		border-bottom: 1px solid var(--storeengine-border-color);
+		padding-bottom: 12px;
+		margin: 0 0 16px 0;
+	}
+
+	&__title {
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 140%;
+		color: var(--storeengine-text-color);
+	}
+
+	&__user-info {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+	}
+	&__user-info-top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 8px;
+	}
+	&__logout {
+		font-size: 12px;
+		font-weight: 400;
+	}
+	&__user-info-checkbox {
+		font-size: 12px;
+		line-height: 140%;
+	}
+	//contact-information
+
+	&__contact-information {
+		// "Already have an account? Log in" (and Logout) link in the contact
+		// header — keep it at body size/weight so it doesn't render oversized
+		// from the theme's default anchor styles.
+		.storeengine-form-field__login-link {
+			a {
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
+
+		.storeengine-form-field {
+			.storeengine-form-field__inner {
+				display: flex;
+				gap: 15px;
+				flex-direction: row;
+				align-items: center;
+				justify-content: space-between;
+
+				.storeengine-form-field__login-link {
+					a {
+						font-size: 14px;
+						font-weight: 400;
+						line-height: 33px;
+						color: var(--storeengine-text-color);
+					}
+				}
+
+				label {
+					color: var(--storeengine-subtitle-color);
+				}
+			}
+
+			label {
+				font-weight: 500;
+				color: var(--storeengine-text-color);
+			}
+		}
+
+		// Inline "account already registered → log in" notice from the on-blur
+		// contact pre-check. Keep it at helper-text size (it inherits the base
+		// paragraph size otherwise, which renders far too large under the field).
+		.storeengine-contact-account-notice {
+			margin: 6px 0 0;
+			font-size: 14px;
+			line-height: 1.5;
+			color: var(--storeengine-text-color);
+
+			a {
+				color: var(--storeengine-primary-color);
+				font-weight: 600;
+				text-decoration: underline;
+
+				&:hover,
+				&:focus {
+					color: var(--storeengine-primary-color);
+					text-decoration: underline;
+				}
+			}
+
+			// Format-error variant (invalid email) — red, no link.
+			&--error {
+				color: var(--storeengine-error-color);
+			}
+		}
+
+		// Invalid email input — red border to match the inline error message.
+		.storeengine-field-error {
+			border-color: var(--storeengine-error-color) !important;
+
+			&:focus {
+				outline: none;
+				border-color: var(--storeengine-error-color) !important;
+			}
+		}
+	}
+
+	//Billing-information
+
+	&__billing-address,
+	&__shipping-address {
+		border-top: 1px solid var(--storeengine-border-color);
+		padding-top: 25px;
+		margin-bottom: 25px;
+
+		.storeengine-form-group {
+			display: flex;
+			flex-direction: row;
+			gap: 20px;
+
+			.storeengine-form__inner {
+				width: 50%;
+			}
+		}
+
+		.storeengine-form-field {
+			gap: unset;
+		}
+
+		label {
+			color: var(--storeengine-subtitle-color);
+			font-size: 14px;
+			display: flex;
+			gap: 0.265em;
+		}
+	}
+
+	// Payment Method
+	.storeengine-checkout-available-payment-item {
+		&:only-of-type {
+			.storeengine-accordion-drawer__title {
+				&::after {
+					display: none;
+				}
+			}
+		}
+
+		position: relative;
+		margin-bottom: 20px;
+		color: var(--storeengine-subtitle-color);
+		font-size: 14px;
+		border: 1px solid var(--storeengine-border-color);
+		min-height: 60px;
+		border-radius: 8px;
+
+		.storeengine-accordion-drawer {
+			margin-top: 15px;
+
+			.storeengine-accordion-drawer__title {
+				//left: 8px;
+				top: 0;
+				text-transform: capitalize;
+				padding-top: 0;
+				padding-left: 35px;
+				font-size: 18px;
+				font-weight: 500;
+				color: var(--storeengine-text-color);
+				//margin-left: 18px;
+				line-height: 30px;
+				display: flex;
+				align-items: flex-end;
+				gap: 10px;
+
+				&::after {
+					margin-left: auto;
+				}
+				& img {
+					max-width: 25px;
+					width: 100%;
+				}
+			}
+
+			.storeengine-accordion-drawer__trigger {
+				position: absolute;
+				top: 19px;
+				left: 9px;
+				width: 20px;
+				height: 20px;
+
+				.storeengine-accordion-drawer__content {
+					.storeengine-form-group {
+						label {
+							font-size: 14px;
+							font-weight: 400;
+							line-height: 19.6px;
+							color: var(--storeengine-subtitle-color);
+						}
+					}
+				}
+			}
+		}
+
+		input {
+			margin: 0 10px 0 0;
+
+			&:focus {
+				transform: translateY(0);
+				left: 26px;
+				outline: 0;
+			}
+		}
+	}
+
+	.storeengine-payment-method-description p,
+	.storeengine-payment-method-description h4 {
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 140%;
+		color: var(--storeengine-text-color);
+	}
+	// Order Button
+
+	.storeengine-checkout__order-btn {
+		margin-top: 20px;
+
+		.storeengine-btn {
+			padding: 12px 30px;
+			font-size: 16px;
+			font-weight: 600;
+			width: 100%;
+		}
+	}
+}
+
+.storeengine-order-summary__subtotal {
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 4px;
+	padding: 24px;
+}
+
+.storeengine-saved-payment-methods {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	input {
+		width:auto;
+	}
+}

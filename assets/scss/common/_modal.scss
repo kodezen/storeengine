@@ -1,0 +1,208 @@
+// Shared modal styles for `@Components/Modal`. Used by both admin (Backend
+// Dashboard) and frontend (vendor dashboard). Visual chrome is identical in
+// both contexts so the underlying primitive is centralised here.
+
+.storeengine-modal-open {
+	overflow: hidden;
+}
+
+.storeengine-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+
+	&__overlay {
+		position: absolute;
+		inset: 0;
+		background: rgba(15, 23, 42, 0.5);
+		cursor: pointer;
+	}
+
+	&__panel {
+		position: relative;
+		background: var(--storeengine-white-color, #fff);
+		border-radius: 10px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		max-height: calc(100vh - 48px);
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		width: min(720px, 100%);
+
+		// Typography isolation — prevents the active WordPress theme's
+		// element-level global styles (set via theme.json) from inflating
+		// headings, inputs, and paragraphs inside the modal.
+		// Apply .storeengine-modal-heading / .storeengine-modal-body-p /
+		// .storeengine-modal-control to consumer elements instead of relying
+		// on the tag selectors that were here previously.
+		font-size: 14px;
+		font-family: var(--storeengine-primary-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+		color: var(--storeengine-text-color, #2C3135);
+		line-height: 1.5;
+
+		*, *::before, *::after {
+			box-sizing: border-box;
+		}
+	}
+
+	&__panel {
+		&--sm   { width: min(480px,  100%); }
+		&--md   { width: min(720px,  100%); }
+		&--lg   { width: min(960px,  100%); }
+		&--xl   { width: min(1100px, 100%); }
+		&--full { width: min(100%,   100%); }
+	}
+
+	// Class-based typography isolation — use these on heading, paragraph and
+	// form-control elements rendered inside .storeengine-modal__panel so the
+	// WordPress theme's element-level global styles cannot bleed through.
+	&-heading {
+		font-family: var(--storeengine-primary-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+		font-weight: 600;
+		line-height: 1.3;
+		margin: 0;
+		padding: 0;
+
+		&--h1 { font-size: 24px; }
+		&--h2 { font-size: 20px; }
+		&--h3 { font-size: 18px; }
+		&--h4 { font-size: 14px; }
+	}
+
+	&-body-p {
+		margin: 0;
+		padding: 0;
+		font-size: inherit;
+		line-height: inherit;
+	}
+
+	&-control {
+		font-family: inherit;
+		font-size: 14px;
+		line-height: normal;
+		box-shadow: none;
+	}
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 14px 20px;
+		border-bottom: 1px solid var(--storeengine-border-color, #e5e7eb);
+		background: var(--storeengine-white-color, #fff);
+		flex-shrink: 0;
+	}
+
+	&__title {
+		margin: 0;
+		font-size: 18px;
+		font-weight: 600;
+		color: var(--storeengine-text-color, #111);
+	}
+
+	&__close {
+		appearance: none;
+		background: transparent;
+		border: 0;
+		font-size: 28px;
+		line-height: 1;
+		padding: 4px 10px;
+		cursor: pointer;
+		color: var(--storeengine-subtitle-color, #64748b);
+		border-radius: 4px;
+		transition: background 0.15s ease, color 0.15s ease;
+
+		&:hover, &:focus {
+			background: var(--storeengine-background-color, #f5f7fa);
+			color: var(--storeengine-text-color, #111);
+			outline: none;
+		}
+	}
+
+	&__body {
+		flex: 1 1 auto;
+		overflow: auto;
+		// background: var(--storeengine-background-color, #f5f7fa);
+	}
+}
+
+.storeengine-vendor-create-product {
+    .storeengine-modal__panel {
+        .storeengine-modal__body {
+            .storeengine-page-content {
+                padding: 0 !important;
+            }
+        }
+    }
+}
+
+// Right-anchored drawer (placement="right"): full height, slides in from the
+// right edge. Used by the product editor's Variants side panel.
+.storeengine-modal--right {
+	align-items: stretch;
+	justify-content: flex-end;
+	padding: 0;
+
+	.storeengine-modal__overlay {
+		animation: storeengine-modal-fade-in 0.2s ease-out;
+	}
+
+	.storeengine-modal__panel {
+		width: min(480px, 100vw);
+		height: 100%;
+		max-height: 100%;
+		border-radius: 12px 0 0 12px;
+		animation: storeengine-modal-slide-in-right 0.22s ease-out;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}
+
+@keyframes storeengine-modal-slide-in-right {
+	from {
+		transform: translateX(100%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes storeengine-modal-fade-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.storeengine-modal--right {
+		.storeengine-modal__overlay,
+		.storeengine-modal__panel {
+			animation: none;
+		}
+	}
+}
+
+@media (max-width: 767px) {
+	.storeengine-modal {
+		padding: 0;
+
+		&__panel {
+			width: 100%;
+			height: 100%;
+			max-height: 100%;
+			border-radius: 0;
+		}
+	}
+}

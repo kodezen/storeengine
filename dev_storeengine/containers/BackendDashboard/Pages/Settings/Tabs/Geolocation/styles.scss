@@ -1,0 +1,16 @@
+.storeengine-content-section--geolocation {
+	&, * {
+		box-sizing: border-box;
+	}
+}
+
+.storeengine-custom-select--customer-location,
+.storeengine-checkbox.customer-location {
+	margin-bottom: 0;
+	flex: 1 1 50%;
+	width: 50%;
+}
+
+.storeengine-checkbox--customer-location .storeengine-checkbox-wrap{
+	gap: 16px;
+}

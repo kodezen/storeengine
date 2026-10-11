@@ -1,0 +1,33 @@
+// Customer-facing return panel (storefront). Reuses the .se-admin-tw scope
+// so utilities ship from the same Tailwind config — no extra build step.
+@config "../../../tailwind.admin.config.js";
+
+@tailwind utilities;
+
+#storeengine-customer-returns-app {
+	font-family: var( --storeengine-primary-font, system-ui, sans-serif );
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+}
+
+// Preflight (Tailwind's reset) is disabled, so its border utilities set only
+// `border-width` — the CSS-initial `border-style` is `none`, so `border
+// border-se-border` renders nothing. The admin bundle restores this with a bare
+// `*` reset, but this stylesheet loads on the storefront, where a bare `*` would
+// strip the theme's own borders. Scope it to the app's `.se-admin-tw` root and
+// keep it at single-class specificity so Tailwind's own `.border` utilities
+// (carrying the `.se-admin-tw` important prefix → higher specificity) still win.
+.se-admin-tw {
+	&,
+	& *,
+	& *::before,
+	& *::after {
+		border-width: 0;
+		border-style: solid;
+		border-color: var( --storeengine-border-color, #dedede );
+	}
+}

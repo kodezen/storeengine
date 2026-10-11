@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	verbose="true"
+	beStrictAboutOutputDuringTests="true"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+>
+	<testsuites>
+		<!--
+			Unit tests only at this stage. These tests run pure PHP — no WP
+			environment, no database. Integration tests that need a real WP
+			install would go in a separate suite later, wired to wp-env.
+
+			Paths are relative to this file (tests/), since phpunit is now
+			invoked from inside tests/ with its own composer-managed vendor.
+			The main plugin's composer.json stays production-only — no dev
+			dependencies to strip out before packaging the release zip.
+		-->
+		<testsuite name="unit">
+			<directory>Unit</directory>
+		</testsuite>
+	</testsuites>
+
+	<coverage>
+		<include>
+			<directory suffix=".php">../addons</directory>
+			<directory suffix=".php">../includes</directory>
+		</include>
+		<exclude>
+			<directory>../vendor</directory>
+			<directory>../node_modules</directory>
+			<directory>../dev_storeengine</directory>
+		</exclude>
+	</coverage>
+</phpunit>

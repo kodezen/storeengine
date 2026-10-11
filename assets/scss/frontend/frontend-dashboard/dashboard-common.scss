@@ -1,0 +1,38 @@
+.storeengine-frontend-dashboard {
+	min-width: 100%;
+
+	h1, h2, h3, h4, h5, h6, p {
+		font-family: inherit;
+	}
+
+	.storeengine-address__from,
+	.storeengine-address__from-account {
+		input[type=date],
+		input[type=email],
+		input[type=number],
+		input[type=password],
+		input[type=search],
+		input[type=tel],
+		input[type=text],
+		input[type=url],
+		select,
+		textarea {
+			padding: 8px 13px;
+			width: 100%;
+		}
+
+		input[type=submit] {
+			padding: 8px 13px;
+			background: var(--storeengine-primary-color);
+			border: initial;
+			cursor: pointer;
+			border-radius: 4px;
+			color: var(--storeengine-white-color);
+			margin-top: 20px;
+		}
+	}
+}
+
+.storeengine-dashboard__section-wrapper {
+	margin-bottom: 1.5rem;
+}

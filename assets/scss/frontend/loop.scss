@@ -1,0 +1,12 @@
+.storeengine-product {
+    border: 1px solid var(--storeengine-border-color, #ddd);
+    &__thumbnail {
+        &-image {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
+.storeengine-view-cart{
+    display: block;
+}

@@ -1,0 +1,51 @@
+/**
+ * Block UI Replacement.
+ */
+.processing {
+	.processing {
+		&::before,
+		&::after {
+			display: none;
+		}
+	}
+
+	position: relative;
+	cursor: wait !important;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: -20px;
+		display: block;
+		z-index: 999;
+		background: rgba(16, 16, 16, 0.4);
+		border-radius: 3px;
+		cursor: wait !important;
+	}
+
+	&::after {
+		/**!
+		 * @license
+		 * Animated SVG Preloaders by SVGBackgrounds.com
+		 * @author Animated SVG Preloaders by SVGBackgrounds.com <https://www.svgbackgrounds.com/elements/animated-svg-preloaders/>
+		 * @see https://www.svgbackgrounds.com/elements/animated-svg-preloaders/
+		 * Encoded with Yoksel's URL-encoder for SVG
+		 * @see https://yoksel.github.io/url-encoder/
+		 */
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'%3E%3Cpath fill='none' stroke='%23003968' stroke-width='15' stroke-linecap='round' stroke-dasharray='300 385' stroke-dashoffset='0' d='M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z'%3E%3Canimate attributeName='stroke-dashoffset' calcMode='spline' dur='2' values='685;-685' keySplines='0 0 1 1' repeatCount='indefinite'%3E%3C/animate%3E%3C/path%3E%3C/svg%3E");
+		// SVG Color: #003968, darken version of StoreEngine Logo (#008DFF)
+		content: "";
+		position: absolute;
+		background-position: center;
+		background-repeat: no-repeat;
+		min-width: var(--loader-min-size, 30px);
+		width: var(--loader-size, 7%);
+		min-height: var(--loader-min-size, 30px);
+		height: var(--loader-size, 7%);
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 9999;
+		cursor: wait !important;
+	}
+}

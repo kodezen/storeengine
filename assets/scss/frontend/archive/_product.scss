@@ -1,0 +1,58 @@
+// Loop Item
+.storeengine-product {
+	border: none;
+	margin-bottom: 30px;
+	&__thumbnail {
+		max-width: 100%;
+		height: auto;
+		border-radius: 8px;
+	}
+	&__title {
+		margin: 0;
+		margin-bottom: 12px;
+		text-transform: capitalize;
+		font-size: 24px;
+		font-weight: 500;
+		color: var(--storeengine-text-color);
+		a {
+			text-decoration: none;
+			// The title is always a link, and themes commonly set their own
+			// font-size/weight on `a` — which beats inheritance and defeats the
+			// sizing declared above. Inherit the heading's typography back.
+			font-family: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			font-style: inherit;
+			line-height: inherit;
+			text-transform: inherit;
+			letter-spacing: inherit;
+		}
+	}
+	&__body, &__footer {
+		text-align: center;
+	}
+	&__simple-price {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		column-gap: 8px;
+		ins {
+			text-decoration: none;
+			.storeengine-price {
+				font-size: 20px;
+				color: var(--storeengine-text-color);;
+			}
+		}
+		del {
+			color: var(--storeengine-subtitle-color);
+			.storeengine-price {
+				font-size: 14px;
+				color: var(--storeengine-subtitle-color);
+			}
+		}
+	}
+	// Price-selector dropdown (toggle, panel, option rows and the price line)
+	// is styled in assets/scss/common/_dropdown.scss under `.storeengine-dropdown`
+	// so the archive card and single-product variants stay visually in sync.
+}

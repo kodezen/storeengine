@@ -1,0 +1,29 @@
+.storeengine-taxes-region {
+    &__country, &__state {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__state {
+        margin: 24px 0;
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+        margin: 0 0 24px 0;
+        padding-top: 24px;
+        border-top: 1px solid var(--storeengine-border-color);
+    }
+
+    .storeengine-form-group {
+        &--tax-amount {
+            display: flex;
+            .storeengine-title-subtitle, .storeengine-number-field--items {
+                width: 50%;
+            }
+        }
+    }
+}

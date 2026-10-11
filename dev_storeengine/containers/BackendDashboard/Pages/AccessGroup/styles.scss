@@ -1,0 +1,471 @@
+.storeengine-page-content--access-group {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 24px;
+    .storeengine-content-section {
+        &__membership-expiration {
+            width: 100%;
+            border-radius: 4px;
+            padding: 8px;
+        }
+
+        &__unauthorized-access {
+            border: 1px solid var(--storeengine-primary-border-color);
+            padding: 16px 24px;
+            border-radius: 4px;
+            align-items: flex-end;
+            .storeengine-mb-6 {
+                margin-bottom: 0;
+            }
+            .storeengine-form-group {
+                .storeengine-textarea {
+                    min-height: 120px;
+                }
+            }
+
+            .storeengine-flex {
+                width: 100%;
+                cursor: pointer;
+                align-items: flex-end;
+            }
+        }
+
+        &__drip-content {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            // The surrounding content-section already draws the box.
+            padding: 0;
+            border: 0;
+            border-radius: 0;
+            position: relative;
+            margin-bottom: 0;
+
+            .storeengine-drip-field {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                &__label {
+                    margin: 0;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20px;
+                    color: var(--storeengine-text-color);
+                }
+            }
+
+            // Delete button sits in the top-right corner, inside the padding.
+            .storeengine-btn--remove-content {
+                position: absolute;
+                top: -4px;
+                right: 0;
+                margin: 0;
+            }
+            &__radio-select {
+                display: flex;
+                gap: 16px;
+                align-items: center;
+                justify-content: space-between;
+                width: 25%;
+                .storeengine-flex {
+                    align-items: flex-end;
+                }
+            }
+
+            .storeengine-btn--remove-content {
+                position: absolute;
+                top: -16px;
+                right: -10px;
+                border: 1px solid var(--storeengine-primary-border-color);
+                border-radius: 50%;
+                padding: 8px;
+                background: #ffff;
+
+                &:hover {
+                    border-color: red;
+                    .storeengine-icon {
+                        &::before {
+                            color: red;
+                        }
+                    }
+                }
+            }
+
+            .storeengine-drip-content-radio-selected {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+                .storeengine-drip-content-radio-selected__items {
+                    display: flex;
+                    align-items: center;
+                    gap: 16px;
+                    .storeengine-number-field {
+                        width: 300px;
+                        margin-bottom: 0;
+                    }
+
+                    .storeengine-custom-select {
+                        &--drip-content {
+                            width: 116px;
+                        }
+                    }
+                }
+
+                .storeengine-btn {
+                    &--clear {
+                        padding: 0;
+                        .storeengine-icon--trash {
+                            &::before {
+                                font-size: 24px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .storeengine-btn {
+            .storeengine-icon {
+                &::before {
+                    font-size: 20px;
+                }
+            }
+        }
+
+        &__feature {
+            &-item {
+                border: 1px solid var(--storeengine-border-color);
+                border-radius: 4px;
+                padding: 12px;
+                margin-bottom: 12px;
+                &:last-child {
+                    margin-bottom: 24px;
+                }
+            }
+
+            .storeengine-select {
+                .storeengine-react-select {
+                    &__control {
+                        width: 80px;
+                    }
+                }
+
+                &--feature-icon .storeengine-react-select {
+                    &__control {
+                        width: 180px;
+                    }
+
+                    &__menu {
+                        width: 220px;
+                    }
+                }
+            }
+        }
+        .storeengine-react-select__menu {
+            .storeengine-react-select__menu-list {
+                .storeengine-react-select__option--is-selected {
+                            background-color: var(--storeengine-primary-color) !important;
+                    }
+            }     
+        }
+        .storeengine-feature-icon {
+            padding: 10px 16px;
+            border: 1px solid var(--storeengine-border-color);
+            border-radius: 4px;
+        }
+        .storeengine-membership-prices {
+            border: 1px solid var(--storeengine-border-color);
+            border-radius: 4px;
+            background: var(--storeengine-background-color, #F7F7F7);
+            &--border-less {
+                background: transparent;
+                border: none;
+            }
+            .storeengine-membership-price {
+                position: relative;
+                padding: 12px;
+                &__info {
+                    font-size: 14px;
+                    font-weight: 400;
+                    line-height: 140%;
+                }
+                &::after {
+                    content: "";
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 1px;
+                    background: var(--storeengine-border-color);
+                }
+            }
+            .border-less {
+                background: rgba(0, 141, 255, 0.1607843137);
+                color: var(--storeengine-primary-color);
+            }
+            .storeengine-btn {
+                &--add-price {
+                    max-width: 100px;
+                    width: 100%;
+                }
+                &--actions {
+                    width: 24px;
+                    height: 24px;
+                    padding: 4px;
+                    background: #fff;
+                    &::after {
+                        font-size: 14px;
+                    }
+                }
+            }
+            .storeengine-membership-price {
+                &:last-child {
+                    &::after {
+                        background: transparent;
+                    }
+                }
+            }
+        }
+        .storeengine-add-price-form {
+            background: #fff;
+        }
+    }
+    .storeengine-preffered-store-product-types {
+        display: flex;
+        align-items: center;
+        padding: 4px;
+        background: #EBEBEB;
+        border-radius: 4px;
+        .storeengine-preffered-store-product-type {
+            padding: 12px;
+            text-align: center;
+            border-radius: 4px;
+            width: 100%;
+            cursor: pointer;
+        }
+        .is-selected {
+            background: #fff;
+            box-shadow: none;
+        }
+        .is-disabled {
+            pointer-events: none;
+        }
+    }
+    .storeengine-field-label__warning {
+        font-size: 12px;
+        color: var(--storeengine-subtitle-color, #949494);
+        margin-left: 8px;
+        font-style: italic;
+        padding: 10px 0;
+    }
+}
+
+.storeengine-unauthorized-access {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    &--is-inactive {
+        border: 1px solid var(--storeengine-border-color);
+        &:first-child, &:nth-child(2) {
+            margin-bottom: 16px;
+        }
+    }
+ 
+    &--is-active {
+        border: 1px solid var(--storeengine-primary-color);
+        &:first-child, &:nth-child(2) {
+            margin-bottom: 16px;
+        }
+    }
+}
+
+.storeengine-react-modal {
+    &--select-icon {
+        .storeengine-react-modal {
+            &__content {
+                ul {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 12px;
+                }
+
+                li {
+                    border: 1px solid var(--storeengine-border-color);
+                    width: 100%;
+                    text-align: center;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+}
+
+
+.storeengine-page-content__price-type-tabs {
+display: flex;
+align-items: flex-start;
+gap: 12px;
+align-self: stretch;
+}
+
+
+.storeengine-page-content__price-type {
+    padding: 16px;
+}
+
+.storeengine-subscription-message {
+    margin: 10px 0;
+    border: 1px solid var(--storeengine-secondary-color);
+    border-radius: 4px;
+    padding: 8px 16px;
+    .storeengine-icon {
+        margin-top: 2px;
+        &::before {
+            color: var(--storeengine-secondary-color);
+        }
+
+    }
+}
+
+.storeengine-subsciption-fields {
+    .storeengine-select, .storeengine-number-field  {
+        margin: 0;
+    }
+}
+
+// Unscoped: react-select portals its open menu to <body>, outside
+// .storeengine-page-content--access-group, so this can't live nested under
+// that container or the portaled options would fall out of the ruleset.
+.storeengine-feature-icon-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    &__icon {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__title {
+        font-size: 14px;
+        color: var(--storeengine-text-color);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.storeengine-field-label {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    margin: 0;
+    color: var(--storeengine-text-color);
+}
+
+.storeengine-membership__purchase-redirect{
+	.storeengine-post-form-group {
+		display: block;
+		gap: 4px;
+		.storeengine-post-form-info {
+			margin-bottom: 8px;
+		}
+	}
+}
+
+
+// Pricing card (access group): full-width heading line, and the embedded
+// "Advanced pricing" builder lines up with the Price field above it.
+.storeengine-pricing-head {
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--storeengine-border-color);
+
+    .storeengine-heading {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+}
+
+// Reads as a button: bordered, full width, chevron on the right.
+.storeengine-pricing-advanced-toggle.storeengine-pricing-advanced-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between !important;
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    font-weight: 500;
+    color: var(--storeengine-text-color);
+    background: #fff;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+
+    &:hover {
+        border-color: var(--storeengine-primary-color);
+        color: var(--storeengine-primary-color);
+    }
+
+    &__chevron {
+        font-size: 12px;
+        color: var(--storeengine-subtitle-color);
+    }
+}
+
+// "Repeated payment every": label first, then number + period on one aligned row.
+.storeengine-subscription-every {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &__label {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        color: var(--storeengine-text-color);
+    }
+
+    &__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+        gap: 8px;
+
+        > * {
+            margin: 0;
+            min-width: 0;
+        }
+
+        .storeengine-select,
+        [class*='-control'] {
+            min-height: 40px;
+        }
+    }
+}
+
+.storeengine-pricing-advanced {
+    .storeengine-page-content__price-type {
+        padding: 0;
+    }
+
+    .storeengine-add-store-product__label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 20px;
+        color: var(--storeengine-text-color);
+    }
+
+    // Helper line under the product select: same left edge, normal rhythm.
+    .storeengine-field-label__warning {
+        margin: 0 0 16px;
+        padding: 8px 0 0;
+    }
+}

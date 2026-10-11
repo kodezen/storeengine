@@ -1,0 +1,41 @@
+.storeengine-setup-form {
+	width: 100%;
+	display: flex;
+	padding-top: 128px;
+	margin-bottom: 24px;
+
+    &__content {
+        max-width: 600px;
+        width: 100%;
+        margin: 0 auto;
+
+        .storeengine-btn--disabled {
+            background-color: white;
+            color : var(--storeengine-subtitle-color, #515A62);
+        }
+    }
+
+    // Wider canvas for the selection steps (cards + "Did you know" rail):
+    // 1 = What you sell, 2 = Industry, 3 = Payments.
+    &.step-index-1,
+    &.step-index-2,
+    &.step-index-3 {
+        .storeengine-setup-form__content {
+            max-width: 1040px;
+        }
+    }
+
+    // Theme step (6th, index 5) hosts the full demo-importer grid.
+    &.step-index-5 {
+        .storeengine-setup-form__content {
+            max-width: 1200px;
+        }
+    }
+
+    .storeengine-btn {
+        &--skip {
+            padding: 0;
+            border: none;
+        }
+    }
+}

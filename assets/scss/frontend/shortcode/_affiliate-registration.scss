@@ -1,0 +1,24 @@
+// Affiliate registration / application form, rendered by
+// templates/affiliate/registration.php for the
+// [storeengine_affiliate_application] shortcode — both the logged-out
+// "register" branch and the logged-in "apply for affiliate" branch.
+// The two-column name row needs no rules here: the logged-out form also carries
+// `storeengine-login-form-wrapper`, which already lays `.storeengine-form-row`
+// out as a flex pair and stacks it on narrow screens (see frontend/login.scss).
+.storeengine-affiliate-registration-form {
+	// Required-field marker on labels, matching the `.storeengine-required`
+	// marker the login/registration forms use.
+	.storeengine-form-required {
+		color: var(--storeengine-error-color);
+	}
+}
+
+// Post-registration confirmation. Rendered in place of the form, so it can't be
+// nested above.
+.storeengine-affiliate-registration-success-message {
+	padding: 12px 16px;
+	border: 1px solid #b7ebc6;
+	border-radius: 6px;
+	background: #eafaf0;
+	color: #1e7e34;
+}

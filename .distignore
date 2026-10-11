@@ -1,0 +1,142 @@
+.babelrc
+.gitignore
+.gitattributes
+.distignore
+.editorconfig
+build.sh
+build-tools
+build.config.json
+.build-cache
+dist
+dev_storeengine
+assets/scss
+assets/icon-src
+assets/library/icons/fonts/storeengine-icons.html
+composer.json
+composer.lock
+package.json
+package-lock.json
+webpack.config.js
+.fantasticonrc.js
+node_modules
+.npmrc
+.nvmrc
+.git
+.github
+prepros.config
+*.xml
+*.map
+.prettierignore
+.prettierrc.json
+.prettierrc.js
+dev-checklist.txt
+.DS_Store
+.eslintignore
+.eslintrc.js
+jsconfig.json
+.vscode
+.idea
+/bin/
+*.zip
+*.tar
+*.tar.gz
+phpcs.log
+phpcs.xml
+phpcs.xml.dist
+license
+vendor/prefixed/mpdf/mpdf/ttfonts/
+vendor/paragonie
+pnpm-lock.yaml
+tsconfig.json
+phpstan.neon
+phpstan.neon.dist
+phpstan.bootstrap.php
+.codex
+AGENTS.md
+.claude
+.wp-env.json
+openspec
+postcss.config.js
+tailwind.config.js
+tailwind.admin.config.js
+tests
+tsconfig.json
+
+# ---------------------------------------------------------------------------
+# Markdown.
+#
+# Working notes accumulate one ad-hoc file at a time (plans, handoffs, test
+# reports), and naming them individually means the next one ships before anyone
+# notices. Nothing loads markdown at runtime, so none of it ships — except
+# licence texts, which must travel with the code they cover for GPL/MIT
+# attribution. No currently-shipped package uses LICENSE.md, but one may.
+# ---------------------------------------------------------------------------
+*.md
+!**/LICENSE*.md
+!**/LICENCE*.md
+!**/COPYING*.md
+docs
+pr-testing-screenshots
+
+# Lockfiles for package managers other than the one in use.
+bun.lock
+yarn.lock
+
+# ---------------------------------------------------------------------------
+# Dev-only Composer packages (never loaded at runtime).
+#
+# `npm run dist` runs `composer install --no-dev`, which normally removes
+# these — but if the zip is ever built from a dev vendor tree (e.g. a
+# `--only=zip` run, or a working checkout), they'd otherwise bloat the archive
+# by ~35 MB (phpstan.phar alone is 25 MB). Every entry below is a `packages-dev`
+# package from composer.lock, so excluding it can never drop a prod dependency.
+# Shared vendors (symfony/, psr/) are pruned per-package so prod dirs stay.
+# ---------------------------------------------------------------------------
+vendor/bin/
+vendor/dealerdirect/
+vendor/doctrine/
+vendor/nikic/
+vendor/php-stubs/
+vendor/phpcompatibility/
+vendor/phpcsstandards/
+vendor/phpdocumentor/
+vendor/phpstan/
+vendor/pronamic/
+vendor/psr/container/
+vendor/squizlabs/
+vendor/szepeviktor/
+vendor/webmozart/
+vendor/wp-coding-standards/
+vendor/symfony/console/
+vendor/symfony/deprecation-contracts/
+vendor/symfony/filesystem/
+vendor/symfony/finder/
+vendor/symfony/polyfill-ctype/
+vendor/symfony/polyfill-intl-grapheme/
+vendor/symfony/polyfill-intl-normalizer/
+vendor/symfony/polyfill-mbstring/
+vendor/symfony/polyfill-php73/
+vendor/symfony/service-contracts/
+vendor/symfony/string/
+
+# Vendor package cruft (docs / examples / CI metadata never needed at runtime;
+# package `tests` dirs are already covered by the bare `tests` rule above).
+vendor/**/docs/
+vendor/**/doc/
+vendor/**/examples/
+vendor/**/example/
+vendor/**/.github/
+vendor/**/*.markdown
+vendor/**/*.rst
+vendor/**/CHANGELOG*
+vendor/**/changelog*
+vendor/**/*.dist
+vendor/**/.gitignore
+vendor/**/.gitattributes
+vendor/**/.editorconfig
+vendor/**/phpunit.xml*
+vendor/**/phpcs.xml*
+vendor/**/phpstan.neon*
+# Lists every dev dependency by name and is unused at runtime — composer's
+# runtime API reads installed.php, not this.
+vendor/composer/installed.json

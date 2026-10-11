@@ -1,0 +1,1229 @@
+.kzui-table {
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+    background: #FFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // Only vertical padding on the card: the sub-header divider and row
+    // separators must reach the card's left/right borders (no inset notch).
+    // Horizontal insets live on the content (sub-header + first/last cells).
+    padding: 24px 0;
+    transition: all 0.3s ease;
+
+    @media (max-width: 768px) {
+        padding: 16px 0;
+    }
+
+    @media (max-width: 480px) {
+        padding: 12px 0;
+    }
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 1280px;
+    }
+    &__sub-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        gap: 12px;
+        // Border spans the full card width; content stays inset 24px.
+        padding: 0 24px;
+        box-sizing: border-box;
+        border-bottom: 1px solid var(--storeengine-border-color);
+        .storeengine-btn {
+            &--table-column {
+                padding: 10px;
+                &:hover {
+                    border-color: var(--storeengine-primary-color);
+                }
+            }
+            &--subheader-more {
+                min-width: 96px;
+            }
+        }
+        .kzui-table {
+            &__sub-header-left {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+
+                .kzui-table-sub-header-tabs {
+                    display: flex;
+                    align-items: center;
+                    .tab {
+                        padding: 18px 18px 16px 18px;
+                        color: var(--storeengine-subtitle-color);
+                        cursor: pointer;
+                        position: relative;
+                        overflow: hidden;
+                        &:hover {
+                            color: var(--storeengine-primary-color);
+                        }
+                    }
+
+                    .is-active {
+                        &:after {
+                            content: '';
+                            position: absolute;
+                            left: 0;
+                            bottom: 0;
+                            width: 100%;
+                            height: 1px;
+                            background: var(--storeengine-primary-color);
+                            transform: scaleX(1);
+                            transform-origin: left center;
+                            transition: transform 0.3s ease, background 0.3s ease;
+                        }
+
+                        &:hover {
+                            color: rgba(15, 14, 22, 1);
+                        }
+                    }
+                    .kzui-subheader-more-btn {
+                        cursor: pointer;
+                        position: relative;
+                        min-width: 100px;
+                        .is-active {
+                            bottom: 0px;
+                        }
+                        .is-active-sub-item {
+                            bottom: 0px;
+                            border-bottom: 1px solid var(--storeengine-primary-color);
+                            background: var(--storeengine-secondary-color);
+                        }
+                        .kzui-subheader-more {
+                            visibility: hidden;
+                            opacity: 0;
+                            transition: visibility 0.3s, opacity 0.3s;
+                            position: absolute;
+                            top: 24px;
+                            display: flex;
+                            flex-direction: column;
+                            z-index: 99999;
+                            border-radius: 4px;
+                            background: #fff;
+                            box-shadow: none;
+                            min-width: 100px;
+                            padding: 5px 0;
+                            margin: 5px 0;
+                            max-height: 248px;
+                            overflow-x: scroll;
+                            .tab {
+                                margin: 0 5px;
+                                padding-top: 10px;
+                                &:hover {
+                                    color: var(--storeengine-primary-color);
+                                    background: var(--storeengine-background-color, #F6F7F9);
+                                }
+                                &:after {
+                                    width: 0;
+                                }
+                            }
+                        }
+                        .kzui-subheader-more::-webkit-scrollbar-thumb {
+                            background: #DEDEDE;
+                            /* Color of the thumb */
+                            border-radius: 30px;
+                            /* Rounded corners of the thumb */
+                        }
+                        .kzui-subheader-more::-webkit-scrollbar {
+                            width: 6px;
+                            /* Width of the scrollbar */
+                            border-radius: 30px;
+                        }
+                        &:hover .kzui-subheader-more {
+                            visibility: visible;
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+
+            &__sub-header-actions-left {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            &__sub-header-right {
+                .kzui-table {
+                    &__sub-header-filter-icon {
+                        position: relative;
+                    }
+                }
+            }
+
+            &-sub-header-actions-right {
+                display: flex;
+                &--border {
+                    margin-left: 10px;
+                    height: 38px;
+                    width: 1px;
+                    background: var(--storeengine-border-color);
+                }
+            }
+        }
+    }
+
+    &__table {
+        padding: 24px 24px 0 24px;
+        width: calc(100% - 48px);
+        display: table;
+        border-collapse: separate;
+        border-spacing: 0;
+        table-layout: auto;
+
+        .kzui-table__head {
+            display: table-header-group;
+            .kzui-table__head-row {
+                width: 100%;
+                display: table-row;
+                background: var(--storeengine-background-color, #F7F7F8);
+            }
+        }
+
+        .kzui-table__body {
+            display: table-row-group;
+            width: 100%;
+            transition: opacity 0.3s ease;
+
+            &.is-loading {
+                opacity: 0.6;
+            }
+
+            .kzui-table__body-row {
+                display: table-row;
+                width: 100%;
+                border-bottom: 1px solid var(--storeengine-border-color);
+                transition: background-color 0.2s ease;
+
+                &:hover {
+                    background-color: var(--storeengine-background-color, #FAFAFB);
+                }
+            }
+        }
+
+        .kzui-table__row-cell {
+            display: table-cell;
+            padding: 12px;
+            vertical-align: middle;
+            color: var(--storeengine-text-color);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--storeengine-border-color);
+            transition: all 0.2s ease;
+
+            &--title {
+                text-align: left;
+            }
+
+            .kzui-table__head & {
+                color: var(--storeengine-subtitle-color);
+                padding: 12px 16px;
+                border-bottom: none;
+                white-space: nowrap;
+            }
+            .action-cell {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                justify-content: center;
+
+                .storeengine-icon {
+                    font-size: 16px;
+                    color: var(--storeengine-subtitle-color);
+                    transition: color 0.2s ease;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: var(--storeengine-primary-color);
+                    }
+                }
+            }
+
+            .storeengine-table-title {
+                display: flex;
+                // flex-direction: column;
+                gap: 4px;
+                box-shadow: none;
+                outline: none;
+                &-wrap {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: var(--storeengine-primary-color);
+                    font-weight: 600;
+                    text-decoration: none;
+                    box-shadow: none;
+                    outline: none;
+                    
+                    &:hover {
+                        text-decoration: underline;
+                        box-shadow: none;
+                        outline: none;
+                    }
+                }
+
+                .storeengine-table-sub-title {
+                    font-size: 12px;
+                    color: var(--storeengine-subtitle-color);
+                    font-weight: 400;
+                }
+            }
+
+            //.customer-details {
+            //    display: flex;
+            //    align-items: center;
+            //    gap: 12px;
+            //    text-align: left;
+			//
+            //    .gravatar-container {
+            //        flex-shrink: 0;
+            //        border-radius: 50%;
+            //        overflow: hidden;
+            //        width: 32px;
+            //        height: 32px;
+            //        img {
+            //            display: block;
+            //            width: 100%;
+            //            height: 100%;
+            //        }
+            //    }
+			//
+            //    .customer-info {
+            //        display: flex;
+            //        flex-direction: column;
+            //        gap: 2px;
+			//
+            //        .customer-name {
+            //            color: var(--storeengine-text-color);
+            //            font-weight: 600;
+            //            font-size: 14px;
+            //        }
+			//
+            //        .customer-email {
+            //            color: var(--storeengine-subtitle-color);
+            //            font-weight: 400;
+            //            font-size: 12px;
+            //        }
+            //    }
+            //}
+
+            //.payment-method {
+            //    display: flex;
+            //    align-items: center;
+            //    gap: 8px;
+            //    justify-content: center;
+            //    color: var(--storeengine-subtitle-color);
+            //    font-size: 13px;
+            //    .storeengine-icon { font-size: 18px; }
+            //}
+
+            .status-title {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+                display: inline-flex;
+            }
+
+            p { margin: 0; }
+        }
+
+        .kzui-table__row-cell-checkbox {
+            width: 40px;
+            max-width: 40px;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: left;
+            padding-left: 24px;
+
+            input {
+                margin: 0;
+            }
+        }
+        // common modifiers for header row and body row
+        .kzui-table__row-cell,
+        .kzui-table__header-row-cell {
+            &--title {
+                text-align: left;
+            }
+        }
+
+        // First/last cell gutter: content lines up with the sub-header inset
+        // (24px) while the row separators run edge to edge across the card.
+        .kzui-table__row-cell:first-child {
+            padding-left: 24px;
+        }
+
+        .kzui-table__row-cell:last-child {
+            padding-right: 24px;
+        }
+    }
+
+    &__loading-wrapper {
+        position: relative;
+        min-height: 200px;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+
+        .kzui-table__empty {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 0;
+        }
+    }
+
+    &__loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.7);
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 32px 24px 0 24px;
+
+        .kzui-table__footer-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .kzui-table__footer-pagination {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        // Compact "Items per page" picker — the default react-select control is
+        // too tall/wide for a small number picker, so shrink it hard.
+        .per__page {
+            .storeengine-select {
+                min-width: 62px;
+                width: 62px;
+            }
+
+            // min-height (not a fixed height) so react-select keeps the value
+            // vertically centered; the reduced inner padding below trims the
+            // control down to ~30px on its own.
+            .storeengine-react-select__control {
+                min-height: 30px;
+                border-radius: 4px;
+            }
+
+            .storeengine-react-select__value-container {
+                padding: 0 2px 0 8px;
+            }
+
+            // Drop the vertical divider before the caret — it just adds bulk.
+            .storeengine-react-select__indicator-separator {
+                display: none;
+            }
+
+            .storeengine-react-select__dropdown-indicator {
+                padding: 3px;
+
+                svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+
+            .storeengine-react-select__single-value,
+            .storeengine-react-select__input-container {
+                font-size: 13px;
+            }
+        }
+    }
+
+    &__filter-modal {
+        padding: 24px;
+        &__top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--storeengine-border-color);
+            padding-bottom: 16px;
+            color: var(--storeengine-subtitle-color);
+        }
+
+        &__footer {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            border-top: 1px solid var(--storeengine-border-color);
+            padding: 16px 0 0 0;
+        }
+    }
+
+    &__header-row-cell {
+        white-space: nowrap;
+    }
+}
+
+.kzui-table__filter-checked-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+    margin-top: 16px;
+    // Self-contained background so the dragged clone below (which copies
+    // this class) doesn't depend on inheriting a background from wherever
+    // it gets appended in the DOM.
+    background-color: var(--storeengine-white-color);
+
+    input { margin-right: 8px; }
+
+    .kzui-table-filter-item-left {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        .kzui-table-filter-item-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--storeengine-text-color);
+        }
+    }
+}
+
+// react-sortable-hoc clones the dragged `.kzui-table__filter-checked-item`
+// into this class and appends it to <body> with an inline `position: fixed`
+// but no z-index. The Columns modal (react-modal) overlay sits at
+// z-index: 99999, so without this the clone painted underneath it —
+// completely hidden, not just missing its background/border.
+.kzui-table__filter-drag-helper {
+    z-index: 1000000;
+}
+
+// suffix
+.kzui-table {
+    .storeengine-email-logs-filters {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+}
+
+.kzui-table {
+    &--abandoned-cart {
+        .kzui-list-table-sub-header-actions-right {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+    }
+
+    &--funnel-analytics, &--funnel-steps, &--suppliers-list, &--purchase-orders-list {
+        .kzui-table__container {
+            .kzui-table__loading-wrapper {
+                .kzui-table__table {
+                    padding-top: 0;
+                }        
+            }
+        }
+    }
+
+    &--taxonomy-list, &--attributes-list {
+        .kzui-table__container {
+            .kzui-table__loading-wrapper {
+                .kzui-table__table {
+                    padding-top: 0;
+                    .kzui-table__head {
+                        .kzui-table__head-row {
+                            .kzui-table__row-cell {
+                                &:first-child {
+                                    text-align: left;
+                                }
+                            }
+                        }
+                    }
+
+                    .kzui-table__body {
+                        .kzui-table__body-row {
+                            .kzui-table__row-cell {
+                                &:first-child {
+                                    text-align: left;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &--customer-subscriptions {
+        .kzui-table__container {
+            .kzui-table__loading-wrapper {
+                .kzui-table__table {
+                    padding-top: 0;
+                }
+            }
+        }
+    }
+
+    &--attribute-terms {
+        border: none;
+        padding: 0 0 24px 0;
+    }
+
+    &--customer-purchase-items, &--customer-subscriptions {
+        padding: 0;
+    }
+
+    &--purchase-product {
+        margin-top: 24px;
+        padding: 0;
+        border: none;
+    }
+    
+    &--customer-orders, &--customer-subscriptions, &--customer-purchase-items {
+        border: none;
+        padding: 0;
+        .kzui-table__container, .kzui-table__table {
+            width: 100%;
+            padding: 0;
+        }
+    }
+    
+    &--staff-permissions-settings {
+        box-shadow: none;
+        padding: 0;
+    }
+    
+    &--tools-pages {
+        .kzui-table__container {
+            .kzui-table__table  {
+                padding: 0;
+                .kzui-table__body .kzui-table__body-row .kzui-table__row-cell {
+                    .storeengine-icon {
+                        &--filled-checkmark {
+                            color: var(--storeengine-primary-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// One themed checkbox for the whole admin. It is custom-drawn
+// (`appearance: none`) with an SVG tick painted as a centered background image,
+// so it never depends on ::before geometry (which clipped/misaligned before)
+// and always matches the StoreEngine border + brand colors. Checked and
+// indeterminate states are covered; the tick scales with the box and can't clip.
+@mixin se-admin-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    width: 1rem;
+    height: 1rem;
+    min-width: 1rem;
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 3px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 66% 66%;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+
+    &:hover:not(:disabled) {
+        border-color: var(--storeengine-primary-color);
+    }
+
+    &:checked {
+        background-color: var(--storeengine-primary-color);
+        border-color: var(--storeengine-primary-color);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.5l3 3 6-6.5'/%3E%3C/svg%3E");
+    }
+
+    &:indeterminate {
+        background-color: var(--storeengine-primary-color);
+        border-color: var(--storeengine-primary-color);
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='white' stroke-width='2' stroke-linecap='round' d='M4 8h8'/%3E%3C/svg%3E");
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--storeengine-primary-light);
+        outline-offset: 1px;
+    }
+}
+
+// On/off SWITCH drawn from a bare checkbox (matches the kit Switch used on
+// Checkout Fields): a pill track with a sliding knob, blue when on, grey when
+// off. The input stays a real checkbox — only its looks change.
+@mixin se-admin-switch {
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+    width: 36px;
+    height: 20px;
+    min-width: 36px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background-color: #cbd5e1;
+    // Reset the box variant's SVG-tick background (a checkbox that also carries
+    // .storeengine-input-check would otherwise paint a checkmark ON the switch).
+    background-image: none;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: background-color 0.15s ease;
+
+    &::before {
+        content: '';
+        position: absolute;
+        // Center the knob vertically no matter the control's rendered height
+        // (some inputs pick up a taller height elsewhere, which used to leave
+        // the knob stuck at the top).
+        top: 50%;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(16, 24, 40, 0.2);
+        transform: translateY( -50% );
+        transition: transform 0.15s ease;
+    }
+
+    &:checked {
+        background-color: var(--storeengine-primary-color);
+        background-image: none;
+    }
+
+    &:checked::before {
+        transform: translate( 16px, -50% );
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--storeengine-primary-light);
+        outline-offset: 1px;
+    }
+}
+
+// 1) Every admin checkbox renders as an on/off SWITCH by default (matches the
+//    kit Switch: blue = on, grey = off). Broad on purpose — many option
+//    checkboxes across Settings (core + pro) carry .storeengine-input-check,
+//    so keying off that class would wrongly leave them as boxes. Only the
+//    setup wizard (its own design) is excluded here. Specificity (0,3,1) beats
+//    WordPress core admin's input[type=checkbox] (0,1,1).
+.se-admin-tw input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox ) {
+    @include se-admin-switch;
+}
+
+// 2) Exception — any checkbox that lives inside a TABLE COLUMN stays a real
+//    checkbox (a switch reads wrong for row-select / per-row toggles). Covers
+//    native <table> cells and the div-based kzui table cells. The trailing
+//    :not() lifts each selector to specificity (0,3,2)/(0,4,1) so it beats the
+//    switch base (0,3,1) declared above.
+.se-admin-tw table input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox ),
+.se-admin-tw .kzui-table__row-cell input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox ),
+.se-admin-tw .kzui-table__header-row-cell input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox ) {
+    @include se-admin-checkbox;
+}
+
+// Same exception, but scope-INDEPENDENT — kzui list tables also render inside
+// portaled modals (attribute terms, etc.) that aren't wrapped in .se-admin-tw,
+// where the switch base still applies. The four class-level tokens give this
+// (0,4,1), so it beats the switch base with or without the admin scope.
+.kzui-table__row-cell-checkbox input.storeengine-input-check[type="checkbox"]:not( .storeengine-setup-wizard-checkbox ) {
+    @include se-admin-checkbox;
+}
+
+input.storeengine-input-check {
+    // Standalone table-selector usage outside the admin scope (e.g. the
+    // customer-returns app) — keep the box there too.
+    @include se-admin-checkbox;
+}
+
+// 2b) The switch base (rule 1) also paints a ::before KNOB (a white circle).
+//     The box overrides above only restyle the input element, not its
+//     pseudo-element — so a checked table checkbox was showing that leftover
+//     white knob on a blue box, reading as a switch. A checkbox needs no
+//     pseudo-element (its tick is a background-image), so kill it wherever a
+//     checkbox is forced back to a box.
+.se-admin-tw table input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox )::before,
+.se-admin-tw .kzui-table__row-cell input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox )::before,
+.se-admin-tw .kzui-table__header-row-cell input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox )::before,
+.kzui-table__row-cell-checkbox input.storeengine-input-check[type="checkbox"]:not( .storeengine-setup-wizard-checkbox )::before,
+input.storeengine-input-check::before {
+    content: none;
+    display: none;
+}
+
+// 3) Formik SwitchControl already draws its own slider; its underlying input is
+//    meant to be invisible. Rules (1)/(2) would otherwise style that hidden
+//    input, so reset it back to hidden. `:not()` gives it specificity (0,4,1),
+//    which outranks the table-column box override even inside a table cell.
+.se-admin-tw .storeengine-control-switch input[type="checkbox"]:not( .storeengine-setup-wizard-checkbox ) {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 0;
+    height: 0;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    background: none;
+
+    &::before {
+        display: none;
+    }
+}
+
+// Themed radio button — custom-drawn (appearance:none) so the checked dot is
+// the StoreEngine brand color instead of the OS/browser accent. Specificity
+// (0,2,1) outranks WordPress core admin's input[type=radio] (0,1,1).
+.se-admin-tw input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    position: relative;
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    min-width: 1rem;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: border-color 0.15s ease;
+
+    &:hover {
+        border-color: var(--storeengine-primary-color);
+    }
+
+    &:checked {
+        border-color: var(--storeengine-primary-color);
+    }
+
+    &:checked::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--storeengine-primary-color);
+        transform: translate(-50%, -50%);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--storeengine-primary-light);
+        outline-offset: 1px;
+    }
+}
+
+// ---------------------------------------------------------------------------
+// List chrome. One look for every list screen that has a sub-header:
+//   - 24px on all four sides of the card, with borders and backgrounds inside
+//     that padding (nothing runs edge to edge),
+//   - 36px controls, 16px between toolbar, applied-filter chips and table,
+//   - the table is its own bordered box.
+// Nested / embedded variants that draw their own card are left alone.
+// Tables WITHOUT a sub-header keep the previous layout.
+// ---------------------------------------------------------------------------
+.kzui-table:has( > .kzui-table__container > .kzui-table__sub-header ):not( .kzui-table--customer-orders ):not( .kzui-table--customer-purchase-items ):not( .kzui-table--customer-subscriptions ):not( .kzui-table--attribute-terms ):not( .kzui-table--purchase-product ):not( .kzui-table--tax-settings ):not( .kzui-table--staff-permissions-settings ) {
+    padding: 24px;
+
+    .kzui-table__sub-header {
+        align-items: flex-start;
+        min-height: 0;
+        padding: 0;
+
+        // No status tabs (search-only headers): the controls need their own
+        // room above the divider.
+        &:not( :has( .kzui-table-sub-header-tabs ) ) {
+            padding-bottom: 12px;
+        }
+
+        .kzui-table__sub-header-actions-left {
+            display: flex;
+            gap: 0;
+        }
+
+        // Stretch, so the tab strip always reaches the divider even when a
+        // control beside it (e.g. a 40px select) makes the row taller.
+        .kzui-table__sub-header-left {
+            align-items: stretch;
+
+            // Status tabs: 48px tall so the underline sits exactly on the
+            // divider; the label is centered like the 36px controls beside it.
+            .kzui-table-sub-header-tabs {
+                flex: 1 1 auto;
+                align-items: stretch;
+                min-height: 48px;
+
+                .tab {
+                    box-sizing: border-box;
+                    min-height: 48px;
+                    margin: 0;
+                    padding: 8px 10px 20px;
+                    line-height: 20px;
+                    white-space: nowrap;
+
+                    &.is-active:after {
+                        height: 2px;
+                    }
+                }
+            }
+        }
+
+        // With tabs the row is 48px; controls keep their 12px above the
+        // divider so tabs and controls end on the same line.
+        &:has( .kzui-table-sub-header-tabs ) {
+            .storeengine-list-filter-bar,
+            .kzui-list-table-sub-header-actions-right,
+            .kzui-table__sub-header-right {
+                padding-bottom: 12px;
+            }
+        }
+    }
+
+    // Toolbar (views, filter, search) and the columns button.
+    .storeengine-list-filter-bar {
+        align-items: center;
+    }
+
+    .kzui-table__sub-header-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    // Toolbar -> chips / table: 16px.
+    .kzui-table__sub-header ~ .kzui-table__loading-wrapper,
+    .storeengine-filter-chips ~ .kzui-table__loading-wrapper {
+        margin-top: 16px;
+    }
+
+    .kzui-table__table {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0;
+        border: 1px solid var(--storeengine-border-color);
+        border-radius: 4px;
+
+        // Rows sit inside the box; the box supplies the outer line.
+        .kzui-table__body .kzui-table__body-row:last-child .kzui-table__row-cell {
+            border-bottom: 0;
+        }
+
+        .kzui-table__row-cell:first-child,
+        .kzui-table__row-cell-checkbox {
+            padding-left: 16px;
+        }
+
+        .kzui-table__row-cell:last-child {
+            padding-right: 16px;
+        }
+
+        // Header band follows the box's rounded corners.
+        .kzui-table__head-row .kzui-table__row-cell:first-child {
+            border-top-left-radius: 3px;
+        }
+
+        .kzui-table__head-row .kzui-table__row-cell:last-child {
+            border-top-right-radius: 3px;
+        }
+    }
+
+    .kzui-table__footer {
+        padding: 24px 0 0;
+    }
+}
+
+// Column alignment, every table: the first data column starts left (the one
+// after the select checkbox when there is one) and every other column is
+// centered.
+.kzui-table__table {
+    .kzui-table__row-cell:first-child:not( .kzui-table__row-cell-checkbox ),
+    .kzui-table__row-cell-checkbox + .kzui-table__row-cell {
+        text-align: left;
+    }
+}
+
+// Columns dropdown (SortableColumns).
+.kzui-table__sub-header-filter-icon {
+    position: relative;
+}
+
+.kzui-table__columns-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    color: var(--storeengine-subtitle-color);
+    background: #fff;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+
+    &:hover,
+    &.is-open {
+        color: var(--storeengine-primary-color);
+        border-color: color-mix(in srgb, var(--storeengine-primary-color) 45%, #fff);
+    }
+
+    &.is-open {
+        background: color-mix(in srgb, var(--storeengine-primary-color) 8%, #fff);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--storeengine-primary-color);
+        outline-offset: 1px;
+    }
+}
+
+.kzui-table__columns-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    z-index: 60;
+    width: 280px;
+    max-width: calc(100vw - 32px);
+    color: var(--storeengine-text-color);
+    background: #fff;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+    box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+    text-align: left;
+
+    // Caret pointing at the trigger.
+    &::before {
+        content: "";
+        position: absolute;
+        top: -6px;
+        right: 13px;
+        width: 10px;
+        height: 10px;
+        background: #fff;
+        border-top: 1px solid var(--storeengine-border-color);
+        border-left: 1px solid var(--storeengine-border-color);
+        transform: rotate( 45deg );
+    }
+
+    &__head,
+    &__foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 12px 16px;
+    }
+
+    &__head {
+        border-bottom: 1px solid var(--storeengine-border-color);
+
+        strong {
+            font-size: 14px;
+            font-weight: 600;
+        }
+    }
+
+    &__foot {
+        border-top: 1px solid var(--storeengine-border-color);
+    }
+
+    &__title {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+    }
+
+    &__count {
+        font-size: 12px;
+        color: var(--storeengine-subtitle-color);
+    }
+
+    &__actions {
+        display: flex;
+        gap: 8px;
+    }
+
+    &__link {
+        padding: 0;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--storeengine-subtitle-color);
+        background: none;
+        border: 0;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--storeengine-primary-color);
+            text-decoration: underline;
+        }
+    }
+
+    &__btn {
+        height: 32px;
+        padding: 0 14px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--storeengine-text-color);
+        background: #fff;
+        border: 1px solid var(--storeengine-border-color);
+        border-radius: 4px;
+        cursor: pointer;
+
+        &.is-primary {
+            color: #fff;
+            background: var(--storeengine-primary-color);
+            border-color: var(--storeengine-primary-color);
+        }
+
+        &:hover {
+            filter: brightness( 0.96 );
+        }
+    }
+
+    .kzui-table__filter-items {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        max-height: 320px;
+        margin: 0;
+        padding: 6px;
+        overflow-y: auto;
+        list-style: none;
+    }
+
+    .kzui-table__filter-checked-item {
+        justify-content: flex-start;
+        gap: 10px;
+        height: 36px;
+        margin: 0;
+        padding: 0 8px;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+
+        &:hover {
+            background: var(--storeengine-background-color, #f9fafb);
+        }
+
+        .kzui-table__drag-handle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            flex: none;
+            align-self: stretch;
+            width: 20px;
+            margin-left: -4px;
+            color: var(--storeengine-placeholder-color, #98a2b3);
+            cursor: grab;
+            touch-action: none;
+
+            &:hover {
+                color: var(--storeengine-subtitle-color);
+            }
+        }
+
+        .storeengine-icon--drag {
+            font-size: 14px;
+        }
+
+        input {
+            margin: 0;
+        }
+
+        .kzui-table-filter-item-left {
+            flex: 1;
+            gap: 10px;
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .kzui-table-filter-item-note {
+            font-size: 12px;
+            color: var(--storeengine-placeholder-color, #98a2b3);
+        }
+    }
+}
+
+// The dragged row is cloned into <body>, outside the menu, so it needs its own
+// look.
+.kzui-table__filter-drag-helper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 36px;
+    padding: 0 8px;
+    list-style: none;
+    background: #fff;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+    box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+}
+
+// One search width in every list sub-header (Products, Coupons, Reviews, FAQs,
+// Category, Tag, Brand ...). Screens with their own wider layout (Customers)
+// override it with a more specific rule.
+.kzui-table .kzui-table__sub-header .storeengine-search-component input.storeengine-search-component__input {
+    width: 260px;
+    max-width: 100%;
+}

@@ -1,0 +1,63 @@
+// .storeengine-setup {
+//     width: 100%;
+//     min-height: calc(100vh - 100px);
+//     height: 100%;
+//     background: #fff;
+//     .storeengine-setup-form-reset-button {
+//         button {
+//             border: none;
+//             color: #858585;
+//             background: none;
+//             cursor: pointer;
+//             font-size: 16px;
+//             .storeengine-icon {
+//                 &--Reset-Default {
+//                     &:before {
+//                         color: var(--storeengine-dark-gray-color);
+//                     }
+//                 }
+//             }
+
+//             .storeengine-setup-form-reset-button-text {
+//                 font-weight: 400;
+//                 font-size: 14px;
+//                 line-height: 20px;
+//                 color: var(--storeengine-dark-gray-color);
+//             }
+
+//             .storeengine-rotate-icon {
+//                 padding: 0 4px;
+//                 svg {
+//                     fill: var(--storeengine-primary-color);
+//                 }
+//             }
+
+//             .storeengine-setup-form-reset-button-text {
+//                 margin-left: 8px;
+//             }
+//         }
+//     }
+
+//     &__form {
+//         display: flex;
+//         flex-direction: column;
+//         width: 100%;
+//     }
+// }
+
+// @media all and (max-width: 1280px) {
+//     .storeengine-setup-screen {
+//         &__fourth-step {
+//             min-width: 100%;
+//             .storeengine-screen-fourth-step {
+//                 &__right {
+//                     width: 60%;
+//                 }
+
+//                 &__left {
+//                     width: 40%;
+//                 }
+//             }
+//         }
+//     }
+// }

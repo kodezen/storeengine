@@ -1,0 +1,474 @@
+.storeengine-page-content--tools {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+    &__content {
+        width: 70%;
+        background: #FFF;
+        padding: 24px;
+        border: 1px solid var(--storeengine-border-color);
+        border-radius: 4px;
+        .storeengine-icon--custom-check {
+            &::after{
+                content: "\2713";
+                color: #4dd181;
+            }
+        }
+        .storeengine-list-wrap {
+            margin: 24px 0;
+            .rdt_Table {
+                .rdt_TableHead {
+                    .rdt_TableHeadRow {
+                        padding: 10px 0 !important;
+                        background: var(--storeengine-background-color, #F5F5F5);
+                        min-height: 40px !important;
+                    }
+                }
+
+                .rdt_TableBody {
+                    .rdt_TableRow {
+                        padding: 0;
+                        min-height: 74px !important;
+                        border-bottom: 1px solid var(--storeengine-border-color);
+                    }
+                }
+            }
+        }
+
+		.storeengine-tools-page {
+			&__tabs {
+			display: flex;
+			align-items: flex-start;
+			border-bottom: 1px solid var(--storeengine-border-color);
+			margin-bottom: 24px;
+			cursor: pointer;
+			.storeengine-tools-tab {
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 140%;
+				padding: 0 0 8px 0;
+			}
+			.is-storeengine-active {
+				background: transparent;
+				cursor: default;
+			}
+
+			.is-storeengine-default {
+				background: transparent;
+				border: 1px solid transparent;
+				cursor: pointer;
+				position: relative;
+			}
+		}
+			&--status {
+				&__item {
+					&__container {
+						display: flex;
+						flex-wrap: wrap;
+						column-gap: 24px;
+						.status-item {
+							margin-bottom: 10px;
+							padding: 12px 12px;
+							width: calc(50% - 40px);
+							background: var(--storeengine-background-color, #F9FAFA);
+							border: 1px solid var(--storeengine-border-color);
+							border-radius: 8px;
+							display: flex;
+							justify-content: space-between;
+
+							.item-label {
+								font-weight: 400;
+								font-size: 14px;
+								color: var(--storeengine-subtitle-color);
+								text-align: left;
+								min-width: 33.33333%;
+							}
+
+							.item-data {
+								font-weight: 500;
+								font-size: 15px;
+								color: var(--storeengine-text-color);
+								text-align: right;
+								//word-break: break-all;
+								word-break: keep-all;
+
+								.storeengine-icon {
+									&--check {
+										&::before {
+											color: #4DD181;
+										}
+									}
+
+									&--close {
+										&::before {
+											color: #F4483F;
+										}
+									}
+								}
+							}
+						}
+
+						.storeengine-statu-page-sub-header {
+							font-weight: 500;
+							font-size: 14px;
+							line-height: 20px;
+							margin: 30px 0;
+							color: var(--storeengine-subtitle-color, #6D6E70);
+						}
+					}
+				}
+
+				.is-storeengine-active {
+					background: transparent;
+					color: var(--storeengine-primary-color);
+					border: none;
+					cursor: default;
+					border-bottom: 1px solid var(--storeengine-primary-color);
+				}
+
+				.is-storeengine-default {
+					background: transparent;
+					border: none;
+					cursor: pointer;
+					position: relative;
+				}
+			}
+			&--short-code {
+				.storeengine-short-code-item {
+					display: flex;
+					align-items: center;
+					width: 100%;
+					padding: 0 0 24px 0;
+					&:last-child {
+						margin-bottom: 0;
+						padding-bottom: 0;
+					}
+					&__info {
+						width: 200px;
+						h3 {
+							font-weight: 500;
+							font-size: 14px;
+							line-height: 20px;
+							color: var(--storeengine-text-color);
+							margin: 0;
+						}
+					}
+
+					&__body {
+						width: calc(100% - 200px);
+						.storeengine-short-code-details {
+							width: 100%;
+							display: flex;
+							align-items: center;
+							gap: 20px;
+							.storeengine-short-code-text {
+								width: 90%;
+								position: relative;
+								&__shortcode {
+									background: var(--storeengine-background-color, #F9FAFA);
+									border: 1px solid var(--storeengine-border-color);
+									border-radius: 4px;
+									font-weight: 400;
+									font-size: 16px;
+									line-height: 130%;
+									color: var(--storeengine-subtitle-color);
+									width: 100%;
+									padding: 11px 45px 11px 14px;
+								}
+
+								.storeengine-btn {
+									&--copy {
+										position: absolute;
+										top: 1px;
+										right: 1px;
+										padding: 12px;
+										border: none;
+										--bg-color: transparent;
+										--text-color: var(--storeengine-primary-color);
+										background: transparent;
+										border-left: 1px solid var(--storeengine-border-color);
+										cursor: pointer;
+										.storeengine-icon {
+											&--duplicate {
+												font-size: 20px;
+												&::before {
+													color: var(--storeengine-primary-color);
+												}
+											}
+										}
+									}
+								}
+							}
+
+							.storeengine-btn {
+								&--link {
+									width: 34px;
+									height: 34px;
+									border: 1px solid var(--storeengine-border-color);
+									border-radius: 50%;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+									cursor: pointer;
+									text-decoration: none;
+									.storeengine-icon {
+										font-size: 16px;
+									}
+								}
+
+								&--label {
+									font-size: 24px;
+									color: var(--storeengine-subtitle-color, #8D8F93);
+								}
+							}
+						}
+
+						.storeengine-short-code-description {
+							padding: 4px 0 0 0;
+							p {
+								font-weight: 400;
+								font-style: italic;
+								font-size: 12px;
+								line-height: 22px;
+								color: var(--storeengine-text-color);
+								margin: 0;
+
+								span {
+									color: var(--storeengine-subtitle-color);
+									font-weight: 500;
+								}
+							}
+						}
+					}
+				}
+			}
+			&--storeengine-pages {
+				.storeengine-tools-page-storeengine {
+					&__body {
+						margin-top: 20px;
+						.storeengine-btn {
+							margin-top: 20px;
+							&--regenerate {
+								min-width: 190px;
+							}
+						}
+					}
+				}
+			}
+		}
+    }
+}
+
+.storeengine-tools-page--status__item {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	.storeengine-icon--info {
+		color: var(--storeengine-primary-color);
+		font-size: 18px;
+	}
+	.storeengine-migration-content__list {
+		list-style: disc;
+		margin: 0;
+		padding: 0 20px;
+		color : var(--storeengine-subtitle-color);
+	}
+	.storeengine-migration-warning-text {
+		align-items: center;
+		border: 1px solid var(--storeengine-primary-color);
+		border-radius: 8px;
+		display: flex;
+		font-size: 16px;
+		gap: 15px;
+		margin: 0;
+		padding: 16px 20px;
+		color : var(--storeengine-subtitle-color);
+	}
+}
+
+.storeengine-confirm {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+	border: none;
+	padding: 0;
+	background: rgba(3, 3, 3,.44);
+	width: 100%;
+	height: 100%;
+
+	&--open {
+		overflow: hidden!important;
+	}
+
+    &__wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+        padding: 20px;
+        background: white;
+        border-radius: 4px;
+        width: 480px;
+        overflow-y: auto;
+        text-align: center;
+        box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+    }
+
+	&__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        color: #FDB022;
+        font-size: 26px;
+        font-weight: 500;
+        line-height: 30px;
+        margin: 0;
+    }
+
+	&__body {}
+
+	&__footer {
+		display: flex;
+		gap: 12px;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		margin: 0;
+
+		.storeengine-btn {
+			&--confirm,
+			&--cancel {
+				width: 100%;
+			}
+		}
+	}
+
+    .storeengine-icon {
+		&::before {
+			color: #FDB022;
+		}
+    }
+}
+
+.storeengine-progress-modal {
+    position: fixed;
+	inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+	border: none;
+	padding: 0;
+	background: rgba(3, 3, 3,.44);
+	width: 100%;
+	height: 100%;
+
+	&--open {
+		overflow: hidden!important;
+	}
+
+    &__wrapper {
+        padding: 40px 60px;
+        background: white;
+        border-radius: 4px;
+        width: 480px;
+        min-height: 160px;
+        text-align: center;
+        box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+    }
+
+    &__completed-subtitle {
+        color: var(--storeengine-subtitle-color, #74777C);
+        text-align: center;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    &__completed-title {
+        color: var(--storeengine-text-color, #13191B);
+        text-align: center;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 36px;
+        margin: 16px 0 8px 0;
+    }
+
+	&__footer {
+		display: flex;
+		justify-content: center;
+		margin-top: 24px;
+	}
+
+	&__progress {
+		&--wrapper {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		&--bar {
+			height: 12px;
+			background: #F2F0FD;
+			border-radius: 999px;
+			overflow: hidden;
+			width: 100%;
+		}
+		&--progress {
+			width: 0;
+			height: 100%;
+			background: var(--storeengine-primary-color);
+			transition: width 600ms cubic-bezier(0.6, 0, 0.38, 1);
+			border-radius: 999px;
+		}
+	}
+
+	.storeengine-btn {
+		&--close {
+			width: 50%;
+		}
+	}
+}
+
+
+// Dummy Data (seeder) tab
+.storeengine-tools-page--seeder {
+	.storeengine-seeder-table {
+		max-width: 760px;
+		margin: 16px 0;
+		border-collapse: collapse;
+		width: 100%;
+
+		th,
+		td {
+			text-align: start;
+			padding: 10px 12px;
+			border-bottom: 1px solid var(--storeengine-border-color, #e5e7eb);
+			vertical-align: middle;
+		}
+
+		code {
+			font-size: 11px;
+			color: #6b7280;
+		}
+
+		input[type='number'] {
+			width: 100%;
+		}
+	}
+
+	.storeengine-warning--danger {
+		border-color: #f5c2c7;
+		background: #fdf1f2;
+	}
+
+	.storeengine-seeder-actions {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: 16px;
+	}
+}

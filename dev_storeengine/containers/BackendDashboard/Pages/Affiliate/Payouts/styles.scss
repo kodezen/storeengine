@@ -1,0 +1,50 @@
+.storeengine-react-modal  {
+    .storeengine-react-modal__content {
+        .storeengine-input {
+            gap: 0;
+            .storeengine-icon--calendar {
+                font-size: 18px;
+                margin-left: 2px;
+            }
+            .storeengine-payouts-input {
+                border: none;
+            }
+        }
+    }
+}
+
+.storeengine-payouts-error {
+    color: red;
+}
+
+.storeengine-react-modal--payouts  {
+  .storeengine-react-modal__footer {
+            margin-top: 24px;
+        }
+}
+
+.affiliate-user {
+	align-items: center;
+	.user-avatar {
+		.avatar {
+			max-width: 30px;
+			height: auto;
+			border-radius: 50%;
+		}
+	}
+	.user-info {
+		margin-right: auto;
+		.storeengine-subtitle {
+			font-size: 0.9em;
+			opacity: 0.5;
+		}
+	}
+	.balance {
+		display: inline-flex;
+		gap: 5px;
+		p {
+			margin: 0;
+			font-weight: 300;
+		}
+	}
+}

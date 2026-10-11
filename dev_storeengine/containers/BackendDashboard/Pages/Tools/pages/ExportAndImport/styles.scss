@@ -1,0 +1,49 @@
+.storeengine-tools-page-export__section--items {
+    display: flex;
+    gap: 8px;
+}
+
+.storeengine-import {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.storeengine-import__modal-btn {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin: 24px;
+    border-top: 1px solid var(--storeengine-border-color);
+    gap: 10px;
+    margin-right: 22px;
+    padding-top: 20px
+}
+
+.storeengine-import__msg {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0px 24px;
+    .storeengine-flex {
+        gap: 8px;
+        align-items: center;
+    }
+    span {
+
+        color:  var(--storeengine-subtitle-color, #515A62);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 140%;
+    }
+    a {
+        color: var(--storeengine-primary-color);
+    }
+}
+
+.storeengine-page-content--tools__content--export-import {
+    background: transparent !important;
+	padding: 0 !important;
+	box-shadow: 0 !important;
+}

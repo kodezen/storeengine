@@ -1,0 +1,169 @@
+.storeengine-cart-list-table-shortcode {
+	overflow-x: auto;
+
+	a {
+		text-decoration: none;
+	}
+
+	.storeengine-cart-table {
+		margin-top: 0;
+		width: 100%;
+		overflow-x: auto;
+		border-collapse: collapse;
+		min-width: 600px; /* Ensures scrolling on small screens */
+	}
+}
+
+/* Variation / item meta (Colour, Size, …). Rendered one <li> per attribute by
+   cart-item-data.php, which stacked them into a tall block. Laid out inline as a
+   single wrapping line — the attributes are supporting detail, not headings, so
+   they read better small, muted and separated by a dot:
+
+	   Product Color: Red · Product Size: S · Product Material: Cotton */
+.storeengine-cart-item-data {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 2px 8px;
+	margin: 4px 0;
+	list-style: none;
+	padding: 0;
+	font-size: 13px;
+	line-height: 1.5;
+	color: var(--storeengine-light-text-color, #6b7280);
+
+	/* The li stays a block container, so `<b>Label</b>: <span>Value</span>`
+	   keeps its natural inline flow inside. */
+	li:not(:last-child)::after {
+		content: "·";
+		margin-left: 8px;
+		opacity: .55;
+	}
+
+	b {
+		font-weight: 500;
+	}
+}
+
+/* Shared cart table chrome (used by both the full cart page and the mini-cart drawer). */
+.storeengine-cart-table {
+
+	&__body-td {
+		border: none;
+		vertical-align: middle;
+		padding: 14px 0;
+	}
+
+	&__body-td--price {
+		text-align: right;
+	}
+
+	.storeengine-cart-table__row {
+		border-bottom: 1px solid var(--storeengine-border-color);
+
+		&:first-child {
+			border-top: none;
+		}
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+}
+
+.storeengine-cart-product {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 16px;
+
+	&__thumbnail {
+		flex: 0 0 auto;
+		max-width: 96px;
+		height: auto;
+
+		img {
+			display: block;
+			width: 96px;
+			height: 96px;
+			object-fit: cover;
+			border-radius: 8px;
+		}
+	}
+
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		gap: 4px;
+		flex: 1 1 auto;
+		text-align: left;
+		max-width: 350px;
+
+		.storeengine-cart-product-title {
+			width: auto;
+			margin: 0;
+
+			a {
+				font-size: 16px;
+				line-height: 22px;
+				font-weight: 600;
+				color: var(--storeengine-text-color);
+			}
+		}
+
+		.storeengine-cart-product-price {
+			font-size: 14px;
+			line-height: 18px;
+			color: var(--storeengine-gray-color);
+		}
+
+		.storeengine-cart-product-price-wrap {
+			font-size: 14px;
+			color: var(--storeengine-text-color);
+		}
+	}
+
+	@media only screen and (max-width: 768px) {
+		.storeengine-cart-product__content {
+			max-width: 350px;
+		}
+	}
+}
+
+/* Remove button + quantity stepper + line total — lives in the row's second cell. */
+.storeengine-cart-product-quantity-wrap {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 16px;
+
+	.storeengine-quantity-input {
+		order: 1;
+	}
+
+	.storeengine-cart-item-subtotal {
+		order: 2;
+		margin: 0;
+		min-width: 72px;
+		font-weight: 600;
+		text-align: right;
+		color: var(--storeengine-text-color);
+	}
+
+	.storeengine-remove-cart-item {
+		order: 3;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 18px;
+		line-height: 1;
+		color: var(--storeengine-error-color);
+		text-decoration: none;
+		transition: opacity 0.15s ease;
+
+		&:hover {
+			opacity: 0.65;
+		}
+	}
+}

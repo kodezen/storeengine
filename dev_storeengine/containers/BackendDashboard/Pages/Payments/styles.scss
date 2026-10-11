@@ -1,0 +1,49 @@
+.storeengine-payments-page {
+    .kzui-list-table--payments {
+        .kzui-list-table__container {
+            .kzui-list-table--has-slider {
+                .kzui-list-table__table-row-cell {
+                    justify-content: start;
+                }
+            }
+        }
+    }
+}
+
+.storeengine-react-modal__content{
+    display: flex;
+    flex-direction: column;
+    &--statement{
+        font-size: 15px;
+        font-weight: 500;
+    }
+    &--details{
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        margin-top: 16px;
+
+        .storeengine-radio-option{
+            .storeengine-sub-title-bold{
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+.storeengine-react-modal--add-refund {
+    .storeengine-react-modal__content {
+        .storeengine-react-modal__footer {
+            margin: 0;
+        }
+    }
+}
+
+// .kzui-table__row-cell{
+//     .status-cell{
+//         .status-label{
+//             background: var(--storeengine-error-color);
+//             color: white;
+//         }
+//     }
+// }

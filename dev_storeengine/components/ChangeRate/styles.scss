@@ -1,0 +1,19 @@
+.storeengine-change-rate {
+	&.rate-up {
+		color: #28a745;
+		font-weight: 400;
+		font-size: 12px;
+	}
+
+	&.rate-na {
+		color: var(--storeengine-subtitle-color, #515A62);
+		font-weight: 400;
+		font-size: 12px;
+	}
+
+	&.rate-down {
+		color: #e1095c;
+		font-weight: 400;
+		font-size: 12px;
+	}
+}

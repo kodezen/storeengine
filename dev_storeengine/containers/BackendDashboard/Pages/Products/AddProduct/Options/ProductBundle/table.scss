@@ -1,0 +1,110 @@
+.se-ui-table,
+.se-ui-table * {
+	box-sizing: border-box;
+}
+
+.se-ui-table {
+	display: table;
+	width: 100%;
+
+	&.layout {
+		&-fixed {
+			table-layout: fixed;
+		}
+	}
+
+	.se-ui {
+		&-thead {
+			display: table-header-group;
+		}
+
+		&-tbody {
+			display: table-row-group;
+		}
+
+		&-tfoot {
+			display: table-footer-group;
+		}
+
+		&-tr {
+			display: table-row;
+		}
+
+		&-th,
+		&-td {
+			display: table-cell;
+			padding: var(--spacing, 10px);
+			text-align: center;
+			vertical-align: middle;
+
+			.storeengine-react-select {
+				margin: 0;
+			}
+		}
+
+		&-th {
+			font-weight: 600;
+		}
+
+		&-caption {
+			display: table-caption;
+		}
+
+		&-col {
+			display: table-column;
+		}
+
+		&-colgroup {
+			display: table-column-group;
+		}
+	}
+
+	@media (max-width: 575.98px) {
+		&-responsive-sm {
+			display:block;
+			width: 100%;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			-ms-overflow-style: -ms-autohiding-scrollbar
+		}
+	}
+
+	@media (max-width: 767.98px) {
+		&-responsive-md {
+			display:block;
+			width: 100%;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			-ms-overflow-style: -ms-autohiding-scrollbar
+		}
+	}
+
+	@media (max-width: 991.98px) {
+		&-responsive-lg {
+			display:block;
+			width: 100%;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			-ms-overflow-style: -ms-autohiding-scrollbar
+		}
+	}
+
+	@media (max-width: 1199.98px) {
+		&-responsive-xl {
+			display:block;
+			width: 100%;
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			-ms-overflow-style: -ms-autohiding-scrollbar
+		}
+	}
+
+	&-responsive {
+		display: block;
+		width: 100%;
+		overflow-x: auto;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: -ms-autohiding-scrollbar
+	}
+}
+

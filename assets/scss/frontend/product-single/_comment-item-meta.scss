@@ -1,0 +1,87 @@
+#default-comments {
+	.storeengine_product {
+		list-style: none;
+		margin: 20px 0px;
+		padding: 20px 20px 40px 20px;
+		background: #fff;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		border-bottom: 1px solid var(--storeengine-border-color);
+
+		p {
+			margin: 0;
+		}
+
+		.comment-meta {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			font-size: 18px;
+			color: var(--storeengine-subtitle-color, #666);
+			gap: 10px;
+		}
+
+		.comment-author .fn a {
+			color: var(--storeengine-text-color, #222);
+			font-weight: 600;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.comment-author .says {
+			color: var(--storeengine-placeholder-color, #999);
+			margin-left: 5px;
+			font-weight: 400;
+		}
+
+		.comment-metadata {
+			margin-left: auto;
+
+			a {
+				color: var(--storeengine-subtitle-color, #888);
+				font-size: 13px;
+				margin-right: 8px;
+				text-decoration: none;
+			}
+		}
+
+		.comment-content p {
+			margin: 0;
+			padding: 0;
+			color: var(--storeengine-text-color, #333);
+			font-size: 20px;
+			line-height: 1.6;
+		}
+
+		.comment-body {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+
+			.reply a {
+				display: inline-block;
+				padding: 8px 16px;
+				margin-top: 10px;
+				background-color: var(--storeengine-primary-color);
+				color: white;
+				border-radius: 4px;
+				font-size: 14px;
+				text-decoration: none;
+				transition: background 0.3s ease;
+			}
+		}
+
+		.edit-link a {
+			color: var(--storeengine-primary-color);
+			font-size: 12px;
+			text-decoration: none;
+			padding: 4px 8px;
+			border-radius: 4px;
+			border: 1px solid var(--storeengine-border-color);
+		}
+	}
+}

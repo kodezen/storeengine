@@ -1,0 +1,28 @@
+.storeengine-page-content--update-subscriptions {
+    .storeengine-content-section-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+.storeengine-content-section {
+    &__shipping {
+        .storeengine-btn {
+            &--add-shipping-address {
+                border: none;
+                padding: 0;
+                color: var(--storeengine-primary-color);
+            }
+        }
+    }
+}
+
+.storeengine-react-modal {
+    &--order-billing-address {
+        .storeengine-react-modal__content {
+            .storeengine-react-modal__footer {
+                margin: 0;
+            }
+        }
+    }
+}

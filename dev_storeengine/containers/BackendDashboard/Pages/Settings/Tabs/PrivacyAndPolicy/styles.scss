@@ -1,0 +1,30 @@
+.storeengine-page-content--settings {
+    .storeengine-tab-content-privacyAndPolicy {
+        .storeengine-tab-content--section {
+            .form-group {
+                &--privacyAndPolicy-checkbox {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                }
+            }
+
+            .storeengine-form-group {
+                &--privacyAndPolicy-textarea {
+                    margin-top: 24px;
+
+                    .form-body {
+                        textarea {
+                            border: 1px solid var(--storeengine-border-color);
+                            border-radius: 4px;
+                            height: 210px;
+                            padding: 16px;
+                            width: 100%;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}

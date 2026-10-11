@@ -1,0 +1,307 @@
+.storeengine-ajax-add-to-cart-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
+	p:empty {
+		display: none;
+	}
+
+	.screen-reader-text {
+		position: absolute !important;
+		clip: rect(1px, 1px, 1px, 1px);
+		clip-path: inset(50%);
+		height: 1px; width: 1px;
+		margin: -1px; padding: 0; border: 0;
+		overflow: hidden;
+		word-wrap: normal !important;
+	}
+
+	&__entry-footer {
+		margin-top: 20px;
+		.storeengine-btn--add-to-cart {
+			// Drive the button's own custom properties (incl. the hover set)
+			// instead of raw background/color — the base `.storeengine-btn:hover`
+			// applies `color: var(--hover-text-color) !important`, which would
+			// otherwise beat a plain `color` here and flip the text back to the
+			// default computed colour on hover.
+			--bg-color: #fff;
+			--text-color: var(--storeengine-text-color);
+			--hover-bg-color: #fff;
+			--hover-text-color: var(--storeengine-text-color);
+		}
+	}
+}
+.storeengine-btn--add-to-cart:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+// Simple Price
+//.storeengine-single-product-simple-price {}
+// Multi Price
+.storeengine-single-product-prices {
+	display: flex;
+	flex-direction: column;
+	row-gap: 16px;
+}
+.storeengine-single-product-price {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	padding: 12px 16px;
+	border: 1px solid var(--storeengine-border-color, #DDDEDF);
+	border-radius: 4px;
+	cursor: pointer;
+	gap: 12px;
+}
+.storeengine-single-product-price-summery {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+	.storeengine-single-product-price-value {
+		flex: 0 1 auto;
+
+		ins {
+			text-decoration: none;
+			.storeengine-price {
+				font-weight: 500;
+				font-size: 16px;
+				color: var(--storeengine-subtitle-color, #646C73);
+			}
+		}
+		del {
+			color: var(--storeengine-subtitle-color, #646C73);
+			.storeengine-price {
+				font-weight: 400;
+				font-size: 16px;
+				color: var(--storeengine-subtitle-color);
+			}
+		}
+	}
+	.storeengine-single-product-price-label {
+		position: relative;
+		display: flex;
+		align-items: center;
+		flex: 1 1 auto;
+
+		input[type=radio] {
+			position: absolute;
+			width: 15px;
+			height: 15px;
+			display: flex;
+			align-items: center;
+			left: 0;
+			outline: none;
+		}
+	}
+}
+.storeengine-single-product-price-details {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	font-size: 11px;
+	font-style: italic;
+	&:empty {
+		display: none;
+	}
+}
+.storeengine-single-product-price-name{
+	font-size: 14px;
+	font-weight: 400;
+	vertical-align: middle;
+	color: var(--storeengine-text-color);
+	padding-left: 28px;
+	padding-top: 2px;
+}
+.storeengine-single-product-price:has(input[type="radio"]:checked) {
+	border: 1px solid var(--storeengine-primary-color);
+}
+
+.storeengine-entry_taxonomy:empty {
+	display: none;
+}
+
+// quantity
+.storeengine-single-product-quantity-wrap {
+	display: flex;
+	// Wrap instead of squeezing: with a narrower summary column the stepper +
+	// both CTAs no longer fit on one line at every width. `gap` (not
+	// `column-gap`) so wrapped rows get vertical spacing too.
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 12px;
+	> p { // it's gutenberg editor generated extra div
+		width: 100% !important;
+		margin: 0 !important;
+	}
+
+	&:empty {
+		display: none;
+	}
+
+	// The shared button style sets `width: 100%`, which in a flex row makes
+	// both CTAs demand the whole line and then shrink against each other. A
+	// 150px basis with grow lets them share whatever the stepper leaves and
+	// drop onto their own row once the column is too narrow for both.
+	.storeengine-btn--add-to-cart,
+	.storeengine-btn--add-to-cart-replacement,
+	.storeengine-btn--direct-checkout {
+		width: auto;
+		flex: 1 1 150px;
+	}
+
+	// Compact stepper. This was 210px, which overrode the shared component's
+	// own 150px cap and left the control looking like a wide text field parked
+	// next to Add to Cart. 120px still fits a 3-digit quantity with the −/+
+	// controls at a comfortable tap size.
+	.storeengine-quantity-input {
+		// Fixed size — it should never absorb slack or shrink when the CTAs wrap.
+		flex: 0 0 auto;
+		width: 120px;
+		max-width: 100%;
+
+		// Hand the digits back the room the narrower shell takes away, so a
+		// 3-digit quantity doesn't clip against the −/+ controls.
+		.storeengine-quantity-input__input {
+			padding-inline: 2px;
+		}
+	}
+}
+
+// Price-type filter tabs (Lifetime / Yearly / Installment …) — only rendered
+// when a product offers more than one price type.
+.storeengine-price-filter {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-bottom: 16px;
+
+	&__btn {
+		appearance: none;
+		cursor: pointer;
+		border: 1px solid var(--storeengine-border-color, #d5d8dc);
+		background: #fff;
+		color: var(--storeengine-subtitle-color, #50575e);
+		font-size: 14px;
+		line-height: 1;
+		padding: 9px 16px;
+		border-radius: 999px;
+		transition: all 0.15s ease;
+
+		&:hover {
+			border-color: #2563eb;
+			color: #2563eb;
+		}
+
+		&.is-active {
+			border-color: #2563eb;
+			background: #2563eb;
+			color: #fff;
+		}
+	}
+}
+
+.storeengine-single-product-price.storeengine-price--hidden {
+	display: none !important;
+}
+
+// Single product page uses a larger dropdown than the compact archive card one.
+.storeengine-single-product-dropdown {
+	width: 100%;
+	margin-bottom: 16px;
+
+	.storeengine-dropdown__toggle,
+	.storeengine-product__multi-price > label {
+		display: block;
+		padding: 14px 18px;
+		font-size: 16px;
+		line-height: 1.5;
+		border-radius: 6px;
+	}
+
+	.storeengine-dropdown__toggle {
+		border: 1px solid var(--storeengine-border-color, #d5d8dc);
+		cursor: pointer;
+	}
+
+	.storeengine-loop-product-price-summery {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.storeengine-loop-product-price-label {
+		font-weight: 600;
+	}
+
+	.storeengine-loop-product-price-value {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		white-space: nowrap;
+	}
+
+	.storeengine-loop-product-price-details {
+		display: block;
+		font-size: 13px;
+		color: var(--storeengine-subtitle-color, #50575e);
+		margin-top: 4px;
+	}
+
+	.storeengine-dropdown-content {
+		border: 1px solid var(--storeengine-border-color, #d5d8dc);
+		border-radius: 6px;
+		margin-top: 6px;
+		overflow: hidden;
+	}
+
+	.storeengine-product__multi-price > label {
+		cursor: pointer;
+	}
+
+	.storeengine-product__multi-price:hover > label,
+	.storeengine-product__multi-price.selected > label {
+		background: #f0f6ff;
+	}
+
+	.storeengine-product__multi-price + .storeengine-product__multi-price > label {
+		border-top: 1px solid var(--storeengine-border-color, #f0f0f1);
+	}
+}
+
+// Back-in-stock ("Notify me") subscribe form shown for out-of-stock products.
+.storeengine-back-in-stock-form {
+	&__intro {
+		margin: 0 0 8px;
+	}
+
+	&__row {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 8px;
+
+		.storeengine-input {
+			flex: 0 1 220px;
+			width: auto;
+			max-width: 240px;
+		}
+
+		.storeengine-btn {
+			flex: 0 0 auto;
+			white-space: nowrap;
+		}
+	}
+
+	&__feedback {
+		margin: 8px 0 0;
+
+		&:empty {
+			display: none;
+		}
+	}
+}

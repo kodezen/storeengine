@@ -1,0 +1,27 @@
+#wpbody-content, #wpcontent {
+    padding: 0 !important;
+    font-size: 14px;
+    color: #101828;
+    background: var(--storeengine-background-color, #FAFAFA);
+}
+
+// Frontend vendor context — mirrors the admin reset for the theme-controlled
+// frontend where #wpbody-content/#wpcontent don't exist.
+.storeengine-admin--vendor {
+    font-size: 14px;
+    font-family: var(--storeengine-primary-font, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+    color: var(--storeengine-text-color, #2C3135);
+    box-sizing: border-box;
+}
+
+// The base .storeengine-admin layout paints a full-height gray admin canvas
+// (background: #F2F2F3; min-height: calc(100vh - 100px)) — correct inside
+// wp-admin, but in the theme-controlled frontend dashboard it shows up as an
+// out-of-place gray block below the content. Let the theme's own background
+// show through and shrink-wrap to the content instead. Compound selector so it
+// wins over the single-class base rule regardless of stylesheet order.
+.storeengine-admin.storeengine-admin--vendor {
+    background: transparent;
+    min-height: 0;
+}
+

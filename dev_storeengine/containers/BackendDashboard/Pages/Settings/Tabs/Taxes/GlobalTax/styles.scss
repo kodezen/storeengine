@@ -1,0 +1,74 @@
+.storeengine-content-section--global-tax {
+    .storeengine-tax-fields {
+        margin-top: 24px;
+        &--disabled {
+            opacity: 0.4;
+            user-select: none;
+            pointer-events: none;
+        }
+    }
+
+    .storeengine-stripe-auto-tax {
+        margin-top: 16px;
+        padding: 16px;
+        border: 1px solid var(--storeengine-border-color, #ebebeb);
+        border-radius: 6px;
+        background: var(--storeengine-section-background, #fafafa);
+
+        &__fields {
+            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        &__notice {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            padding: 12px 14px;
+            border-radius: 4px;
+            background: #fff8e5;
+            border-left: 4px solid #f0b849;
+
+            p {
+                margin: 4px 0 0;
+                color: #5e4a18;
+            }
+
+            &--warning {
+                .storeengine-icon--warning {
+                    color: #b07a1f;
+                }
+            }
+        }
+    }
+
+    .storeengine-global-tax-radio {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+		margin-inline-start: auto;
+
+        label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .storeengine-title-light {
+            margin-left: 8px;
+        }
+    }
+
+    .storeengine-global-tax-checkbox {
+        margin-top: 8px;
+        label {
+            display: flex;
+            gap: 8px;
+            input[type="checkbox"] {
+                margin-top: 5px;
+            }
+        }
+    }
+}

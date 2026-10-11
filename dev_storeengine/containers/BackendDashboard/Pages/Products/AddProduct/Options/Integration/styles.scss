@@ -1,0 +1,104 @@
+.storeengine-content-section {
+    &--integration {
+        .storeengine-custom-select {
+            .storeengine-custom-select--container {
+                width: calc(100% - 8px);
+            }
+    
+            &--integration-item {
+                margin: 24px 0;
+            }
+    
+            &--integration-item, &--select-a-price {
+                margin-bottom: 24px;
+            }
+        }
+    }
+    &--form-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        border-top: 1px solid var(--storeengine-border-color);
+        padding-top: 16px;
+        margin-top: 16px;
+    }
+}
+
+.storeengine-product-editor-integrations {
+    .storeengine-single-product {
+        border: 1px solid var(--storeengine-border-color, #DDDEDF);
+        border-radius: 4px;
+        padding: 16px;
+    }
+
+    .storeengine-integrate-item-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border: 1px solid var(--storeengine-border-color, #DDDEDF);
+        border-radius: 4px;
+        padding: 16px;
+        margin-bottom: 24px;
+        gap: 16px;
+        .storeengine-integrate-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            img {
+                width: 32px;
+                height: 32px;
+                border: 1px solid var(--storeengine-border-color);
+                border-radius: 4px;
+                padding: 8px;
+            }
+            .storeengine-title-subtitle {
+                align-items: flex-start;
+                gap: 8px;
+                .storeengine-warning {
+                    padding: 4px 16px;
+                    &--info {
+                        font-size: 13px;
+                    }
+                    .storeengine-icon {
+                        margin-top: 4px;
+                    }
+                }
+            }
+        }
+        &__details {
+            .storeengine-product-name, .storeengine-product-price {
+                font-size: 14px;
+                font-weight: 400;
+                margin: 0;
+                line-height: 20px;
+            }
+
+            .storeengine-product-regular-price {
+                font-size: 14px;
+                font-weight: 400;
+                color: var(--storeengine-subtitle-color, #8E949A);
+                text-decoration: line-through;
+                margin: 0;
+                line-height: 20px;
+            }
+        }
+    }
+
+    .storeengine-content-section {
+        .storeengine-select {
+            &--integration-with, &--select-a-price {
+                margin-top: 8px;
+            }
+        }
+    }
+}
+
+.storeengine-confrim-content  {
+    .storeengine-input {
+        margin-top: 2px;
+    }
+    .storeengine-btn {
+        margin-right: 20px;
+    }
+}

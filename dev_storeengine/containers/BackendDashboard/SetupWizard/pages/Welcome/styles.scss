@@ -1,0 +1,65 @@
+/**
+ * The Welcome step is laid out entirely with the Tailwind `ui/` kit utilities
+ * on the component itself (flex min-h-screen items-center justify-center …).
+ *
+ * The previous design's rules lived here and set `.storeengine-welcome`
+ * `max-width: 1200px` with no auto margins, which capped the redesigned screen
+ * to a left-hugging 1200px column — so its `items-center` content rendered
+ * left of the viewport centre. Intentionally left empty; the layout is owned by
+ * the component's utility classes.
+ *
+ * The two-row capability marquee below can't be done with utility classes
+ * alone (keyframe animation + mask-image edge fade), so it lives here.
+ */
+
+.storeengine-welcome__marquee-row {
+	overflow: hidden;
+	-webkit-mask-image: linear-gradient(
+		to right,
+		transparent 0,
+		#000 64px,
+		#000 calc( 100% - 64px ),
+		transparent 100%
+	);
+	mask-image: linear-gradient(
+		to right,
+		transparent 0,
+		#000 64px,
+		#000 calc( 100% - 64px ),
+		transparent 100%
+	);
+}
+
+.storeengine-welcome__marquee-track {
+	display: flex;
+	width: max-content;
+	gap: 12px;
+	animation: storeengine-welcome-marquee 36s linear infinite;
+}
+
+// Same keyframes, played back to front — an easy opposite-direction loop
+// without a second @keyframes block.
+.storeengine-welcome__marquee-row--reverse .storeengine-welcome__marquee-track {
+	animation-direction: reverse;
+}
+
+.storeengine-welcome__marquee-row:hover .storeengine-welcome__marquee-track {
+	animation-play-state: paused;
+}
+
+@keyframes storeengine-welcome-marquee {
+	from {
+		transform: translateX( 0 );
+	}
+	to {
+		// The track renders the capability list twice back-to-back, so -50%
+		// is exactly one full list width — the loop point is seamless.
+		transform: translateX( -50% );
+	}
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+	.storeengine-welcome__marquee-track {
+		animation: none;
+	}
+}

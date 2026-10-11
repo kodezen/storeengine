@@ -1,0 +1,58 @@
+.storeengine-react-modal {
+    &--product-tax-modal {
+        .storeengine-react-modal {
+            &__content {
+                .tax-type {
+                    display: flex;
+                    gap: 24px;
+                }
+
+                .double-fields {
+                    .storeengine-form-group {
+                        margin-top: 24px;
+                    }
+                }
+
+                .storeengine-react-modal__footer {
+                    padding: 0;
+                    padding-top: 24px;
+                    border-top: 1px solid var(--storeengine-border-color);
+                    justify-content: end;
+                    gap: 16px;
+                    display: flex;
+                }
+
+                .content-box {
+                    .draggable-items {
+                        .draggable-item {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            gap: 16px;
+
+                            &--value {
+                                padding: 12px;
+                                border-radius: 4px;
+                                border: 1px solid var(--storeengine-border-color);
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &--class-modal {
+        .storeengine-react-modal {
+            &__content {
+                margin-top: 24px;
+                padding-bottom: 3px;
+
+                .double-fields {
+                    margin-top: 24px;
+                }
+            }
+        }
+    }
+}

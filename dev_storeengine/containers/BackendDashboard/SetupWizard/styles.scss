@@ -1,0 +1,20 @@
+body {
+    background: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.storeengine-setup-screen-wrap {
+    // Stack children full-width (was center/center, which shrank the whole app
+    // to its content width and left the topbar floating in the middle). The
+    // topbar now spans the full screen; each step centers its own content.
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
+    &, *{
+        box-sizing: border-box;
+    }
+}

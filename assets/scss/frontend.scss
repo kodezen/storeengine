@@ -1,0 +1,33 @@
+@forward './common/global';
+@forward './common/modal';
+@forward './common/classes-library';
+@forward './vendor/grid';
+@forward './common/form-group';
+@forward './common/dropdown';
+@forward './common/notice';
+@forward './common/notification';
+@forward './common/status';
+@forward './frontend/loop';
+@forward './frontend/archive';
+@forward './frontend/single';
+@forward './frontend/Global';
+@forward './frontend/dashboard';
+@forward './frontend/login';
+@forward './frontend/shortcode';
+@forward './frontend/floating-cart';
+@forward './frontend/sticky-atc';
+@forward './frontend/recently-viewed';
+@forward './frontend/size-guide';
+@forward './frontend/wishlist';
+@forward './frontend/compare';
+@forward './frontend/card-variants';
+@forward './frontend/theme-capabilities/theme-capabilities';
+@forward './frontend/or-divider';
+@forward './frontend/mini-cart';
+@forward './frontend/order-bumps';
+@forward './frontend/installment-plan';
+
+.storeengine-thumbnail {
+	max-width: 100%;
+	height: auto;
+}

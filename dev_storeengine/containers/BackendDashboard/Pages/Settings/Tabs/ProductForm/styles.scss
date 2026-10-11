@@ -1,0 +1,44 @@
+.storeengine-pf-intro {
+	background: var(--storeengine-primary-light);
+}
+
+.storeengine-pf-intro__list {
+	margin: 12px 0 0;
+	padding-left: 18px;
+	list-style: disc;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+
+	li {
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--storeengine-text-color);
+	}
+
+	strong {
+		color: var(--storeengine-text-color);
+	}
+}
+
+.storeengine-pf-row--hidden > td:first-child {
+	opacity: 0.6;
+}
+
+.storeengine-pf-problem {
+	margin-top: 4px;
+	font-size: 12px;
+	font-weight: 400;
+	color: var(--storeengine-error-color);
+}
+
+.storeengine-pf-terms {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	max-height: 140px;
+	overflow-y: auto;
+	padding: 8px 10px;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 6px;
+}

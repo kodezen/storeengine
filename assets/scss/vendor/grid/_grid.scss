@@ -1,0 +1,76 @@
+// Container widths
+
+@use 'sass:math';
+@use 'variables' as *;
+@use 'mixins/grid' as *;
+@use 'mixins/breakpoints' as *;
+@use 'mixins/grid-framework' as *;
+
+//
+// Set the container width, and override it for fixed navbars in media queries.storeengine-
+
+@if $enable-grid-classes {
+  // Single container class with breakpoint max-widths
+  .storeengine-container {
+    @include make-container();
+    @include make-container-max-widths();
+  }
+
+  // 100% wide container at all breakpoints
+  .storeengine-container-fluid {
+    @include make-container();
+  }
+
+  // Responsive containers that are 100% wide until a breakpoint
+  @each $breakpoint, $container-max-width in $container-max-widths {
+    .storeengine-container-#{$breakpoint} {
+      @extend .storeengine-container-fluid;
+    }
+
+    @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
+      %responsive-container-#{$breakpoint} {
+        max-width: $container-max-width;
+      }
+
+      @each $name, $width in $grid-breakpoints {
+        @if ($container-max-width > $width or $breakpoint == $name) {
+          .storeengine-container#{breakpoint-infix($name, $grid-breakpoints)} {
+            @extend %responsive-container-#{$breakpoint};
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// Row
+//
+// Rows contain your columns.storeengine-
+
+@if $enable-grid-classes {
+  .storeengine-row {
+    @include make-row();
+  }
+
+  // Remove the negative margin from default .storeengine-row, then the horizontal padding
+  // from all immediate children columns (to prevent runaway style inheritance).storeengine-
+  .storeengine-no-gutters {
+    margin-right: 0;
+    margin-left: 0;
+
+    > .storeengine-col,
+    > [class*="storeengine-col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+  }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+
+@if $enable-grid-classes {
+  @include make-grid-columns();
+}

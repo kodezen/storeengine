@@ -1,0 +1,40 @@
+#default-comments {
+
+	.comment-reply-title {
+		font-size: 18px;
+		margin-bottom: 15px;
+		color: var(--storeengine-text-color, #333);
+		font-weight: 600;
+
+		small a {
+			color: #ff4d4f;
+			text-decoration: none;
+			margin-left: 10px;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.ct-cancel-reply a {
+		color: #ff4d4f;
+		text-decoration: none;
+		margin-left: 10px;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.form-submit.wp-block-button {
+		display: flex;
+		justify-content: flex-start;
+		margin-top: 10px;
+
+		input[type="submit"] {
+			border-radius: 4px;
+			min-width: 150px;
+		}
+	}
+}

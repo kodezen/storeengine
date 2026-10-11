@@ -1,0 +1,33 @@
+// Installment price meta on the shop/archive loop card. Rendered as a sibling
+// of the price (outside .storeengine-product__simple-price).
+//
+// Base: a plain block. Used by the richer meta (vendor store / single product)
+// that includes the collapsible "Payment Schedule" dropdown — must NOT be a
+// pill or the rounded background wraps and breaks the dropdown.
+.storeengine-loop-product-price-details {
+	display: block;
+	margin-top: 8px;
+	font-size: 12px;
+	line-height: 1.35;
+	color: var(--storeengine-subtitle-color, #50575e);
+}
+
+// Pill modifier — only the short shop-archive summary (down-payment + count).
+.storeengine-loop-product-price-details--pill {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 2px 8px;
+	padding: 5px 12px;
+	font-weight: 500;
+	color: #4338ca;
+	background: #eef2ff;
+	border-radius: 999px;
+
+	.storeengine-price-meta-down-payment,
+	.storeengine-price-meta-installments {
+		width: auto;
+		margin: 0;
+		text-align: left;
+	}
+}

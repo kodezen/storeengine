@@ -1,0 +1,6 @@
+# Test deps live in their own composer scope so the production zip can
+# simply exclude tests/ wholesale. The lock file + vendor are an
+# implementation detail of the local dev environment.
+/vendor/
+/composer.lock
+.phpunit.result.cache

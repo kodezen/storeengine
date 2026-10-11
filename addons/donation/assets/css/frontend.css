@@ -1,0 +1,105 @@
+/**
+ * Donation / name-your-price front-end styles.
+ *
+ * The amount field reuses the storefront .storeengine-quantity-input shell (and
+ * its shipped stepper JS); these rules widen it for currency amounts, show the
+ * currency prefix and hide the browser's native number spinner so only the
+ * −/+ buttons are used.
+ */
+.storeengine-donation-amount-wrap {
+	margin: 10px 0 4px;
+}
+
+.storeengine-donation-amount-label {
+	display: block;
+	font-size: 0.95rem;
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.storeengine-donation-amount-field.storeengine-quantity-input {
+	width: 200px;
+	max-width: 100%;
+	align-items: stretch;
+}
+
+.storeengine-donation-amount-field .storeengine-donation-amount-currency {
+	display: flex;
+	align-items: center;
+	padding-left: 12px;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1;
+	color: #6b7280;
+}
+
+.storeengine-donation-amount-field .storeengine-donation-amount-input {
+	width: 100%;
+	text-align: left;
+	font-size: 15px;
+	font-weight: 600;
+	line-height: 1.2;
+	padding: 10px 6px;
+	border: none;
+	outline: none;
+	background: transparent;
+	flex: 1 1 auto;
+	min-width: 0;
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+.storeengine-donation-amount-field .storeengine-donation-amount-input:read-only {
+	color: #6b7280;
+}
+
+/* Tighten the reused quantity buttons so the field isn't taller than needed. */
+.storeengine-donation-amount-field .storeengine-quantity-input__btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-block: 0;
+}
+
+.storeengine-donation-amount-field .storeengine-donation-amount-input::-webkit-outer-spin-button,
+.storeengine-donation-amount-field .storeengine-donation-amount-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.storeengine-donation-amount-field--fixed {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	height: 44px;
+	padding-right: 12px;
+	min-width: 160px;
+}
+
+.storeengine-donation-amount-hint {
+	display: block;
+	color: #6b7280;
+	font-size: 0.85rem;
+	margin-top: 8px;
+}
+
+.storeengine-donation-amount-error {
+	display: block;
+	color: #b42318;
+	font-size: 0.85rem;
+	margin: 6px 0 0;
+}
+
+.storeengine-donation-amount-error[hidden] {
+	display: none;
+}
+
+.storeengine-donation-amount-wrap--invalid .storeengine-donation-amount-field.storeengine-quantity-input {
+	border-color: #b42318;
+}
+
+.storeengine-donation-amount-wrap--invalid .storeengine-donation-amount-field.storeengine-quantity-input:focus-within {
+	outline-color: #b42318;
+}

@@ -1,0 +1,228 @@
+// Public POS terminal — uses the same scoped Tailwind utilities as the
+// admin pages (`.se-admin-tw`). The `@config` directive picks up
+// tailwind.admin.config.js so the same theme variables apply.
+@config "../../../tailwind.admin.config.js";
+
+@tailwind utilities;
+
+@import '../../components/Formik/Checkbox/switchfield';
+
+// CSS variables that the admin shell normally sets via backend.scss. We
+// re-declare the ones used by the Tailwind theme so the public terminal
+// matches the in-admin look without pulling in the entire admin SCSS.
+:root {
+	--storeengine-primary-color: #008DFF;
+	--storeengine-secondary-color: #EAE8FA;
+	--storeengine-text-color: #2C3135;
+	--storeengine-subtitle-color: #646C73;
+	--storeengine-gray-color: #646C73;
+	--storeengine-border-color: #DEDEDE;
+	--storeengine-background-color: #FAFAFA;
+	--storeengine-input-text-color: #434A51;
+	--storeengine-placeholder-color: #8E949A;
+	--storeengine-green-color: #00AD6B;
+	--storeengine-warning-color: #FDB022;
+	--storeengine-error-color: #FF4D4D;
+	--storeengine-violet-color: #9A6EFF;
+	--storeengine-dark-gray: #0F0E16;
+	--storeengine-white-color: #ffffff;
+	--storeengine-primary-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; // system UI font, nothing is downloaded
+}
+
+// Minimal reset for the standalone shell so the React app sits on a clean
+// canvas. Scoped to the app root so it doesn't bleed into wp-admin.
+.se-pos-shell {
+	box-sizing: border-box;
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	button,
+	input,
+	select,
+	textarea {
+		font: inherit;
+		color: inherit;
+	}
+}
+
+.storeengine {
+	&-input {
+		// Will remove the important
+		border: 1px solid var(--storeengine-border-color) !important;
+		width: 100%;
+		height: 40px;
+		padding: 0 12px;
+		border-radius: 4px;
+
+		&:hover, &:focus {
+			border: 1px solid var(--storeengine-primary-color) !important;
+			box-shadow: none !important;
+			outline: none;
+		}
+
+		&:disabled {
+			background: var(--storeengine-border-color);
+			//color: var(--storeengine-border-color);
+			border-color: var(--storeengine-border-color);
+
+			&:hover, &:focus {
+				border: 1px solid var(--storeengine-border-color) !important;
+			}
+		}
+	}
+
+	&-input-1\/2 {
+		// Will remove the important
+		border: 1px solid var(--storeengine-border-color) !important;
+		width: 50%;
+		height: 40px;
+		padding: 0 12px;
+		border-radius: 4px;
+
+		&:hover, &:focus {
+			border: 1px solid var(--storeengine-primary-color) !important;
+			box-shadow: none !important;
+			outline: none;
+		}
+
+		&:disabled {
+			background: var(--storeengine-border-color);
+			//color: var(--storeengine-border-color);
+			border-color: var(--storeengine-border-color);
+
+			&:hover, &:focus {
+				border: 1px solid var(--storeengine-border-color) !important;
+			}
+		}
+	}
+
+	&-input-1\/3 {
+		// Will remove the important
+		border: 1px solid var(--storeengine-border-color) !important;
+		width: calc((100% / 3) - 8px);
+		height: 40px;
+		padding: 0 12px;
+		border-radius: 4px;
+
+		&:hover, &:focus {
+			border: 1px solid var(--storeengine-primary-color) !important;
+			box-shadow: none !important;
+			outline: none;
+		}
+
+		&:disabled {
+			background: var(--storeengine-border-color);
+			//color: var(--storeengine-border-color);
+			border-color: var(--storeengine-border-color);
+
+			&:hover, &:focus {
+				border: 1px solid var(--storeengine-border-color) !important;
+			}
+		}
+	}
+
+	&-input-1\/4 {
+		// Will remove the important
+		border: 1px solid var(--storeengine-border-color) !important;
+		width: calc(100% / 4);
+		height: 40px;
+		padding: 0 12px;
+		border-radius: 4px;
+
+		&:hover, &:focus {
+			border: 1px solid var(--storeengine-primary-color) !important;
+			box-shadow: none !important;
+			outline: none;
+		}
+
+		&:disabled {
+			background: var(--storeengine-border-color);
+			//color: var(--storeengine-border-color);
+			border-color: var(--storeengine-border-color);
+
+			&:hover, &:focus {
+				border: 1px solid var(--storeengine-border-color) !important;
+			}
+		}
+	}
+
+	&-input--24 {
+		// Will remove the important
+		border: 1px solid var(--storeengine-border-color) !important;
+		width: calc(100% - 24px);
+		height: 40px;
+		padding: 0 12px;
+		border-radius: 4px;
+
+		&:hover, &:focus {
+			border: 1px solid var(--storeengine-primary-color) !important;
+			box-shadow: none !important;
+			outline: none;
+		}
+
+		&:disabled {
+			background: var(--storeengine-border-color);
+			//color: var(--storeengine-border-color);
+			border-color: var(--storeengine-border-color);
+
+			&:hover, &:focus {
+				border: 1px solid var(--storeengine-border-color) !important;
+			}
+		}
+	}
+
+	&-input-box {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+
+		&__label {
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 140%;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	&-textarea {
+		// Will remove the important
+		border: 1px solid var(--storeengine-border-color) !important;
+		height: 100px;
+		width: 100%;
+		padding: 12px;
+		border-radius: 4px;
+
+		&:hover, &:focus {
+			border: 1px solid var(--storeengine-primary-color) !important;
+			box-shadow: none !important;
+			outline: none;
+		}
+
+		&::placeholder {
+			color: var(--storeengine-placeholder-color);
+			opacity: 1;
+		}
+
+		&::-webkit-input-placeholder {
+			color: var(--storeengine-placeholder-color);
+		}
+
+		&::-moz-placeholder {
+			color: var(--storeengine-placeholder-color);
+			opacity: 1;
+		}
+
+		&:-ms-input-placeholder {
+			color: var(--storeengine-placeholder-color);
+		}
+
+		&::-ms-input-placeholder {
+			color: var(--storeengine-placeholder-color);
+		}
+	}
+}

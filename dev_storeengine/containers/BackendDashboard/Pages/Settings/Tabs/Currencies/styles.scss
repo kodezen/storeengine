@@ -1,0 +1,329 @@
+.storeengine-content-section--currencies {
+	* {
+		box-sizing: border-box;
+	}
+}
+
+.storeengine-currencies-section {
+	&__header {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 16px;
+		margin-bottom: 16px;
+	}
+}
+
+// ── Currency table ────────────────────────────────────────────────────────────
+
+.storeengine-currencies-table {
+	border: 1px solid var(--storeengine-border-color, #dfe1e2);
+	border-radius: 6px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+
+	&__head {
+		display: grid;
+		grid-template-columns: 2.5fr 0.9fr 2.2fr 1.8fr 1.2fr 60px;
+		min-width: 860px;
+		gap: 0;
+		background: var(--storeengine-gray-100, #f5f6f7);
+		padding: 10px 16px;
+		font-size: 11px;
+		font-weight: 600;
+		color: var(--storeengine-gray-color, #6b7280);
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+	}
+
+	&__row {
+		display: grid;
+		grid-template-columns: 2.5fr 0.9fr 2.2fr 1.8fr 1.2fr 60px;
+		min-width: 860px;
+		gap: 0;
+		align-items: center;
+		padding: 14px 16px;
+		border-top: 1px solid var(--storeengine-border-color, #dfe1e2);
+		font-size: 13px;
+		color: var(--storeengine-text-color, #1f2937);
+		background: #fff;
+		transition: background 0.12s;
+
+		&:hover {
+			background: var(--storeengine-gray-50, #f9fafb);
+		}
+
+		&--base {
+			background: var(--storeengine-gray-50, #f9fafb);
+		}
+	}
+
+	&__col {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding-right: 12px;
+		min-width: 0; // allow grid children to shrink and clip properly
+
+		&--currency,
+		&--label,
+		&--preview {
+			overflow: hidden;
+			white-space: nowrap;
+		}
+
+		&--rate,
+		&--custom-rate {
+			overflow: visible;
+			white-space: normal;
+			flex-wrap: wrap;
+			gap: 6px;
+		}
+
+		&--actions {
+			justify-content: flex-end;
+			padding-right: 0;
+			overflow: visible;
+		}
+	}
+
+	&__flag {
+		font-size: 18px;
+		line-height: 1;
+		flex-shrink: 0;
+	}
+
+	&__name {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 2px 8px;
+		border-radius: 4px;
+		font-size: 11px;
+		font-weight: 600;
+		background: var(--storeengine-primary-color, #00a699);
+		color: #fff;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		flex-shrink: 0;
+
+		&--default {
+			background: var(--storeengine-gray-200, #e5e7eb);
+			color: var(--storeengine-gray-600, #4b5563);
+		}
+
+		&--manual {
+			background: #f59e0b;
+			color: #fff;
+		}
+	}
+
+	&__empty {
+		padding: 24px 16px;
+		font-size: 13px;
+		color: var(--storeengine-gray-color, #6b7280);
+		text-align: center;
+		border-top: 1px solid var(--storeengine-border-color, #dfe1e2);
+	}
+
+	// ── Custom rate inline editor ─────────────────────────────────────────
+
+	&__rate-display {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	&__rate-edit {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+	}
+
+	&__rate-input {
+		width: 96px;
+		height: 28px;
+		padding: 0 8px;
+		font-size: 12px;
+		border: 1px solid var(--storeengine-primary-color, #00a699);
+		border-radius: 4px;
+		outline: none;
+		color: var(--storeengine-text-color, #1f2937);
+		background: #fff;
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+
+	&__rate-value {
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--storeengine-text-color, #1f2937);
+		white-space: nowrap;
+	}
+
+	&__rate-auto {
+		font-size: 12px;
+		color: var(--storeengine-gray-color, #9ca3af);
+		font-style: italic;
+	}
+
+	&__rate-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 26px;
+		height: 26px;
+		padding: 0;
+		background: none;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		color: var(--storeengine-gray-color, #6b7280);
+		transition: color 0.15s, background 0.15s;
+		flex-shrink: 0;
+
+		.storeengine-icon {
+			font-size: 13px;
+		}
+
+		&:hover {
+			background: var(--storeengine-gray-100, #f3f4f6);
+		}
+
+		&--confirm {
+			color: #16a34a;
+			&:hover { background: #dcfce7; }
+		}
+
+		&--cancel {
+			color: #dc2626;
+			&:hover { background: #fee2e2; }
+		}
+
+		&--clear {
+			color: #f59e0b;
+			&:hover { background: #fef3c7; }
+		}
+
+		&--edit {
+			color: var(--storeengine-gray-color, #6b7280);
+			&:hover { color: var(--storeengine-primary-color, #00a699); }
+		}
+
+		&:disabled {
+			opacity: 0.4;
+			cursor: not-allowed;
+		}
+	}
+}
+
+
+// ── Currency shortcode ────────────────────────────────────────────────────────
+
+.storeengine-currencies-shortcode {
+	margin-top: 16px;
+
+	&__label {
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--storeengine-text-color, #1f2937);
+		margin-bottom: 6px;
+	}
+
+	&__wrap {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		background: var(--storeengine-gray-100, #f5f6f7);
+		border: 1px solid var(--storeengine-border-color, #dfe1e2);
+		border-radius: 6px;
+		padding: 8px 12px;
+	}
+
+	&__code {
+		font-family: monospace;
+		font-size: 13px;
+		color: var(--storeengine-text-color, #1f2937);
+		background: none;
+		border: none;
+		padding: 0;
+	}
+
+	&__copy {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 2px;
+		color: var(--storeengine-gray-color, #6b7280);
+		transition: color 0.15s;
+
+		&:hover {
+			color: var(--storeengine-primary-color, #00a699);
+		}
+
+		.storeengine-icon {
+			font-size: 14px;
+		}
+	}
+}
+
+// ── Add Currency modal ────────────────────────────────────────────────────────
+
+.storeengine-currencies-modal {
+	padding: 24px;
+	min-width: 360px;
+
+	.storeengine-custom-select--currencies-add-select {
+		margin-bottom: 0;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: flex-end;
+		gap: 12px;
+		margin-top: 24px;
+	}
+}
+
+// ── Checkbox overrides for currencies ────────────────────────────────────────
+
+.storeengine-checkbox.currencies-switcher,
+.storeengine-checkbox.currencies-geolocation {
+	margin-bottom: 0;
+}
+
+// ── Locale select width ───────────────────────────────────────────────────────
+
+.storeengine-custom-select--currencies-locale {
+	max-width: 440px;
+	margin-bottom: 8px;
+}
+
+.storeengine-sub-title--sm {
+	font-size: 12px;
+	color: var(--storeengine-gray-color, #6b7280);
+	margin-top: 4px;
+}
+
+.storeengine-select--settings-currency-options {
+	.storeengine-react-select {
+		&__menu-list {
+			max-height: 148px;
+		}
+	}
+}

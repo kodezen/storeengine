@@ -1,0 +1,60 @@
+#default-comments {
+	.storeengine-comment-form {
+		p {
+			width: 100%;
+			&:not(:last-child) {
+				margin-bottom: 15px;
+			}
+
+			input {
+				min-height: 40px;
+			}
+
+			input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]),
+			textarea {
+				max-width: 100%;
+				width: 100%;
+				border: 1px solid var(--storeengine-border-color);
+				margin-top: 15px;
+				padding: 15px;
+
+				&:focus {
+					outline: none;
+					border: 1px solid var(--storeengine-border-color);
+				}
+			}
+		}
+
+		.comment-form-cookies-consent {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+	}
+
+	.comment-respond {
+		margin-top: 20px;
+		padding: 20px;
+		background: #ffffff;
+		border-radius: 0;
+		margin-right: -15px;
+		margin-left: -15px;
+	}
+
+	@media (max-width: 768px) {
+		.comment-respond {
+			padding: 15px;
+		}
+		.comment-form {
+			textarea {
+				min-height: 100px;
+			}
+
+			.form-submit {
+				input[type="submit"] {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

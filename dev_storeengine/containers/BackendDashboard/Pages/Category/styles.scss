@@ -1,0 +1,48 @@
+.storeengine-react-modal--category {
+    .storeengine-react-modal__content {
+        .storeengine-category {
+            width: 100%;
+            &-field {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            &-parent {
+                display: flex;
+                flex-direction: column;
+                label {
+                    display: flex;
+                    align-items: flex-end;
+                }
+                .storeengine-term-select {
+                    max-width: inherit;
+                    border: none;
+                    width: 100%;
+                    border-radius: 4px;
+                    font-size: 14px;
+                    padding: 6px 12px;
+                    border: 1px solid var(--storeengine-border-color);
+                    margin: 8px 0 0 0;
+                    &:focus, &:hover {
+                        outline: 0;
+                        box-shadow: none;
+                        border: 1px solid var(--storeengine-primary-color);
+                    }
+                }
+            }
+        }
+    }
+    .storeengine-react-modal__footer {
+        margin: 24px 24px 0 24px;
+    }
+}
+
+
+@media all and (max-width: 480px) {
+    .storeengine-react-modal {
+        &--term {
+            width: 100%;
+        }
+    }
+}

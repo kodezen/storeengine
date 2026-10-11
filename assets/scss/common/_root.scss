@@ -1,0 +1,45 @@
+:root {
+	// Inherit the ambient font so StoreEngine doesn't impose its own typeface —
+	// on the front end and in the block editor this resolves to the active
+	// theme's font; in wp-admin it resolves to the WordPress admin font. No web
+	// font is loaded.
+	--storeengine-primary-font: inherit;
+	// --storeengine-secondary-font: 'Inter', sans-serif;
+
+	// Fallbacks only: Settings → Brand & Style overrides these at runtime, and the
+	// values below match the shipped defaults in includes/admin/settings/base.php
+	// (keep assets/css/admin.css in sync).
+	--storeengine-primary-color: #008DFF;
+	--storeengine-secondary-color: #FF5000;
+	--storeengine-text-color: #1d2939;
+	--storeengine-subtitle-color:  #475467;
+	--storeengine-input-text-color:  #344054;
+	--storeengine-dark-gray: #101828;
+	--storeengine-placeholder-color: #98a2b3;
+	--storeengine-border-color: #e4e7ec;
+	--storeengine-gray-color: #475467;         // GemCRM --gemcrm-warn-muted
+	--storeengine-background-color: #f9fafb;
+	--storeengine-green-color: #00AD6B;
+	--storeengine-warning-color: #FDB022;
+	--storeengine-error-color: #E2483D;         // GemCRM --gemcrm-error
+	--storeengine-white-color: #ffffff;
+	--storeengine-violet-color: #9A6EFF;
+
+	// Soft "tint" surfaces for status banners/badges. Explicit tokens (not
+	// Tailwind opacity modifiers) because the base colors above are var()-based,
+	// which Tailwind can't split into channels for `/alpha`.
+	// Follows the (configurable) primary color instead of a fixed light blue.
+	--storeengine-primary-light: color-mix(in srgb, var(--storeengine-primary-color) 10%, #fff);
+	--storeengine-primary-border-color: var(--storeengine-border-color);
+	--storeengine-success-light: rgba(0, 173, 107, 0.10);
+	--storeengine-warning-light: rgba(253, 176, 34, 0.12);
+	--storeengine-error-light: #FDE8E7;
+
+	// Card/input radius. Surfaces are flat (a 1px border separates them);
+	// only layers floating over the page (menus, dropdowns, modals, toasts,
+	// fixed bars) get the one overlay shadow. --storeengine-shadow stays for
+	// older markup and extensions, and is flat too.
+	--storeengine-radius: 4px;
+	--storeengine-shadow: none;
+	--storeengine-shadow-overlay: 0 8px 24px -8px rgba(16, 24, 40, 0.14);
+}

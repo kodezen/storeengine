@@ -1,0 +1,45 @@
+.wp-theme-astra {
+    .ast-primary-menu-enabled {
+        margin-bottom: 24px;
+    }
+
+    .ast-container {
+        .storeengine-canvas 
+        .storeengine-container 
+        .storeengine-row 
+        .storeengine-col-12 
+        .storeengine-frontend-dashboard 
+        .storeengine-container 
+        .storeengine-row 
+        .storeengine-col-lg-12 
+        .storeengine-frontend-dashboard__content {
+            #add_payment_method {
+                .storeengine-dashboard-payment {
+                    .storeengine-dashboard-payment-methods {
+                        .storeengine-payment-method--stripe {
+
+                            #payment_method_stripe,
+                            #payment_method_paypal {
+                                margin-right: 8px;
+
+                                img {
+                                    margin-top: -9px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .storeengine-dashboard-payment-methods {
+                .payment-method {
+                    .payment-method-actions {
+                        a {
+                            padding: 8px 16px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

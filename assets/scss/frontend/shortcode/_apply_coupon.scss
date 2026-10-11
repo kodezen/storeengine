@@ -1,0 +1,38 @@
+.storeengine-ajax-apply-coupon-form {
+	display: inline-flex;
+	gap: 10px;
+
+	input[type="text"] {
+		width: 100%;
+		height: 40px;
+		max-width: 500px;
+	}
+
+	input[type="text"] {
+		padding: 8px 13px;
+		border: 1px solid var(--storeengine-border-color);
+
+		&:focus {
+			outline: 0;
+		}
+	}
+
+	&__submit {
+		min-width: 76px;
+		padding: 12px 14px;
+		height: auto;
+		border: 1px solid var(--storeengine-primary-color);
+		background: var(--storeengine-primary-color);
+		border-color: var(--storeengine-primary-color);
+		cursor: pointer;
+		border-radius: 4px;
+		color: #fff;
+
+		&.processing-loader {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='15' stroke-linecap='round' stroke-dasharray='300 385' stroke-dashoffset='0' d='M275 75c0 31-27 50-50 50-58 0-92-100-150-100-28 0-50 22-50 50s23 50 50 50c58 0 92-100 150-100 24 0 50 19 50 50Z'%3E%3Canimate attributeName='stroke-dashoffset' calcMode='spline' dur='2' values='685;-685' keySplines='0 0 1 1' repeatCount='indefinite'%3E%3C%2Fanimate%3E%3C%2Fpath%3E%3C%2Fsvg%3E");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: 50%;
+		}
+	}
+}

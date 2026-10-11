@@ -1,0 +1,30 @@
+// wp review
+//.storeengine-comment-area_wrap{
+//	padding-left: 0;
+//}
+#default-comments {
+	margin-top: 30px;
+	.comments-title{
+		font-weight: 500;
+		font-size: 32px;
+		line-height: 140%;
+	}
+	.comment-author-title {
+		margin: 0;
+		a{
+			font-weight: 500;
+			font-size: 16px;
+			line-height: 140%;
+			color: var(--storeengine-text-color);
+			text-decoration: none;
+		}
+	}
+	.comment-metadata a {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 140%;
+		color: var(--storeengine-subtitle-color);
+		text-decoration: none;
+	}
+}
+

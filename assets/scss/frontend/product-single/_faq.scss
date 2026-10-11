@@ -1,0 +1,268 @@
+// Product FAQ — modern accordion with an animated +/− toggle.
+.storeengine-faq {
+	margin: 48px auto;
+	max-width: 860px;
+
+	&__heading {
+		font-size: 26px;
+		font-weight: 700;
+		line-height: 1.25;
+		margin: 0 0 24px;
+		color: var(--storeengine-text-color, #1e293b);
+		text-align: center;
+	}
+
+	&__group {
+		& + & {
+			margin-top: 28px;
+		}
+	}
+
+	&__group-title {
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--storeengine-primary-color, #006bff);
+		margin: 0 0 12px;
+	}
+
+	&__items {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	&__item {
+		border: 1px solid var(--storeengine-border-color, #e6e8ec);
+		border-radius: 14px;
+		background: #fff;
+		overflow: hidden;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+		&:hover {
+			border-color: #cbd5e1;
+		}
+
+		&[open] {
+			border-color: var(--storeengine-primary-color, #006bff);
+			box-shadow: none;
+		}
+
+		// Hide the native marker across browsers.
+		> summary {
+			list-style: none;
+		}
+		> summary::-webkit-details-marker {
+			display: none;
+		}
+	}
+
+	&__question {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 20px 22px;
+		cursor: pointer;
+		font-size: 16px;
+		font-weight: 600;
+		color: var(--storeengine-text-color, #1e293b);
+		user-select: none;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: var(--storeengine-primary-color, #006bff);
+		}
+	}
+
+	// Circular chip with an animated +/− (the vertical bar collapses on open).
+	&__toggle {
+		position: relative;
+		flex: 0 0 auto;
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		background: var(--storeengine-primary-light, rgba(0, 107, 255, 0.08));
+		color: var(--storeengine-primary-color, #006bff);
+		transition: background 0.2s ease, color 0.2s ease;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 12px;
+			height: 2px;
+			border-radius: 2px;
+			background: currentColor;
+			transform: translate(-50%, -50%);
+			transition: transform 0.25s ease, opacity 0.25s ease;
+		}
+
+		&::after {
+			transform: translate(-50%, -50%) rotate(90deg);
+		}
+	}
+
+	&__item[open] &__toggle {
+		background: var(--storeengine-primary-color, #006bff);
+		color: #fff;
+
+		&::after {
+			transform: translate(-50%, -50%) rotate(0deg);
+			opacity: 0;
+		}
+	}
+
+	&__answer {
+		padding: 0 22px 22px;
+		color: var(--storeengine-subtitle-color, #5c6470);
+		font-size: 15px;
+		line-height: 1.75;
+
+		p:first-child {
+			margin-top: 0;
+		}
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	// Native <details> can't animate its height, so fade + slide the answer
+	// content in when the item opens.
+	&__item[open] &__answer-inner {
+		animation: storeengine-faq-reveal 0.28s ease;
+	}
+}
+
+@keyframes storeengine-faq-reveal {
+	from {
+		opacity: 0;
+		transform: translateY(-6px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Media (images/videos) attached to a review.
+.storeengine-review-media {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 10px;
+
+	&__item {
+		display: block;
+		position: relative;
+		width: 72px;
+		height: 72px;
+		border-radius: 8px;
+		overflow: hidden;
+		background: #0f172a;
+
+		img,
+		video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__play::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		border-style: solid;
+		border-width: 8px 0 8px 13px;
+		border-color: transparent transparent transparent #fff;
+		filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
+	}
+}
+
+// Review-form media uploader (frontend).
+.storeengine-review-form-media {
+	margin: 12px 0;
+
+	&__label {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		cursor: pointer;
+		font-size: 14px;
+		color: var(--storeengine-primary-color, #006bff);
+		border: 1px dashed var(--storeengine-border-color, #cbd5e1);
+		border-radius: 8px;
+		padding: 10px 14px;
+		transition: border-color 0.2s ease, background 0.2s ease;
+
+		&:hover {
+			border-color: var(--storeengine-primary-color, #006bff);
+			background: rgba(0, 107, 255, 0.04);
+		}
+	}
+
+	&__input {
+		display: none;
+	}
+
+	&__previews {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-top: 10px;
+	}
+
+	&__preview {
+		position: relative;
+		width: 64px;
+		height: 64px;
+		border-radius: 8px;
+		overflow: hidden;
+		background: #0f172a;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		img,
+		video {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__spinner {
+		width: 20px;
+		height: 20px;
+		border: 2px solid rgba(255, 255, 255, 0.4);
+		border-top-color: #fff;
+		border-radius: 50%;
+		animation: storeengine-faq-spin 0.7s linear infinite;
+	}
+
+	&__remove {
+		position: absolute;
+		top: 2px;
+		right: 2px;
+		width: 18px;
+		height: 18px;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.6);
+		color: #fff;
+		line-height: 1;
+		cursor: pointer;
+	}
+}
+
+@keyframes storeengine-faq-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}

@@ -1,0 +1,712 @@
+.storeengine-content-section {
+	&--addons {
+		background: transparent !important;
+		padding: 0 !important;
+		border: none !important;
+		.storeengine-addons {
+			background: #fff;
+			padding: 24px;
+			box-shadow: none;
+			border-radius: 8px;
+		}
+		
+	}
+	
+}
+.storeengine-addon-page-banner {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	padding: 44px 48px;
+	margin-bottom: 24px;
+	border-radius: 8px;
+	background: linear-gradient(
+		120deg,
+		var(--storeengine-primary-color, #1364f1) 0%,
+		#2d7bff 100%
+	);
+
+	// Right-side decorative floating-icon artwork (the only image part).
+	&__bg {
+		position: absolute;
+		top: -120px;
+		right: 0;
+		bottom: -120px;
+		width: 30%;
+		background-repeat: no-repeat;
+		background-position: right center;
+		background-size: contain;
+		pointer-events: none;
+	}
+
+	&__content,
+	&__cta {
+		position: relative;
+		z-index: 1;
+	}
+
+	&__content {
+		max-width: 60%;
+	}
+
+	&__title {
+		color: #fff;
+		font-size: 28px;
+		font-weight: 600;
+		line-height: 1.25;
+		margin: 0 0 10px;
+	}
+
+	&__desc {
+		color: rgba(255, 255, 255, 0.85);
+		font-size: 14px;
+		line-height: 1.5;
+		margin: 0;
+		max-width: 520px;
+	}
+
+	&__cta {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	&__count {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 18px;
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.12);
+		border-top: 1px solid rgba(255, 255, 255, 0.45);
+		color: #fff;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 1.2;
+
+		strong {
+			color: #ffd60a;
+			font-size: 22px;
+			font-weight: 600;
+			margin-right: 2px;
+		}
+	}
+
+	&__upgrade {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		background: #fff;
+		color: var(--storeengine-primary-color, #1364f1);
+		font-weight: 600;
+		font-size: 14px;
+		padding: 10px 18px;
+		border-radius: 6px;
+		text-decoration: none;
+		white-space: nowrap;
+		color: #ED9700;
+
+		.storeengine-icon {
+			margin-top: 2px;
+			&::before {
+				font-size: 16px;
+				color: #ED9700;
+			}
+		}
+
+		&:hover {
+			opacity: 0.92;
+		}
+	}
+}
+// Top filter bar
+.storeengine-addons-topbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0;
+	padding-bottom: 24px;
+
+	&__title {
+		font-size: 18px;
+		font-weight: 600;
+		color: var(--storeengine-text-color);
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+
+		.storeengine-search-component {
+			margin-bottom: 0;
+
+			&__control {
+				margin: 0;
+			}
+		}
+	}
+
+	// Plan / Status header dropdowns.
+	&__filter {
+		flex: 0 0 auto;
+		width: 150px;
+
+		.storeengine-form-group {
+			margin-bottom: 0;
+		}
+	}
+
+	&__clear {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--storeengine-primary-color, #1364f1);
+		padding: 0;
+		white-space: nowrap;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+// Filter tabs
+.storeengine-addons-tabs {
+	display: flex;
+	align-items: center;
+	gap: 0;
+	border-bottom: 1px solid var(--storeengine-border-color, #e5e4e6);
+	margin-bottom: 20px;
+
+	.storeengine-addons-filter-option {
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		padding: 0 4px 10px;
+		margin-right: 16px;
+		position: relative;
+		color: var(--storeengine-subtitle-color, #6b7280);
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 20px;
+		transition: color 0.2s ease;
+
+		span {
+			padding: 0;
+			color: inherit;
+			font-size: inherit;
+			font-weight: inherit;
+			line-height: inherit;
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: -1px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: var(--storeengine-primary-color, #1364f1);
+			transition: width 0.2s ease;
+		}
+
+		&:hover {
+			color: var(--storeengine-text-color);
+		}
+	}
+
+	.addons-active {
+		color: var(--storeengine-text-color);
+
+		&::after {
+			width: 100%;
+		}
+	}
+}
+
+// Category row wrapper: holds the scrollable strip plus the left/right arrow
+// buttons that drive the scroll.
+.storeengine-addons-filter-controls {
+	position: relative;
+	width: 100%;
+}
+
+.storeengine-addons-filter-scroll {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+	width: 32px;
+	height: 32px;
+	background: #fff;
+	border: 1px solid var(--storeengine-border-color, #e5e4e6);
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	color: var(--storeengine-text-color);
+	transition: all 0.2s ease;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+
+	&.visible {
+		opacity: 1;
+		visibility: visible;
+		pointer-events: auto;
+	}
+
+	&:hover {
+		background: var(--storeengine-background-color, #f8f8f8);
+	}
+
+	&--left {
+		left: -8px;
+	}
+
+	&--right {
+		right: -8px;
+	}
+}
+
+// Category row: a single horizontally-scrollable strip so it never wraps to a
+// second line — the arrow buttons (or native swipe) scroll it. Scrollbar hidden
+// so only the arrows are the visible affordance.
+.storeengine-addons-tabs--categories {
+	flex-wrap: nowrap;
+	overflow-x: auto;
+	overflow-y: hidden;
+	margin-top: 0;
+	row-gap: 0;
+	scroll-behavior: smooth;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+
+	.storeengine-addons-filter-option {
+		flex: 0 0 auto;
+		white-space: nowrap;
+	}
+}
+
+// Cards grid
+.storeengine-addon-cards {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 16px;
+
+	&__empty {
+		grid-column: 1 / -1;
+	}
+}
+
+// Single card
+.storeengine-addon-card {
+	position: relative;
+	background: #fff;
+	border: 1px solid var(--storeengine-border-color, #e5e4e6);
+	border-radius: 8px;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	transition: box-shadow 0.2s ease;
+
+	&:hover {
+		box-shadow: none;
+	}
+
+	&--locked {
+		opacity: 0.75;
+	}
+
+	// Requirements footer — sits at the bottom of the card (pushed down so cards
+	// in a row line up), clear of the absolute top-right toggle/Beta badge.
+	&__requirements {
+		margin-top: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		padding-top: 4px;
+	}
+
+	// Dependency notice: small label, then one pill per add-on (check = active,
+	// "!" = still missing). Wraps cleanly and never overlaps the controls.
+	&__required-notice {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		padding: 10px 12px;
+		background: var(--storeengine-bg-color, #f8f9fb);
+		border: 1px solid var(--storeengine-border-color, #eceef1);
+		border-radius: 6px;
+	}
+
+	&__required-label {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 0.4px;
+		line-height: 16px;
+		text-transform: uppercase;
+		color: var(--storeengine-subtitle-color, #6b7280);
+	}
+
+	&__required-icon {
+		font-size: 14px;
+		line-height: 1;
+		color: var(--storeengine-primary-color);
+	}
+
+	&__required-list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+	}
+
+	&__req-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 2px 8px;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 18px;
+		color: var(--storeengine-text-color, #374151);
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color, #e4e7ec);
+		border-radius: 999px;
+
+		&.is-ok {
+			color: #00875a;
+			background: rgba(0, 173, 107, 0.1);
+			border-color: rgba(0, 173, 107, 0.3);
+		}
+
+		&.is-missing {
+			color: #b45309;
+			background: rgba(253, 176, 34, 0.16);
+			border-color: rgba(253, 176, 34, 0.45);
+		}
+	}
+
+	// Toggle / lock (absolute top-right)
+	&__control {
+		position: absolute;
+		top: 14px;
+		right: 14px;
+		display: flex;
+		align-items: center;
+	}
+
+	// Settings shortcut — only rendered on active cards, sits left of the toggle.
+	// Hidden until the card is hovered (or the gear is focused for keyboard
+	// users) so it stays out of the way until you reach for it.
+	&__settings {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		border: none;
+		background: transparent;
+		padding: 0;
+		cursor: pointer;
+		color: var(--storeengine-subtitle-color, #6b7280);
+		opacity: 0;
+		visibility: hidden;
+		transition: color 0.2s ease, opacity 0.2s ease, visibility 0.2s ease;
+
+		.storeengine-icon {
+			font-size: 18px;
+			line-height: 1;
+
+			&::before {
+				font-size: 18px;
+			}
+		}
+
+		&:hover {
+			color: var(--storeengine-primary-color, #1364f1);
+		}
+	}
+
+	&:hover &__settings,
+	&:focus-within &__settings {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	// Active cards carry both the gear and the toggle in the top-right, so give
+	// the title a little more clearance to avoid overlap on the first line.
+	&--active &__title {
+		padding-right: 64px;
+	}
+
+	&__lock {
+		display: flex;
+		align-items: center;
+		color: var(--storeengine-subtitle-color, #9ca3af);
+		.storeengine-icon--lock::before {
+			font-size: 20px;
+		}
+	}
+
+	// Icon circle
+	&__icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 42px;
+		height: 42px;
+		min-width: 42px;
+		border-radius: 50%;
+		border: 1px solid currentColor;
+		overflow: hidden;
+
+		img {
+			width: 26px;
+			height: 26px;
+			object-fit: contain;
+		}
+
+		.storeengine-icon {
+			color: currentColor;
+			font-size: 26px;
+			line-height: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			height: 100%;
+
+			&::before {
+				font-size: 26px;
+				color: currentColor;
+			}
+		}
+	}
+
+	// Title row
+	&__title {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 5px;
+		font-size: 16px;
+		font-weight: 500;
+		color: var(--storeengine-text-color);
+		line-height: 140%;
+		padding-right: 36px; // don't overlap toggle
+	}
+
+	// External link icon
+	&__ext-link {
+		display: inline-flex;
+		align-items: center;
+		color: var(--storeengine-subtitle-color, #9ca3af);
+		transition: color 0.2s ease;
+		text-decoration: none;
+
+		&:hover {
+			color: var(--storeengine-primary-color, #1364f1);
+		}
+	}
+
+	// Inline badges
+	&__badge {
+		display: inline-flex;
+		align-items: center;
+		border-radius: 4px;
+		padding: 1px 6px;
+		font-size: 11px;
+		font-weight: 600;
+		line-height: 18px;
+
+		&--pro {
+			background: #fff3e0;
+			color: #e65100;
+		}
+
+		&--recommended {
+			background: #e8f5e9;
+			color: #2e7d32;
+		}
+	}
+
+	// Description — clamped to keep cards even in the grid; long copy (e.g.
+	// Dropshipping) no longer stretches its whole row. Full text lives behind
+	// the card's docs link.
+	&__details {
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 140%;
+		color: var(--storeengine-subtitle-color, #6b7280);
+		margin: 0;
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		line-clamp: 4;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	&__beta {
+		color: #F97316;
+		font-size: 12px;
+		line-height: 16px;
+		border-radius: 9999px;
+		background:  #FFF7ED;
+		padding: 2px 6px;
+	}
+}
+
+// External / downloadable companion plugins — a separated section below the
+// bundled addon grid.
+.storeengine-external-addons {
+	margin-top: 32px;
+	padding-top: 24px;
+	border-top: 1px solid var(--storeengine-border-color, #e5e4e6);
+
+	// Shown on its own via the "Extensions" chip — no grid above it, so drop
+	// the separator and the extra top spacing.
+	&--standalone {
+		margin-top: 0;
+		padding-top: 0;
+		border-top: 0;
+	}
+
+	&__header {
+		margin-bottom: 16px;
+	}
+
+	&__title {
+		font-size: 16px;
+		font-weight: 600;
+		margin: 0 0 4px;
+		color: var(--storeengine-text-color);
+	}
+
+	&__subtitle {
+		font-size: 13px;
+		margin: 0;
+		color: var(--storeengine-subtitle-color, #6b7280);
+	}
+}
+
+// External addon card — reuses .storeengine-addon-card, swaps the toggle for a
+// status pill + a bottom action area (Install / Activate / Manage).
+.storeengine-addon-card--external {
+	.storeengine-addon-card__ext-status {
+		display: inline-flex;
+		align-items: center;
+		height: 24px;
+		padding: 0 10px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1;
+		border-radius: 6px;
+		color: var(--storeengine-primary-color);
+		background: color-mix(in srgb, var(--storeengine-primary-color) 12%, #fff);
+
+		&.is-active {
+			background: #e7f7ed;
+			color: #1a7f43;
+		}
+	}
+
+	// Sits at the bottom so cards in a row line up (mirrors __requirements).
+	.storeengine-addon-card__ext-actions {
+		margin-top: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding-top: 8px;
+	}
+
+	// Install / Activate and Download sit side by side.
+	.storeengine-addon-card__ext-buttons {
+		display: flex;
+		align-items: stretch;
+		gap: 8px;
+	}
+
+	.storeengine-addon-card__ext-cta {
+		flex: 1 1 auto;
+		justify-content: center;
+		width: 100%;
+	}
+
+	.storeengine-addon-card__ext-buttons .storeengine-addon-card__ext-cta {
+		width: auto;
+	}
+
+	.storeengine-addon-card__ext-download {
+		display: inline-flex;
+		flex: 0 0 auto;
+		align-items: center;
+		justify-content: center;
+		padding: 0 14px;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--storeengine-text-color, #1d2939);
+		text-decoration: none;
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color, #d0d5dd);
+		border-radius: 4px;
+
+		&:hover {
+			color: var(--storeengine-primary-color);
+			border-color: var(--storeengine-primary-color);
+		}
+	}
+
+	.storeengine-addon-card__ext-req {
+		font-size: 12px;
+		color: var(--storeengine-subtitle-color, #6b7280);
+	}
+
+	.storeengine-addon-card__ext-actions .storeengine-addon-card__required-notice {
+		margin-bottom: 4px;
+	}
+
+	.storeengine-addon-card__ext-error {
+		font-size: 12px;
+		color: #dc2626;
+	}
+}
+
+// Responsive
+@media all and (max-width: 1280px) {
+	.storeengine-addon-cards {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+@media all and (max-width: 1024px) {
+	.storeengine-addon-cards {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media all and (max-width: 600px) {
+	.storeengine-addon-cards {
+		grid-template-columns: 1fr;
+	}
+
+	.storeengine-addons-topbar {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
+	}
+}

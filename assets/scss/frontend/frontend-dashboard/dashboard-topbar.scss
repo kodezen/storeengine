@@ -1,0 +1,335 @@
+.storeengine-frontend-dashboard {
+	&__content {
+
+		// topbar component css
+
+		.storeengine-topbar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 16px;
+			// The admin bundle (loaded on React vendor pages) styles
+			// `.storeengine-topbar` as a sticky white card; reset it here so the
+			// frontend dashboard header is a plain divider on every page.
+			background-color: transparent;
+			border: 0;
+			border-bottom: 1px solid var(--storeengine-border-color, #dddedf);
+			border-radius: 0;
+			box-shadow: none;
+			padding: 0 0 20px;
+			margin-bottom: 24px;
+			background-repeat: no-repeat;
+			background-size: contain;
+			background-position: right center;
+			position: static;
+
+			&__heading-group {
+				display: flex;
+				flex-direction: column;
+				gap: 2px;
+				min-width: 0;
+			}
+
+			&__page-title {
+				font-size: 22px;
+				font-weight: 600;
+				line-height: 1.3;
+				color: var(--storeengine-text-color);
+				margin: 2px 0 0;
+			}
+
+			&__page-description {
+				font-size: 13px;
+				line-height: 1.5;
+				color: var(--storeengine-subtitle-color);
+				margin: 2px 0 0;
+			}
+
+			&__entry-left {
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				width: 100%;
+
+				.storeengine-topbar__logo {
+					max-width: 36px;
+					height: auto;
+				}
+
+				.storeengine-topbar__breadcrumb-link {
+					text-decoration: none;
+					color: var(--storeengine-text-color);
+				}
+
+				.storeengine-topbar-heading {
+					font-size: 14px;
+					font-family: var(--storeengine-primary-font) sans-serif;
+					font-weight: 400;
+					line-height: 19.6px;
+					display: flex;
+					align-items: center;
+					color: var(--storeengine-text-color);
+					gap: 3px;
+					margin-top: 4px;
+
+					.storeengine-topbar-heading__subtitle {
+						color: var(--storeengine-subtitle-color);
+					}
+
+					.storeengine-icon {
+						padding: 0 8px;
+
+						&::before {
+							color: var(--storeengine-placeholder-color, #C7C7C7);
+							font-size: 14px;
+							font-weight: 400;
+						}
+					}
+				}
+
+				.storeengine-settings-topbar {
+					.storeengine-btn {
+						min-width: 89px;
+
+						&--preset-gray {
+							border: 1px solid var(--storeengine-border-color);
+						}
+					}
+				}
+
+				.storeengine-get-help-text {
+					border: none;
+				}
+			}
+
+			&__entry-right {
+				.storeengine-course-submit-btn {
+					display: flex;
+					gap: 12px;
+					align-items: center;
+
+					.storeengine-custom-select {
+						&--submit-box {
+							.storeengine-custom-select--container {
+								width: 120px;
+							}
+						}
+					}
+
+					.storeengine-btn {
+						&--preset-gray {
+							border: 1px solid var(--storeengine-border-color);
+						}
+
+						&--submit-box {
+							min-width: 105px;
+						}
+					}
+				}
+			}
+
+			&__left-items {
+				display: flex;
+				gap: 30px;
+				align-items: center;
+				width: 100%;
+			}
+
+			&__zoom {
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				width: 100%;
+				gap: 30px;
+
+				&-entry-left {
+					display: flex;
+					align-items: center;
+					column-gap: 30px;
+				}
+
+				&-entry-right {
+					display: flex;
+					align-items: center;
+					column-gap: 30px;
+				}
+			}
+
+			&__meeting {
+				display: flex;
+				align-items: center;
+				flex-wrap: wrap;
+				width: 100%;
+				gap: 30px;
+
+				&-entry-left {
+					display: flex;
+					align-items: center;
+					column-gap: 30px;
+				}
+
+				&-entry-right {
+					display: flex;
+					align-items: center;
+					column-gap: 30px;
+				}
+			}
+
+			&__right {
+				display: flex;
+				gap: 20px;
+				margin-right: 10px;
+			}
+
+			&-heading {
+				font-size: 20px;
+				color: var(--storeengine-text-color, #111);
+				margin: 0;
+			}
+
+			.theme-mood-button {
+				display: inline-block;
+				height: 40px;
+				border: 1px solid var(--storeengine-border-color);
+				border-radius: 50px;
+
+				.theme-mood {
+					display: flex;
+					align-items: center;
+					height: 100%;
+					margin: 0 5px;
+					position: relative;
+					border-radius: 50px;
+
+					.icon {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						height: 30px;
+						width: 40px;
+						border-radius: 50px;
+						color: var(--storeengine-subtitle-color, #707070);
+
+						.storeengine-icon {
+							font-size: 25px;
+						}
+					}
+				}
+
+				&--dark {
+					border: 1px solid #707070;
+
+					.theme-mood {
+						.icon {
+							&:first-child {
+								color: #fff;
+							}
+
+							&:last-child {
+								color: #fff;
+								background: var(--storeengine-primary-color);
+							}
+						}
+					}
+				}
+
+				&--light {
+					.theme-mood {
+						.icon {
+							&:first-child {
+								color: #fff;
+								background: var(--storeengine-primary-color);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// content topbar
+
+		.storeengine-topbar {
+			&__entry-left {
+				.storeengine-collapsible-menu {
+					display: none;
+					width: 30px;
+					height: 30px;
+					aspect-ratio: 1;
+					cursor: pointer;
+					justify-content: center;
+					align-items: center;
+					border-radius: 4px;
+					border: 1px solid var(--storeengine-border-color);
+					background-color: var(--storeengine-gray-color);
+					color: #fff;
+					z-index: 9999;
+
+					.storeengine-icon {
+						&::before {
+							font-size: 16px;
+							color: var(--storeengine-dark-gray-color);
+						}
+					}
+				}
+
+				.storeengine-frontend-menu {
+					padding: 0 0 0 20px;
+					cursor: pointer;
+
+					.storeengine-icon {
+						&::before {
+							font-size: 16px;
+						}
+					}
+				}
+
+				.storeengine-get-help-text {
+					display: none;
+				}
+
+				.storeengine-topbar-heading {
+					font-family: var(--storeengine-primary-font) sans-serif;
+					font-size: 13px;
+					font-weight: 400;
+					line-height: 1.4;
+					color: var(--storeengine-subtitle-color);
+					margin: 0;
+					display: flex;
+					align-items: center;
+					flex-wrap: wrap;
+
+					.storeengine-topbar__breadcrumb-link {
+						color: var(--storeengine-subtitle-color);
+					}
+
+					.storeengine-icon {
+						padding: 0 4px;
+
+						&::before {
+							font-size: 12px;
+						}
+					}
+
+					.storeengine-edit-btn {
+						background: var(--storeengine-secondary-color);
+						width: 30px;
+						height: 30px;
+						border-radius: 50%;
+						margin-left: 20px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+
+						.storeengine-icon {
+							font-size: 14px;
+
+							&::before {
+								color: var(--storeengine-primary-color);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

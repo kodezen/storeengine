@@ -1,0 +1,52 @@
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
+#
+# Indent Brace Style:
+# https://en.wikipedia.org/wiki/Indent_style#Placement_of_braces
+
+# This file is for unifying the coding style for different editors and IDEs
+# editorconfig.org
+
+# WordPress Coding Standards
+# https://make.wordpress.org/core/handbook/coding-standards/
+# https://core.trac.wordpress.org/browser/trunk/.editorconfig
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = tab
+
+[*.{yml,yaml,json,neon}]
+indent_style = space
+indent_size = 2
+
+[**.{ts,tsx}]
+indent_style = space
+indent_size = 2
+
+[**.js]
+indent_size = 2
+spaces_around_brackets = both
+indent_brace_style = K&R
+
+# CSS / SCSS
+[*.{css,scss}]
+indent_size = 4
+
+[**.php]
+indent_size = 4
+spaces_around_brackets = both
+indent_brace_style = K&R
+
+[**.html]
+indent_size = 4
+
+[*.md]
+trim_trailing_whitespace = false
+
+[**.txt]
+end_of_line = crlf

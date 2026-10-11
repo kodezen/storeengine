@@ -1,0 +1,54 @@
+.storeengine-content-section--settings-affiliate {
+    padding-bottom: 0;
+    .storeengine-settings-affiliate {
+        &__referral-type {
+            margin-bottom: 24px;
+            display: flex;
+        }
+
+        &__referral-type-options {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+        }
+
+        &__commission-type {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__commission-type-options {
+            display: flex;
+            align-items: center;
+            span {
+                margin-bottom: 4px;
+            }
+        }
+    }
+
+    .storeengine-form-group {
+        &--referral-tracking-length {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0;
+        }
+
+        &--commission-rate {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .storeengine-checkbox {
+        &--allow-zero-commission {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.storeengine-form-group {
+    &--minimum-withdraw-amount {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,25 @@
+includes:
+  - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+parameters:
+  #level: max
+  level: 5
+  paths:
+    - addons/
+    - i18n/
+    - includes/
+    - templates/
+    - storeengine.php
+  excludePaths:
+    - vendor/
+    - node_modules/
+    - sample-data/
+    - dev_storeengine/
+    - assets/
+    - .github/
+    - includes/models/subscription.php
+  ignoreErrors:
+    - '#Function apply_filters invoked with \d+ parameters, \d+ required.#'
+  inferPrivatePropertyTypeFromConstructor: true
+  bootstrapFiles:
+    - phpstan.bootstrap.php
+    - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php

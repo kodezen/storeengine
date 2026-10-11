@@ -1,0 +1,104 @@
+.storeengine-content-section--plugin-teaser {
+	.storeengine-plugin-teaser {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+
+	.storeengine-plugin-teaser__head {
+		display: flex;
+		align-items: flex-start;
+		gap: 14px;
+	}
+
+	.storeengine-plugin-teaser__lock {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		width: 36px;
+		height: 36px;
+		border-radius: 8px;
+		background: var(--storeengine-primary-light, #eef4ff);
+		color: var(--storeengine-primary-color, #006bff);
+	}
+
+	.storeengine-plugin-teaser__intro {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+
+	.storeengine-plugin-teaser__title {
+		margin: 0 0 4px;
+	}
+
+	.storeengine-plugin-teaser__subtitle {
+		margin: 0;
+		color: var(--storeengine-subtitle-color, #6b7280);
+		font-size: 13px;
+		line-height: 1.5;
+	}
+
+	.storeengine-plugin-teaser__actions {
+		flex: 0 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 6px;
+	}
+
+	.storeengine-plugin-teaser__cta {
+		white-space: nowrap;
+	}
+
+	.storeengine-plugin-teaser__manual {
+		font-size: 12px;
+		color: var(--storeengine-subtitle-color, #6b7280);
+		text-decoration: underline;
+	}
+
+	.storeengine-plugin-teaser__error {
+		margin: 8px 0 0;
+		font-size: 13px;
+		color: var(--storeengine-error-color, #dc2626);
+	}
+
+	.storeengine-plugin-teaser__group + .storeengine-plugin-teaser__group {
+		margin-top: 8px;
+	}
+
+	.storeengine-plugin-teaser__group-title {
+		font-weight: 600;
+		font-size: 13px;
+		color: var(--storeengine-text-color, #111827);
+		margin-bottom: 12px;
+	}
+
+	// The mini catalog cards reuse the addon-card look but are never interactive.
+	.storeengine-settings-addon-card.locked {
+		cursor: default;
+
+		&:hover {
+			box-shadow: none;
+		}
+	}
+
+	@media (max-width: 782px) {
+		.storeengine-plugin-teaser__head {
+			flex-wrap: wrap;
+		}
+
+		.storeengine-plugin-teaser__actions {
+			width: 100%;
+			align-items: stretch;
+		}
+
+		.storeengine-plugin-teaser__cta {
+			width: 100%;
+		}
+
+		.storeengine-plugin-teaser__manual {
+			text-align: center;
+		}
+	}
+}

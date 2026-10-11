@@ -1,0 +1,21 @@
+.storeengine-stock-adjust {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	&__error {
+		color: #b91c1c;
+		font-size: 12px;
+		margin: 0 0 8px;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+		border-top: 1px solid var(--storeengine-border-color);
+		padding-top: 16px;
+		margin-bottom: 24px;
+	}
+}

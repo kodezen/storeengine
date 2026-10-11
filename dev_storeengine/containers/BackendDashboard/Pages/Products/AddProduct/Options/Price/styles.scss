@@ -1,0 +1,176 @@
+.storeengine-installment-payments {
+    .storeengine-btn--payments-remove:hover {
+        color: red;
+    }
+
+    &__payment-rule {
+        padding: 12px;
+        border: 1px solid var(--storeengine-border-color);
+    }
+
+    &__payment-rule--summary {
+        border-top: 1px solid var(--storeengine-border-color);
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        p {
+            display: inline-block;
+        }
+
+        p:first-child {
+            width: 30%;
+
+        }
+
+        p:last-child {
+            width: 70%;
+        }
+    }
+
+    &__payment-rule--heading {
+        border-bottom: 1px solid var(--storeengine-border-color);
+        padding-bottom: 12px;
+        margin-bottom: 24px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        p {
+            display: inline-block;
+        }
+
+        p:first-child {
+            width: 30%;
+        }
+
+        p:last-child {
+            width: 70%;
+        }
+    }
+
+    &__payment-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+    }
+
+    .storeengine-form-group--installments {
+        margin: 0;
+    }
+
+    &__actions {
+        display: flex;
+        gap: 8px;
+        width: 72px;
+        justify-content: flex-end;
+
+        .is-hidden {
+            visibility: hidden;
+        }
+    }
+
+    .storeengine-installment-payments-select {
+        width: 186px;
+        flex-shrink: 0;
+    }
+}
+
+.storeengine-price-filter {
+    display: flex;
+    font-size: 13px;
+    &--item {
+        padding: 0 16px;
+        position: relative;
+        cursor: pointer;
+        &:hover {
+            color: var(--storeengine-primary-color);
+        }
+    }
+    &--selected {
+        color: var(--storeengine-primary-color);
+        &:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -17px;
+            width: 100%;
+            height: 1px;
+            background: var(--storeengine-primary-color);
+            transition: width 0.3s ease, left 0.3s ease, background 0.3s ease;
+        }
+        &:hover::after {
+            width: 100%;
+            left: 0;
+            background: var(--storeengine-primary-color);
+        }
+
+        &:hover {
+            color: rgba(15, 14, 22, 1);
+        }
+    }
+}
+.storeengine-input__price-title {
+    height: 28px !important;
+}
+
+.storeengine-dropdown-menu--product-price-menu {
+    min-width: 26px;
+}
+
+.storeengine-select--price-options {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    width: 150px;
+}
+
+.storeengine-heading__price {
+    min-height: 32px;
+}
+
+.storeengine-price-container {
+    max-height: 600px;
+    overflow-y: scroll;
+    margin-bottom: 24px;
+    user-select: none;
+    scrollbar-width: none; // Firefox
+    -ms-overflow-style: none; // IE/Edge
+
+    &::-webkit-scrollbar {
+        display: none; // Chrome/Safari/Opera
+    }
+}
+// Side panel view: the drawer's EditPrice form uses the full right pane.
+.storeengine-pricing-drawer__form {
+	// Primary action first, then Cancel, with room between them (the inline
+	// editor's rule lives under a wrapper the drawer doesn't have).
+	.storeengine-price-action {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: 8px;
+		padding-top: 16px;
+		border-top: 1px solid var(--storeengine-border-color);
+	}
+
+	.storeengine-product-editor-pricing__form,
+	form {
+		max-width: none;
+	}
+}
+
+.storeengine-variants__summary.is-price-hidden
+	.storeengine-variants__summary-name {
+	color: var(--storeengine-subtitle-color, #646c73);
+}
+
+// Side panel rows get the same card as the Variants list.
+.storeengine-product-editor-pricing > .storeengine-variants__summary-list {
+	margin-bottom: 12px;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 12px;
+	background: #fff;
+}

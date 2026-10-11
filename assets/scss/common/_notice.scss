@@ -1,0 +1,250 @@
+/**
+ * Frontend Notice UI.
+ */
+.storeengine-notice {
+	border: 1px solid transparent;
+	border-radius: 4px;
+	margin-bottom: 24px;
+	padding: 24px;
+	position: relative;
+
+	& p {
+		display: flex;
+		align-items: flex-start;
+		gap: 8px;
+		font-size: 14px;
+		font-weight: 400;
+		color: var(--storeengine-subtitle-color);
+		margin: 0;
+
+		i {
+			color: #f99898 !important;
+			margin-right: 4px;
+		}
+	}
+
+	& .storeengine-icon {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		color: currentColor;
+		padding: 0;
+		border: 0;
+		position: relative;
+		top: 3px;
+
+		&.rounded {
+			padding: 5px;
+			border-radius: 50%;
+			border: 1px solid currentColor;
+		}
+
+		&.no-border {
+			border: none !important;
+		}
+	}
+
+	& &--heading {
+		color: currentColor;
+		font-size: 20px;
+		margin: 0 0 24px 0;
+		line-height: 1;
+		font-weight: 500;
+
+		.storeengine-icon {
+			margin-inline-end: 5px;
+		}
+	}
+
+	& &--content {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+
+		.storeengine-notice {
+			&--message,
+			&--control {
+				display: flex;
+				align-items: center;
+				flex: 1 1 auto;
+			}
+
+			&--message {
+				width: 100%;
+
+				p {
+					color: currentColor;
+					display: block;
+					font-weight: 400;
+				}
+
+				.storeengine-icon {
+					font-size: 20px;
+					top: 4px;
+					position: relative;
+				}
+
+				a,
+				button {
+					padding: 0;
+					background: transparent;
+					border: transparent;
+					margin: 0;
+					max-height: 16px;
+
+					font-size: 14px;
+					font-weight: 400;
+					color: var(--storeengine-subtitle-color);
+					text-decoration: none;
+					outline: none;
+				}
+				a {
+					&:hover,
+					&:focus,
+					&:active {
+						text-decoration: underline;
+					}
+				}
+			}
+			&--control {
+				margin-left: auto;
+				margin-top: 24px;
+			}
+		}
+	}
+
+	//& &--message {
+	//	display: flex;
+	//	align-items: center;
+	//	width: 100%;
+	//
+	//	p {
+	//		color: currentColor;
+	//		display: block;
+	//		font-weight: 400;
+	//	}
+	//
+	//	.storeengine-icon {
+	//		font-size: 20px;
+	//		top: 4px;
+	//		position: relative;
+	//	}
+	//
+	//	a,
+	//	button {
+	//		padding: 0;
+	//		background: transparent;
+	//		border: transparent;
+	//		margin: 0;
+	//		max-height: 16px;
+	//
+	//		font-size: 14px;
+	//		font-weight: 400;
+	//		color: var(--storeengine-subtitle-color);
+	//		text-decoration: none;
+	//		outline: none;
+	//	}
+	//	a {
+	//		&:hover,
+	//		&:focus,
+	//		&:active {
+	//			text-decoration: underline;
+	//		}
+	//	}
+	//}
+	//
+	//& &--control {
+	//	display: flex;
+	//	align-items: center;
+	//	margin-left: auto;
+	//	margin-top: 24px;
+	//}
+
+	& &--close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		display: none;
+		font-size: .875rem;
+		justify-content: center;
+		align-items: center;
+		width: 27px;
+		height: 27px;
+		max-height: 27px !important;
+		cursor: pointer;
+		outline: none;
+		border-radius: 4px;
+		color: currentColor;
+
+		.storeengine-icon {
+			border: none;
+		}
+	}
+
+	&.storeengine-notice {
+		&--primary {
+			color: #004085;
+			background-color: #cce5ff;
+			border-color: #b8daff;
+		}
+
+		&--secondary {
+			color: var(--storeengine-text-color, #383d41);
+			background-color: #e2e3e5;
+			border-color: var(--storeengine-border-color, #d6d8db);
+		}
+
+		&--info {
+			// If brand color set to red(ish) color (set via --storeengine-primary-color variable),
+			// then info alert will be misleading.
+			border-color: var(--storeengine-primary-color);
+			color: var(--storeengine-primary-color);
+			background: #e1f2ff;
+		}
+
+		&--success {
+			color: #155724;
+			background-color: #d4edda;
+			border-color: #c3e6cb;
+		}
+
+		&--danger,
+		&--error {
+			color: #721c24;
+			background-color: #f8d7da;
+			border-color: #f5c6cb;
+		}
+
+		&--alert,
+		&--warning {
+			color: #856404;
+			background-color: #fff3cd;
+			border-color: #ffeeba;
+		}
+
+		&--alt {
+			color: var(--storeengine-subtitle-color);
+		}
+
+		&.is-dismissible {
+			[class$=notice--close] {
+				display: flex;
+				padding: 0;
+				background: transparent;
+				border: transparent;
+				margin: 0;
+				font-size: 22px;
+				font-weight: 600;
+				color: var(--storeengine-subtitle-color);
+				text-decoration: none;
+				outline: none;
+				box-shadow: none;
+				&:hover,
+				&:focus {
+					color: var(--storeengine-primary-color);
+				}
+			}
+		}
+	}
+}
+

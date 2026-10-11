@@ -1,0 +1,204 @@
+// Frontend "Write a review" form — modern card with a toggle header.
+.storeengine-review-form {
+	border: 1px solid var(--storeengine-border-color, #e6e8ec);
+	border-radius: 14px;
+	background: #fff;
+	overflow: hidden;
+	transition: box-shadow 0.25s ease;
+
+	// Header bar with the intro copy + toggle button.
+	&__add-review {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		padding: 20px 24px;
+	}
+
+	&__intro {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+	}
+
+	&__title {
+		font-size: 17px;
+		font-weight: 700;
+		color: var(--storeengine-text-color, #1e293b);
+	}
+
+	&__subtitle {
+		font-size: 13px;
+		color: var(--storeengine-subtitle-color, #64748b);
+	}
+
+	.storeengine-btn-add-review {
+		display: inline-flex;
+		align-items: center;
+		width: auto;
+		flex: 0 0 auto;
+		padding: 10px 22px;
+		border-radius: 8px;
+		font-weight: 600;
+	}
+
+	// Star-rating input (select is hidden; ssr.js injects the <p.stars>).
+	.storeengine-review-form-rating {
+		select {
+			display: none;
+		}
+
+		p.stars {
+			margin: 0 0 18px;
+			line-height: 1;
+
+			> span {
+				display: inline-flex;
+				column-gap: 6px;
+			}
+
+			a {
+				position: relative;
+				height: 1em;
+				width: 1em;
+				font-size: 28px;
+				text-indent: -999em;
+				display: inline-block;
+				text-decoration: none;
+				box-shadow: none;
+				color: #f5a623;
+
+				&::before {
+					display: block;
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 1em;
+					height: 1em;
+					line-height: 1;
+					content: '\2606'; // ☆
+					text-indent: 0;
+					transition: transform 0.1s ease;
+				}
+
+				&:hover {
+					transform: scale(1.08);
+				}
+			}
+
+			a:hover ~ a::before {
+				content: '\2606';
+			}
+			&:hover a::before {
+				content: '\2605'; // ★
+			}
+			&.selected a.active::before {
+				content: '\2605';
+			}
+			&.selected a.active ~ a::before {
+				content: '\2606';
+			}
+			&.selected a:not(.active)::before {
+				content: '\2605';
+			}
+		}
+	}
+
+	// The comment form body (revealed when the header button is clicked).
+	.comment-respond {
+		display: none;
+		padding: 24px;
+		margin: 0;
+		border-top: 1px solid var(--storeengine-border-color, #e6e8ec);
+
+		form.comment-form {
+			margin: 0;
+
+			label {
+				display: inline-block;
+				margin-bottom: 6px;
+				font-size: 14px;
+				font-weight: 600;
+				color: var(--storeengine-text-color, #1e293b);
+			}
+
+			// Name / Email fields.
+			.storeengine-review-form-author,
+			.storeengine-review-form-email {
+				margin-bottom: 16px;
+
+				input {
+					width: 100%;
+					padding: 11px 14px;
+					border: 1px solid var(--storeengine-border-color, #e6e8ec);
+					border-radius: 8px;
+					font-size: 14px;
+					transition: border-color 0.2s ease;
+
+					&:hover,
+					&:focus {
+						border-color: var(--storeengine-primary-color, #006bff);
+						box-shadow: none;
+						outline: none;
+					}
+				}
+			}
+
+			.storeengine-review-form-review textarea {
+				width: 100%;
+				min-height: 120px;
+				padding: 12px 16px;
+				border: 1px solid var(--storeengine-border-color, #e6e8ec) !important;
+				border-radius: 8px;
+				font-family: var(--storeengine-primary-font);
+				font-size: 14px;
+				line-height: 1.6;
+				color: var(--storeengine-text-color, #1e293b);
+				resize: vertical;
+
+				&:hover,
+				&:focus {
+					border-color: var(--storeengine-primary-color, #006bff) !important;
+					box-shadow: none !important;
+					outline: none;
+				}
+			}
+		}
+
+		// Submit button.
+		.form-submit {
+			float: none;
+			margin: 20px 0 0;
+
+			input[type='submit'] {
+				padding: 12px 28px;
+				border: 0;
+				border-radius: 8px;
+				background: var(--storeengine-primary-color, #006bff);
+				color: #fff;
+				font-weight: 600;
+				font-size: 14px;
+				cursor: pointer;
+				transition: opacity 0.2s ease;
+
+				&:hover {
+					opacity: 0.9;
+				}
+
+				&:disabled {
+					opacity: 0.6;
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+
+	// Open state — reveal the form with a soft shadow.
+	&--open-form {
+		box-shadow: none;
+
+		.comment-respond {
+			display: block;
+		}
+	}
+}

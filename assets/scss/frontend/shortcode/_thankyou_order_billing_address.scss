@@ -1,0 +1,15 @@
+.storeengine-order-billing-shortcode, .storeengine-order-shipping-shortcode {
+	.storeengine-order-billing-address, .storeengine-order-shipping-address {
+		margin-top: 30px;
+
+		p {
+			color: var(--storeengine-subtitle-color, #515A62);
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 400;
+			line-height: 23px;
+			margin: 0;
+			margin-bottom: 10px;
+		}
+	}
+}

@@ -1,0 +1,391 @@
+.storeengine-frontend-dashboard {
+	&__invalid-order {
+		margin-top: 24px;
+
+		.back-btn:hover {
+			background: #f0f0f0;
+		}
+
+		.storeengine-icon.icon-invalid {
+			background: var(--storeengine-white-color);
+			color: #ff4d4f;
+			font-size: 2.48em;
+			display: flex;
+			padding: 6px;
+		}
+
+		.storeengine-frontend-dashboard__invalid {
+			&-order-sub-title {
+				color: var(--storeengine-text-color);
+				font-size: 18px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: 140%;
+				margin-bottom: 16px;
+			}
+
+			&-order-header {
+				display: flex;
+				align-items: center;
+				gap: 15px;
+				margin-bottom: 20px;
+
+				&-title {
+					display: flex;
+					flex-direction: column;
+
+					.storeengine-frontend-dashboard__invalid-order-header-title-heading {
+						margin: 0;
+						font-size: 22px;
+					}
+
+					.storeengine-frontend-dashboard__invalid-order-header-title-text {
+						margin: 2px 0 0;
+						color: var(--storeengine-subtitle-color, #888);
+					}
+				}
+			}
+
+			&-order-details {
+				background: #fff;
+				border: 1px solid var(--storeengine-border-color);
+				padding: 24px 24px 0 24px;
+				text-align: center;
+				border-radius: 8px;
+				margin-top: 16px;
+				height: 320px;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+
+				.storeengine-icon.invalid-order {
+					margin-bottom: 11px;
+				}
+
+				.storeengine-frontend-dashboard__invalid-order-details-text {
+					font-size: 16px;
+					margin-bottom: 20px;
+					color: var(--storeengine-text-color, #333);
+					font-weight: bold;
+				}
+
+				&-back-btn {
+					padding: 10px 16px;
+					border: 1px solid var(--storeengine-border-color);
+					border-radius: 6px;
+					background: white;
+					cursor: pointer;
+					font-size: 14px;
+					display: inline-flex;
+					align-items: center;
+					gap: 6px;
+					font-weight: 500;
+					transition: all 0.3s ease;
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+.storeengine-frontend-dashboard {
+	p:empty {
+		display: none;
+	}
+
+	.storeengine-dashboard__section {
+		background: var(--storeengine-white-color);
+		padding: 20px;
+		border-radius: 8px;
+		border: 1px solid var(--storeengine-border-color, #dddedf);
+		box-shadow: none;
+		margin: 30px 0;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		gap: 15px;
+
+		// When a section is itself the direct wrapper for a full-width table,
+		// the table already renders as a bordered 12px card. Keeping the
+		// section's own padding/border/shadow double-framed it and left a large
+		// empty band around every dashboard table. Strip the section chrome here
+		// so the table's own card is the only frame; keep a small gap so any
+		// pagination that stacks below the table still has breathing room.
+		&.storeengine-dashboard__table-wrapper {
+			padding: 0;
+			border: 0;
+			background: transparent;
+			box-shadow: none;
+			gap: 16px;
+		}
+
+		&--order-notes {
+			background-color: #FFF0B3;
+			border-left: 2px solid #FF991F;
+			border-radius: 0;
+			box-shadow: none;
+			padding: 16px;
+		}
+
+		.storeengine-order-updates {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 8px;
+		}
+
+		.storeengine-order-update {
+			display: flex;
+			gap: 0.59375em;
+			align-items: center;
+
+			.storeengine-order-update-description {
+				color: var(--storeengine-subtitle-color);
+			}
+
+			.storeengine-order-update__time {
+				color: var(--storeengine-subtitle-color);
+				font-size: 14px;
+			}
+		}
+
+		.note-separator {
+			content: "";
+			display: inline-block;
+			width: 4px;
+			height: 4px;
+			background: #646C73;
+			border-radius: 50%;
+		}
+
+.storeengine-dashboard__downloads {
+			width: 100%;
+
+			.storeengine-dashboard__downloads-item {
+				padding: 20px 0;
+				border-bottom: 1px solid var( --storeengine-border-color);
+
+				&:last-child {
+					border-bottom: none;
+					padding-bottom: 15px;
+				}
+
+				.product-name {
+					margin: 0;
+				}
+
+				.product-name {
+					position: relative;
+					line-height: 1.3;
+					margin-block-end: .5em;
+
+					.current-version {
+						position: relative;
+						display: inline-block;
+						border: 1px solid var( --storeengine-border-color);
+						font-size: .575rem;
+						background: #eaeff3;
+						padding: 2px 4px;
+						border-radius: 3px;
+						top: -6px;
+						right: -2px;
+					}
+				}
+
+				.package-preview {
+					.package-preview__image {
+						width: 100%;
+						max-width: 100%;
+						height: auto;
+
+						@media (max-width: 576px) {
+							width: 130px;
+							margin: 0 auto 24px;
+							display: block;
+						}
+					}
+				}
+
+
+				.file-info {
+					font-size: 0.8rem;
+				}
+
+				.storeengine-btn--download {
+					--icon-size: 18px;
+					gap: 5px;
+					font-size: 20px;
+					font-weight: 100;
+					padding: 10px 16px;
+					margin-inline-start: auto;
+
+					@media (max-width: 576px) {
+						margin-inline: auto;
+						margin-block-start: 24px;
+					}
+				}
+
+				a.right-icon {
+					position: absolute;
+					right: 0;
+					text-decoration: none;
+				}
+			}
+		}
+
+		/* Pagination styling moved to a global (un-nested) rule at the bottom of
+		   this file so it also applies on pages that render the pagination
+		   partial outside .storeengine-dashboard__section (License keys, etc.). */
+	}
+
+	.storeengine-dashboard__section-title {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		.storeengine-dashboard__section-title-heading {
+			margin: 0;
+			font-family: var(--storeengine-primary-font), serif;
+			font-size: 18px;
+			font-weight: 500;
+			line-height: 25.2px;
+			color: var(--storeengine-text-color);
+		}
+
+		.storeengine-dashboard__section-title-link {
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 25px;
+			color: var(--storeengine-text-color);
+			text-decoration: none;
+		}
+	}
+
+	&-page--header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		.order-date {
+			font-size: .775em;
+			color: var(--storeengine-placeholder-color);
+		}
+
+		&__right {
+			.storeengine-dropdown {
+				> .storeengine-btn {
+					--bg-color: var(--storeengine-primary-color);
+					--text-color: #fff;
+				}
+			}
+		}
+	}
+}
+
+/*
+ * Frontend-dashboard pagination — GLOBAL (un-nested).
+ *
+ * The shared `query-pagination.php` partial renders OUTSIDE
+ * `.storeengine-dashboard__section` on several pages (License keys, Customer
+ * licenses, Downloads), so the section-nested copy above never matched there
+ * and the list fell back to raw browser bullets. These un-nested rules style
+ * `.storeengine__order-pagination` wherever it appears.
+ */
+.storeengine__order-pagination {
+	.pagination {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		padding: 0;
+		margin: 20px 0 0;
+		justify-content: center;
+
+		.pagination__item {
+			margin: 0 5px;
+
+			.pagination__link {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				min-width: 40px;
+				height: 40px;
+				padding: 0 14px;
+				text-decoration: none;
+				transition: all 0.3s ease;
+				font-family: inherit;
+				font-size: 16px;
+				font-weight: 500;
+				line-height: 1;
+				color: var(--storeengine-text-color, #1e1e1e);
+				border-radius: 50%;
+
+				&.active {
+					background: var(--storeengine-background-color, #f7f7f8);
+					color: var(--storeengine-text-color, #1e1e1e);
+					font-weight: bold;
+				}
+			}
+		}
+
+		.pagination__link.prev,
+		.pagination__link.next {
+			font-weight: bold;
+			background: #666;
+			color: #fff;
+		}
+	}
+
+	// Shipping & tracking — per-item status the vendor/admin recorded (physical
+	// items only; the partial omits the whole section for digital-only orders).
+	.storeengine-dashboard__table--order-shipping {
+		.col-shipping-status,
+		.col-shipping-tracking {
+			white-space: nowrap;
+		}
+
+		a {
+			color: var(--storeengine-primary-color);
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.storeengine-shipping-tracking--empty {
+		color: #94a3b8;
+	}
+
+	.storeengine-shipping-pill {
+		display: inline-block;
+		padding: 3px 10px;
+		border-radius: 999px;
+		font-size: 12px;
+		font-weight: 600;
+		line-height: 1.6;
+		background: var(--storeengine-background-color, #f1f5f9);
+		color: #475569;
+
+		&--shipped,
+		&--on_the_way,
+		&--out_for_delivery {
+			background: #dbeafe;
+			color: #1e40af;
+		}
+
+		&--delivered {
+			background: #d1fae5;
+			color: #065f46;
+		}
+
+		&--returned {
+			background: #fee2e2;
+			color: #991b1b;
+		}
+	}
+}

@@ -1,0 +1,23 @@
+.storeengine-or-divider {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	color: var(--academy-dark-gray-color);
+	margin: 1em 0;
+	font-size: 14px;
+
+	&::before,
+	&::after {
+		content: "";
+		flex: 1;
+		border-bottom: 1px solid var(--academy-border-color);
+	}
+
+	&::before {
+		margin-right: 0.75em;
+	}
+
+	&::after {
+		margin-left: 0.75em;
+	}
+}

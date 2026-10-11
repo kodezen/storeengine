@@ -1,0 +1,265 @@
+// Tools and Settings tab
+:root {
+    --tab-select: 320px;
+    --tab-container: 1250px;
+    --tab-gap: 20px;
+}
+
+.storeengine-tab-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: var(--tab-select);
+    background: var(--storeengine-white-color);
+    padding: 12px;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+    transition: all ease 0.5s;
+    white-space: nowrap;
+    &__item {
+        position: relative;
+        .storeengine-tab-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            border-radius: 4px;
+            background: transparent;
+            padding: 12px;
+            line-height: 20px;
+            color: var(--storeengine-text-color);
+            width: calc(100% - 24px);
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out,
+                color 0.2s ease-in-out;
+            // Hover (when not selected): a soft branded tint with the icon +
+            // title picking up the brand colour, so it reads as "focusable"
+            // rather than "selected". Distinct from the solid-fill active state.
+            &:hover:not(.storeengine-tab-item--is-active):not(.storeengine-tab-item--is-disabled) {
+                // Text-based hover only — no background fill.
+                .storeengine-tab-item--title {
+                    color: var(--storeengine-primary-color);
+                }
+
+                .storeengine-icon::before,
+                .storeengine-icon--arrow-down::before {
+                    color: var(--storeengine-primary-color);
+                }
+            }
+            // Selected: solid brand fill, everything white.
+            &--is-active {
+                color: #fff;
+                background: var(--storeengine-primary-color);
+
+                .storeengine-tab-item--title,
+                .storeengine-tab-item--sub-title {
+                    color: #fff;
+                }
+
+                .storeengine-icon::before {
+                    color: #fff;
+                }
+
+                .storeengine-icon--arrow-down {
+                    top: 18px !important;
+                    right: 0 !important;
+                    &::before {
+                        color: #fff;
+                    }
+                }
+            }
+            // Expanded group header: a soft branded surface (not the solid
+            // selected fill) with the chevron flipped to signal "open". Reads as
+            // a section header sitting above its dropdown children.
+            &--group-open {
+                background: var(--storeengine-primary-light);
+
+                .storeengine-tab-item--title {
+                    color: var(--storeengine-primary-color);
+                }
+
+                .storeengine-icon::before,
+                .storeengine-icon--arrow-down::before {
+                    color: var(--storeengine-primary-color);
+                }
+
+                .storeengine-icon--arrow-down {
+                    rotate: 180deg;
+                }
+            }
+            &--is-disabled {
+                opacity: 0.4;
+                cursor: not-allowed;
+                pointer-events: none;
+                &:hover {
+                    color: var(--storeengine-text-color);
+                    background: transparent;
+                    .storeengine-tab-item--title,
+                    .storeengine-tab-item--sub-title {
+                        color: inherit;
+                    }
+                }
+            }
+            &--title {
+                color: var(--storeengine-text-color);
+                margin: 0;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 140%;
+            }
+            &--sub-title {
+                margin: 0;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 140%;
+                color: var(--storeengine-subtitle-color);
+            }
+        }
+
+        .storeengine-icon--arrow-down {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            transition: all ease 0.5s;
+            pointer-events: none;
+            &::before {
+                color: var(--storeengine-text-color, #0F0E16);
+                &:hover {
+                    color: var(--storeengine-text-color, #0F0E16);
+                }
+            }
+        }
+
+        .storeengine-arrow-right {
+            .storeengine-icon--arrow-down {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                transition: all ease 0.5s;
+                pointer-events: none;
+                &::before {
+                    color: var(--storeengine-text-color, #0F0E16);
+                    &:hover {
+                        color: var(--storeengine-text-color, #0F0E16);
+                    }
+                }
+            }
+        }
+
+        .storeengine-tab-icon-active {
+            rotate: 90deg;
+        }
+
+        a {
+            text-decoration: none;
+            .storeengine-btn--label {
+                display: flex;
+                padding: 0;
+            }
+
+            .storeengine-icon {
+                margin-right: 8px;
+            }
+
+            &:focus {
+                box-shadow: none;
+            }
+        }
+
+        .storeengine-icon {
+            &::before {
+                font-size: 20px;
+            }
+        }
+    }
+
+    &__sub-items {
+        display: flex;
+        flex-direction: column;
+        padding-top: 16px;
+        .storeengine-sub-tab-item {
+            padding: 8px 8px 8px 40px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 20px;
+            color: var(--storeengine-text-color, #0F0E16);
+            cursor: pointer;
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                top: 18px;
+                left: 14px;
+                display: block;
+                width: 20px;
+                border: 1px solid var(--storeengine-border-color, #DEDEDE);
+            }
+
+            &:first-child {
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: -5px;
+                    left: 14px;
+                    display: block;
+                    height: 22px;
+                    width: 0;
+                    border: 1px solid var(--storeengine-border-color, #DEDEDE);
+                }
+            }
+
+            &::after {
+                content: "";
+                position: absolute;
+                top: -17px;
+                left: 14px;
+                display: block;
+                height: 35px;
+                width: 0;
+                border: 1px solid var(--storeengine-border-color, #DEDEDE);
+            }
+
+            &:hover {
+                color: var(--storeengine-primary-color);
+            }
+
+            .storeengine-btn--label {
+                float: left;
+            }
+
+            &--is-active {
+                color: var(--storeengine-primary-color);
+            }
+        }
+    }
+}
+
+.storeengine-tab-panel-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+    overflow: visible;
+}
+
+@media (max-width: 1024px) {
+    .storeengine-tab-panel {
+        width: 30%;
+    }
+
+    .storeengine-tab-panel-content {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 768px) {
+    .storeengine-tab-panel {
+        width: 30%;
+    }
+
+    .storeengine-tab-panel-content {
+        max-width: 70%;
+    }
+}

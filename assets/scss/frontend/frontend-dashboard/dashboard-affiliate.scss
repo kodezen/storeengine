@@ -1,0 +1,344 @@
+.storeengine-frontend-dashboard {
+	&__content {
+		width: 100%;
+
+		.storeengine-frontend-dashboard-page--edit-address,
+		.storeengine-frontend-dashboard-page--edit-account {
+			.storeengine-form-group {
+				flex-direction: row;
+				gap: 20px;
+			}
+
+			.storeengine-frontend-password {
+				margin-top: 8px;
+			}
+
+			.storeengine-col-12 {
+				.storeengine-address-header {
+					margin-bottom: 16px;
+				}
+			}
+
+			.storeengine-frontend-address,
+			.storeengine-frontend-account,
+			.storeengine-frontend-password {
+				width: 100%;
+				border: 1px solid var(--storeengine-border-color);
+				padding: 16px;
+				background-color: #ffffff;
+			}
+		}
+
+		.storeengine-edit-address-form {
+			.storeengine-row {
+				row-gap: 24px;
+			}
+		}
+	}
+
+	.storeengine-edit-address {
+		margin-top: 10px;
+	}
+
+	.storeengine-edit-address,
+	.storeengine-edit-account {
+
+		.storeengine-frontend-heading {
+			font-size: 20px;
+			margin: 0;
+			border-bottom: 1px solid var(--storeengine-border-color);
+			padding-bottom: 16px;
+		}
+
+		.storeengine-edit-address-form,
+		.storeengine-edit-account-form,
+		.storeengine-change-password-form {
+			.storeengine-form-group {
+				.storeengine-form__inner {
+					display: flex;
+					flex-direction: column;
+					gap: 8px;
+					margin-bottom: 16px;
+
+					input[type="text"], select, input[type="email"], input[type="password"] {
+						border: 1px solid var(--storeengine-border-color);
+						width: 100%;
+						height: 40px;
+						padding: 0 12px;
+						border-radius: 4px;
+						font-family: var(--storeengine-primary-font), serif;
+						font-size: 14px;
+						font-weight: 400;
+						line-height: 19.6px;
+						color: var(--storeengine-subtitle-color, #646C73);
+
+						&:hover, &:focus {
+							border: 1px solid var(--storeengine-primary-color);
+							box-shadow: none;
+							outline: none;
+						}
+
+						::placeholder {
+							font-family: var(--storeengine-primary-font), serif;
+							font-size: 14px;
+							font-weight: 400;
+							color: var(--storeengine-subtitle-color, #646C73);
+						}
+					}
+				}
+
+				.storeengine-form__inner {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	.storeengine_dashboard-tabs {
+		display: flex;
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 0 0 4px 4px;
+		margin-bottom: 24px;
+		margin-top: -28px;
+		padding-left: 24px;
+		position: relative;
+
+		a {
+			position: relative;
+			color: var(--storeengine-text-color, #0f0e16);
+			text-decoration: none;
+			padding: 16px;
+			cursor: pointer;
+
+			&:hover {
+				color: var(--storeengine-primary-color);
+				outline: none;
+			}
+		}
+
+		.storeengine_dashboard-tabs__selected {
+			color: var(--storeengine-primary-color);
+			cursor: default;
+
+			&:after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -1px;
+				width: 100%;
+				height: 1px;
+				background: var(--storeengine-primary-color);
+			}
+		}
+	}
+}
+
+.storeengine-dashboard-withdrawal-info-wrapper {
+	background: #fff;
+	border: 1px solid var(--storeengine-border-color, #dddedf);
+	border-radius: 8px;
+	box-shadow: none;
+	margin-bottom: 20px;
+	padding: 24px;
+
+	.storeengine-icon--info-primary {
+		margin-top: 5px;
+	}
+
+	.storeengine-info {
+		margin-top: 8px;
+		font-size: 14px;
+	}
+
+	.storeengine-note {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		background: var(--storeengine-background-color, #f5f5f5);
+		border-radius: 30px;
+		padding: 4px 16px;
+		font-size: 14px;
+
+		.storeengine-icon {
+			margin-right: 6px;
+			margin-top: 8px;
+
+			&::before {
+				font-size: 18px;
+			}
+		}
+
+		a {
+			color: var(--storeengine-primary-color);
+		}
+	}
+}
+
+.storeengine-dashboard-affiliate-referral-url {
+	position: relative;
+	margin-top: 12px;
+
+	& > button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 2;
+	}
+}
+
+.storeengine-dashboard-settings {
+	&__withdraw {
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 8px;
+		padding: 40px;
+
+		.storeengine-settings-info-heading {
+			font-size: 18px;
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+
+		.storeengine-withdraw-method__hint {
+			margin: 4px 0 20px;
+			font-size: 13px;
+			line-height: 1.5;
+			color: var(--storeengine-subtitle-color, #6b7280);
+		}
+
+		.storeengine-form-block--withdraw-method {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			gap: 8px;
+			margin-bottom: 30px;
+
+			.storeengine-withdraw-method {
+				cursor: pointer;
+				width: calc(33% - 15px);
+
+				input[type="radio"] {
+					display: none;
+				}
+
+				.storeengine-withdraw-method--label {
+					position: relative;
+					display: flex;
+					flex-direction: column;
+					gap: 4px;
+					padding: 22px 18px 22px 50px;
+					border: 1px solid var(--storeengine-border-color, #d5d8dc);
+					border-radius: 8px;
+					cursor: pointer;
+					transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+					// Custom radio indicator — outer ring.
+					&::before {
+						content: '';
+						position: absolute;
+						top: 24px;
+						left: 18px;
+						width: 18px;
+						height: 18px;
+						border-radius: 50%;
+						border: 2px solid #c4c9ce;
+						background: #fff;
+						transition: border-color 0.15s ease;
+					}
+
+					// Custom radio indicator — inner dot (revealed when selected).
+					&::after {
+						content: '';
+						position: absolute;
+						top: 29px;
+						left: 23px;
+						width: 8px;
+						height: 8px;
+						border-radius: 50%;
+						background: var(--storeengine-primary-color);
+						opacity: 0;
+						transition: opacity 0.15s ease;
+					}
+
+					&:hover {
+						border-color: #9aa0a6;
+					}
+				}
+
+				// Selected: primary border + ring + filled radio dot.
+				input[type="radio"]:checked + .storeengine-withdraw-method--label,
+				&.storeengine-withdraw-method--selected .storeengine-withdraw-method--label {
+					border-color: var(--storeengine-primary-color);
+					box-shadow: 0 0 0 1px var(--storeengine-primary-color);
+
+					&::before {
+						border-color: var(--storeengine-primary-color);
+					}
+
+					&::after {
+						opacity: 1;
+					}
+				}
+			}
+		}
+
+		.storeengine-withdraw-method-form {
+			display: none;
+
+			// Stack label → field → note instead of running them inline.
+			&--active {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+			}
+
+			label {
+				font-weight: 500;
+			}
+
+			.storeengine-note {
+				font-size: 13px;
+				line-height: 1.5;
+				color: var(--storeengine-subtitle-color, #6b7280);
+			}
+
+			// Match every field type (the PayPal field is type="email", which the
+			// old input[type="text"] selector missed — leaving it tiny + inline).
+			input, textarea {
+				border: 1px solid var(--storeengine-border-color);
+				border-radius: 4px;
+				color: var(--storeengine-text-color);
+				font-family: var(--storeengine-primary-font), serif;
+				font-size: 14px;
+				font-weight: 500;
+				margin: 0;
+				outline: 0;
+				width: 100%;
+				padding: 12px;
+			}
+
+			textarea {
+				min-height: 100px;
+			}
+
+			// Bank transfer stacks several fields.
+			.storeengine-form-block {
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				margin: 0;
+
+				input {
+					margin: 0;
+				}
+			}
+		}
+
+		.storeengine-btn--save-settings {
+			color: #fff;
+			background: var(--storeengine-primary-color);
+		}
+	}
+}

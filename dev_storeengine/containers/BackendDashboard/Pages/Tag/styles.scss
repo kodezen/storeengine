@@ -1,0 +1,20 @@
+.storeengine-react-modal--product-tag {
+    .storeengine-react-modal__content {
+        .storeengine-term {
+            &__item {
+                width: 100%;
+            }
+        }
+    }
+    .storeengine-react-modal__footer {
+        margin: 24px 24px 0 24px;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .storeengine-react-modal {
+        &--term {
+            width: 100%;
+        }
+    }
+}

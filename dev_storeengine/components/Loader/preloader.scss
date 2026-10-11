@@ -1,0 +1,21 @@
+.storeengine-preloader {
+	overflow: visible;
+    width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	svg {
+		width: 45px;
+		height: 45px;
+		overflow: visible !important;
+		margin: 15px !important;
+		circle {
+			stroke-width: 4px;
+		}
+		path {
+			stroke-width: 4px;
+			color: var(--storeengine-primary-color);
+		}
+	}
+}

@@ -1,0 +1,27 @@
+// Admin-only Tailwind utilities. Scoped to `.se-admin-tw` via
+// tailwind.admin.config.js so it cannot leak into legacy pages.
+//
+// `@config` (Tailwind v3.2+) overrides the default config for this file
+// only — the Instant Checkout config in tailwind.config.js stays in effect
+// for Instant Checkout's stylesheet.
+@config "../../tailwind.admin.config.js";
+
+@tailwind utilities;
+
+// Preflight (Tailwind's reset) is disabled, so Tailwind's border utilities
+// don't work: `.border` sets only `border-width: 1px` with no style, and the
+// CSS-initial style is `none` — so `border border-se-border` renders nothing.
+// Restore exactly the border slice of preflight (GemCRM does the same):
+//   - `border-width: 0` keeps every element border-less until a `border*`
+//     utility opts in, AND prevents the CSS-initial `medium` (3px) width from
+//     painting a border on every element once the style is solid.
+//   - `border-style: solid` makes those opted-in borders visible.
+// The bare `*` selector has specificity (0,0,0), so wp-admin/legacy SCSS class
+// borders and Tailwind's own style utilities (`border-dashed`) always outrank
+// it — it can't disturb WP chrome, kzui tables, react-select, or legacy pages.
+*,
+::before,
+::after {
+	border-width: 0;
+	border-style: solid;
+}

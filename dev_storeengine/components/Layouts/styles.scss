@@ -1,0 +1,22 @@
+.storeengine-content-section {
+	&--toggle {
+		.storeengine-heading {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.storeengine-switch {
+			display: block;
+		}
+	}
+
+	&.storeengine-content-section--toggle-off {
+		padding-bottom: 0;
+
+		.storeengine-heading {
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+	}
+}

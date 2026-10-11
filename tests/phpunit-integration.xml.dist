@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="integration-bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	verbose="true"
+	beStrictAboutOutputDuringTests="false"
+	beStrictAboutTestsThatDoNotTestAnything="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+>
+	<!--
+		Integration suite. These tests RUN INSIDE the wp-env tests-cli
+		Docker container — a real WordPress install with our plugin
+		activated. They can use $wpdb, hooks, WP factories, REST routes,
+		anything WP_UnitTestCase exposes.
+
+		Do not run this config from the host's plain `phpunit` invocation
+		— there's no WordPress on the host. Always go through:
+		  npm run test:integration
+
+		`beStrictAboutOutputDuringTests` is relaxed here because WordPress
+		core itself emits notice/warning output in test bootstraps that we
+		can't control. The unit suite (phpunit.xml.dist) keeps it strict.
+	-->
+	<testsuites>
+		<testsuite name="integration">
+			<directory>Integration</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>

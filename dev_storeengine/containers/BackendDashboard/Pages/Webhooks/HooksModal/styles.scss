@@ -1,0 +1,151 @@
+.storeengine-react-modal { 
+    &__content {
+        .storeengine-hook-form {
+            display: flex;
+            flex-direction: column;
+            .form-group {
+                margin-bottom: 0;
+            }
+
+            .storeengine-hook-form-label {
+                margin: 0;
+            }
+
+            &--event {
+                .storeengine-custom-select {
+                    margin-top: 8px;
+                    &--hooks-select-event {
+                        .storeengine-custom-select {
+                            display: block;
+                            &--container {
+                                width: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .storeengine-react-select__control {
+                width: 250px;
+            }
+
+            input[type=text] {
+                padding: 10px 12px;
+                line-height: 0;
+                border: 1px solid var(--storeengine-border-color);
+                line-height: 22px;
+                border-radius: 4px;
+                &:focus {
+                    box-shadow: none;
+                    outline: none;
+                    border: 1px solid var(--storeengine-primary-color);
+                }
+            }
+
+            &__status {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+
+                .storeengine-hook-form-label {
+                    margin: 0;
+                }                
+            }
+
+            .form-body {
+                width: 50%;
+            }
+
+            &__title, &__secret {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                .storeengine-hook-form-label {
+                    margin: 0;
+                }
+
+                input[type=text] {
+                    &:focus {
+                        box-shadow: none;
+                        outline: none;
+                        border: 1px solid var(--storeengine-primary-color) !important;
+                    }
+                }
+            }
+
+            &__secret {
+                .form-group {
+                    gap: 0;
+                    .form-body {
+                        width: 100%;
+                        .text-field {
+                            font-weight: 400;
+                            font-size: 15px;
+                            height: 40px;
+                            background: #FFFFFF;
+                            border: 1px solid var(--storeengine-border-color) !important;
+                            margin: 0;
+                            width: 100%;
+                            &:focus {
+                                box-shadow: none;
+                                outline: none;
+                                border: 1px solid var(--storeengine-primary-color) !important;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .storeengine-select {
+                .storeengine-react-select__menu-list {
+                    max-height: 200px;
+                }
+            }
+
+            .form-group {
+                &--radio-check {
+                    display: flex;
+                    gap: 20px;
+
+                    .form-info {
+                        color: var(--storeengine-text-color, #1d2327);
+                        font-size: 1.3em;
+                        font-weight: 500;
+                    }
+
+                    .form-body {
+                        .storeengine-control-switch {
+                            margin-top: 2px;
+                        }
+
+                        .desc {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 10px;
+                            color: var(--storeengine-placeholder-color, #A5A5A5);
+                        }
+                    }
+                }
+            }
+
+            &--delivery {
+                .form-group {
+                    display: block;
+                    margin: 8px 0 0 0;
+                    .form-body {
+                        input {
+                            width: 100%;
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+
+            &__flex-item {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+}

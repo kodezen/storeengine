@@ -1,0 +1,1687 @@
+.storeengine-variants {
+
+	.storeengine-icon--drag {
+		cursor: grab;
+		font-size: 20px;
+	}
+
+	.storeengine-btn {
+		&--update-btn {
+			margin-left: 36px;
+		}
+		&--add-variants, &--edit-selected-variant, &--update-btn {
+			padding: 6px 8px;
+				font-size: 12px;
+				font-weight: 500;
+				line-height: 140%;
+				--icon-size: 16px;
+		}
+	}
+
+	&__attributes {
+		// padding: 24px;
+		position: relative;
+	}
+
+	&__attributes__trigger {
+		position: relative;
+		display: inline-block;
+	}
+
+	// Separate the trigger from the attribute list ONLY when a list is actually
+	// rendered above it. Previously the button carried a fixed top margin, which
+	// left a phantom gap under the "Variants" heading whenever the panel was
+	// empty (no attributes yet).
+	&__editing-wrapper + &__attributes__trigger {
+		margin-top: 24px;
+	}
+
+	// Shown when the product has no saved price: adding variants is blocked
+	// until a base price exists (each variant extends it).
+	&__price-hint {
+		margin-top: 16px;
+	}
+
+	&__attributes__select {
+		position: absolute;
+		top: calc( 100% + 6px );
+		left: 0;
+		z-index: 100;
+		min-width: 240px;
+		max-height: 320px;
+		overflow-y: auto;
+		margin: 0;
+		padding: 6px;
+		list-style: none;
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 10px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+
+		li .storeengine-btn {
+			border-radius: 8px;
+			padding: 8px 10px;
+
+			&:hover {
+				background: var(--storeengine-background-color, #f1f5f9);
+			}
+		}
+
+		// Already-applied attribute: visible but disabled so it can't be
+		// re-added, and it reads as "already in use".
+		&-item--added .storeengine-btn {
+			opacity: 0.45;
+			cursor: not-allowed;
+			pointer-events: none;
+
+			&:hover {
+				background: transparent;
+			}
+		}
+
+		&-empty {
+			padding: 6px 4px;
+			font-size: 13px;
+			line-height: 1.4;
+			color: var(--storeengine-subtitle-color, #646c73);
+			text-align: center;
+			cursor: default;
+		}
+
+		li {
+			margin: 0;
+
+			.storeengine-btn {
+				width: 100%;
+				justify-content: flex-start;
+			}
+		}
+	}
+
+	&__drag-icon {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		flex: 1;
+		min-width: 0;
+		gap: 4px;
+	}
+
+	&__editing-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	&__scroll {
+		// Shared horizontal scroll for header + variant rows so the columns
+		// stay aligned when the row is wider than the viewport (extra inputs
+		// like SKU / Barcode / Cost push the row past 100% width).
+		overflow-x: auto;
+		overflow-y: hidden;
+		// Modern card container: rounded border wrapping the header + rows.
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 12px;
+		background: #fff;
+	}
+	&__scroll::-webkit-scrollbar {
+		height: 8px;
+	}
+	&__scroll::-webkit-scrollbar-thumb {
+		border-radius: 4px;
+		background-color: var(--storeengine-border-color);
+	}
+
+	&__contents {
+		max-height: 500px;
+		overflow-x: visible;
+		overflow-y: auto;
+		// Header and rows share this floor so, when the card is narrower than
+		// the grid, the parent scroll-wrapper scrolls them together.
+		min-width: var(--se-variant-min, 680px);
+	}
+	&__contents::-webkit-scrollbar {
+		width: 4px;
+	}
+	&__contents::-webkit-scrollbar-thumb {
+		border-radius: 4px;
+		background-color: var(--storeengine-border-color);
+	}
+
+	// Variant table columns. ONE grid template drives both the header
+	// (index.js) and every row's main line (DynamicVariant.js), so the two
+	// can't drift out of alignment.
+	&__scroll {
+		// Variant | Price | Total | SKU | Barcode
+		--se-variant-cols: minmax(120px, 1fr) 180px 72px minmax(110px, 0.9fr)
+			minmax(110px, 0.9fr);
+		--se-variant-gap: 14px;
+		--se-variant-min: 700px;
+		container: se-variants / inline-size;
+	}
+
+	&__header,
+	&__variant-main,
+	&__variant-meta {
+		display: grid;
+		grid-template-columns: var(--se-variant-cols);
+		column-gap: var(--se-variant-gap);
+	}
+
+	&__col--total {
+		text-align: right;
+		justify-content: flex-end;
+	}
+
+	&__header {
+		box-sizing: border-box;
+		min-width: var(--se-variant-min, 680px);
+		align-items: center;
+		background: var(--storeengine-background-color, #f9fafb);
+		border-bottom: 1px solid var(--storeengine-border-color);
+		border-radius: 12px 12px 0 0;
+		padding: 0 16px;
+		position: sticky;
+		top: 0;
+		z-index: 9;
+
+		&__text {
+			margin: 0;
+			padding: 11px 0;
+			font-size: 12px;
+			font-weight: 600;
+			line-height: 16px;
+			text-transform: uppercase;
+			letter-spacing: 0.05em;
+			color: #6b7280;
+		}
+
+		.price-width {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+
+			.storeengine-tooltip {
+				display: inline-flex;
+				height: 14px;
+
+				.storeengine-icon {
+					line-height: 1em;
+					height: 1em;
+					font-size: 14px;
+				}
+
+				// Opens downward instead of the default upward-popping tooltip —
+				// this header sits inside a horizontally-scrolling wrapper
+				// (.storeengine-variants__scroll) whose overflow-x:auto forces
+				// overflow-y to clip too (per the CSS overflow spec), so a
+				// tooltip popping upward has no room and gets cut off. There's
+				// plenty of room below (the table body), so open that way instead.
+				&__text {
+					width: 250px;
+					bottom: auto;
+					top: calc( 100% + 10px );
+					padding: 2px 6px;
+					text-transform: none;
+					letter-spacing: normal;
+					font-weight: 400;
+
+					&::after {
+						border-color: transparent transparent #101828 transparent;
+						top: auto;
+						bottom: 100%;
+						rotate: 0deg;
+					}
+				}
+			}
+		}
+	}
+
+	&__variant {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		padding: 16px;
+		border-bottom: 1px solid var(--storeengine-border-color);
+		transition: background 0.15s ease;
+
+		&:last-child {
+			border-bottom: none;
+		}
+
+		&:hover {
+			background: var(--storeengine-background-color, #fcfcfd);
+		}
+
+		&-main {
+			align-items: start;
+		}
+
+		&__total {
+			display: flex;
+			align-items: center;
+			min-height: 40px;
+			font-weight: 600;
+			font-variant-numeric: tabular-nums;
+			color: var(--storeengine-text-color);
+		}
+
+		&__name-text {
+			min-width: 0;
+			font-size: 14px;
+			font-weight: 600;
+			line-height: 1.35;
+			color: var(--storeengine-text-color);
+			overflow-wrap: anywhere;
+		}
+
+		// Consistent inputs across the whole row.
+		.storeengine-input {
+			width: 100%;
+			height: 40px;
+			border-radius: 6px;
+			transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+			&:focus {
+				border-color: var(--storeengine-primary-color);
+				box-shadow: 0 0 0 3px
+					color-mix(
+						in srgb,
+						var(--storeengine-primary-color) 15%,
+						transparent
+					);
+				outline: none;
+			}
+		}
+	}
+
+	// Per-field labels: the wide table has its header row instead, so they
+	// only show in the stacked card and the drawer.
+	&__variant:not(&__variant--panel) .storeengine-variants__field-label {
+		display: none;
+	}
+
+	// A plain column cell: label + control, stacked.
+	&__cell {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		min-width: 0;
+	}
+
+	// Inventory strip: cost + stock controls, each with a small label, in a
+	// soft tinted box spanning the full row from the left edge.
+	&__variant-meta {
+		> .storeengine-variants__inventory {
+			grid-column: 1 / -1;
+		}
+	}
+
+	&__inventory {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 10px 12px;
+		background: var(--storeengine-background-color, #f8fafc);
+		border: 1px solid var(--storeengine-border-color, #eef0f3);
+		border-radius: 8px;
+
+		.storeengine-input {
+			height: 40px;
+			background: #fff;
+		}
+	}
+
+	&__inv-field {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		margin: 0;
+
+		&--cost,
+		&--qty {
+			width: 80px;
+		}
+
+		&--select {
+			width: 132px;
+		}
+
+		&--track {
+			min-width: 70px;
+		}
+	}
+
+	&__inv-label {
+		font-size: 11px;
+		font-weight: 500;
+		line-height: 14px;
+		color: #6b7280;
+		white-space: nowrap;
+	}
+
+	// Switch sits vertically centred against the inputs beside it.
+	&__inv-switch {
+		display: flex;
+		align-items: center;
+		height: 40px;
+	}
+
+	&__inv-menu {
+		display: flex;
+		align-items: center;
+		height: 40px;
+		// Sit on the control line, below the fields' labels.
+		margin: 18px 0 0 auto;
+	}
+
+	// Variant name with its thumbnail underneath.
+	&__name {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+		min-width: 0;
+	}
+
+	&__variant__image {
+		flex: 0 0 auto;
+		width: 48px;
+		height: 48px;
+		border-radius: 8px;
+		border: 1px dashed var(--storeengine-border-color);
+		background: #fff;
+		overflow: hidden;
+		transition: border-color 0.15s ease;
+
+		&:hover {
+			border-color: var(--storeengine-primary-color);
+		}
+
+		.storeengine-upload-image {
+			.storeengine-upload-image__entry-top {
+				.storeengine-multi-upload-container {
+					.storeengine-upload-image-wrap {
+						width: 48px;
+						height: 48px;
+
+						.storeengine-title-subtitle {
+							display: none;
+						}
+
+						img {
+							width: 100%;
+							height: 100%;
+							object-fit: cover;
+						}
+
+						button {
+							opacity: 0;
+							transition: opacity 0.3s ease;
+							background: var(--storeengine-error-color);
+							box-shadow: none;
+							color: #ffffff;
+							padding: 2px 4px;
+							font-size: 9px;
+						}
+
+						&:hover {
+							button {
+								opacity: 1;
+							}
+						}
+					}
+					.storeengine-upload-image__entry-left-empty{
+						.storeengine-upload-empty-image-wrap{
+							display: none !important;
+						}
+					}
+				}
+			}
+			.storeengine-upload-image__entry-bottom{
+				margin-top: 0px !important;
+				.storeengine-btn{
+					&--sm{
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width: 48px;
+						height: 48px;
+						background: transparent !important;
+						padding: 0px;
+						opacity: 0.55;
+						&::after{
+							content: none !important;
+							display: none !important;
+						}
+						&:hover {
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.variant-select {
+		width: 100%;
+		position: relative;
+		overflow: visible !important;
+	}
+
+	// Applied attribute values shown as pills under each attribute row.
+	&-values {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin-top: 12px;
+
+		&__value {
+			display: inline-flex;
+			align-items: center;
+			padding: 4px 10px;
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 1.4;
+			color: var(--storeengine-text-color);
+			background: var(--storeengine-background-color, #f1f5f9);
+			border: 1px solid var(--storeengine-border-color);
+			border-radius: 999px;
+		}
+	}
+
+	.storeengine-highlight {
+		border: none;
+		position: relative;
+		padding: 4px 6px;
+		border-radius: 4px;
+		background: #F4F5F5;
+		width: min-content;
+		.storeengine-btn--p-id-copy {
+			color: var(--storeengine-text-color);
+			padding: 0;
+		}
+
+		&__tooltip {
+			visibility: hidden;
+			opacity: 0;
+			transition: opacity 0.2s ease;
+			position: absolute;
+			top: 50%;
+			left: 100%;
+			transform: translateY(-50%);
+			margin-left: 8px;
+			background: #0F0E16;
+			color: #fff;
+			padding: 4px 8px;
+			border-radius: 4px;
+			white-space: nowrap;
+			z-index: 1000;
+			&::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: -5px;
+				transform: translateY(-50%);
+				width: 0;
+				height: 0;
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+				border-right: 10px solid #0F0E16;
+			}
+		}
+
+		&:hover .storeengine-highlight__tooltip {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+
+.storeengine-variants__attributes-modal__list {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	max-height: 360px;
+	overflow-y: auto;
+}
+
+.storeengine-variants__attributes-modal__empty {
+	padding: 6px 4px;
+	font-size: 13px;
+	line-height: 1.4;
+	color: var(--storeengine-subtitle-color, #646c73);
+	text-align: center;
+	cursor: default;
+}
+
+.storeengine-variants__drag-helper {
+	.storeengine-variants__drag-icon {
+		font-size: 14px;
+	}
+
+	.storeengine-icon--drag {
+		cursor: grabbing;
+		font-size: 20px;
+	}
+
+	.storeengine-btn {
+		&--edit-selected-variant {
+			padding: 6px 8px;
+			font-size: 12px;
+			font-weight: 500;
+			line-height: 140%;
+			--icon-size: 16px;
+		}
+	}
+}
+
+.storeengine-variants__editing-wrapper-child {
+	padding: 16px;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 10px;
+	background: #fff;
+	user-select: none;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+	&:hover {
+		border-color: color-mix(
+			in srgb,
+			var(--storeengine-primary-color) 40%,
+			var(--storeengine-border-color)
+		);
+		box-shadow: none;
+	}
+
+	.storeengine-variants__drag-icon {
+		font-size: 14px;
+		font-weight: 600;
+	}
+}
+
+.storeengine-variants-edit {
+	.storeengine-icon--trash,
+	.storeengine-icon--close {
+		font-size: 15px;
+	}
+
+	// Attribute name header with a divider from the value area below.
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-bottom: 16px;
+		margin-bottom: 18px;
+		border-bottom: 1px solid var(--storeengine-border-color);
+
+		.storeengine-variants__drag-icon {
+			font-size: 15px;
+			font-weight: 600;
+			color: var(--storeengine-text-color);
+		}
+	}
+
+	&__value-list {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding: 0;
+
+		&-label {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+
+			&-text {
+				color: #6b7280;
+				font-size: 11px;
+				font-weight: 600;
+				text-transform: uppercase;
+				letter-spacing: 0.04em;
+			}
+
+			.storeengine-btn {
+				&--value-list-label-btn {
+					padding: 4px 10px;
+					border-radius: 8px;
+				}
+			}
+		}
+	}
+
+	// Existing values wrap as pills (was a stack of full-width rows).
+	&__value-list-parrent {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	// The value picker fills the card instead of floating at a fixed width.
+	.varinats-select {
+		width: 100%;
+		overflow: visible !important;
+
+		.storeengine-react-select__menu {
+			z-index: 1000;
+		}
+	}
+
+	// Footer (Done) — right-aligned above a hairline.
+	> .storeengine-d-flex {
+		justify-content: flex-end;
+		margin-top: 20px;
+		padding-top: 16px;
+		border-top: 1px solid var(--storeengine-border-color);
+	}
+}
+
+// Each applied value as a premium pill: drag handle + name + remove.
+.storeengine-variants-edit__value-list-item {
+	margin: 0;
+	display: inline-flex !important;
+	align-items: center;
+	gap: 6px;
+	// Compact chip (~26px tall): the drag icon and close button used their
+	// default 20px / button sizes, which made each value look oversized.
+	padding: 3px 6px 3px 8px;
+	line-height: 18px;
+	background: var(--storeengine-background-color, #f8fafc);
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 999px;
+	transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+	&:hover {
+		border-color: color-mix(
+			in srgb,
+			var(--storeengine-primary-color) 40%,
+			var(--storeengine-border-color)
+		);
+		box-shadow: none;
+	}
+
+	.dragble-variant-options {
+		display: inline-flex;
+		align-items: center;
+		margin: 0;
+		cursor: grab;
+		color: var(--storeengine-placeholder-color, #9ca3af);
+		font-size: 12px;
+
+		.storeengine-icon--drag {
+			font-size: 12px;
+			line-height: 1;
+		}
+	}
+
+	&__value-name,
+	.storeengine-variants-edit__value-name {
+		font-size: 12px;
+		line-height: 18px;
+		font-weight: 500;
+		color: var(--storeengine-text-color);
+	}
+
+	.storeengine-btn {
+		&--value-list-item-btn {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 16px;
+			height: 16px;
+			min-height: 0;
+			padding: 0;
+			line-height: 1;
+			color: var(--storeengine-placeholder-color, #9ca3af);
+
+			.storeengine-icon {
+				font-size: 10px;
+				line-height: 1;
+			}
+
+			&:hover {
+				color: #ef4444;
+			}
+		}
+	}
+}
+
+.storeengine-dropdown-menu--variant-menu {
+	border: none;
+}
+// Color / image swatch beside an attribute term (option rows + selected chips).
+.storeengine-variants-edit {
+	&__swatch {
+		flex: 0 0 16px;
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		box-sizing: border-box;
+		border-radius: 50%;
+		border: 1px solid rgba(0, 0, 0, 0.15);
+		overflow: hidden;
+		vertical-align: middle;
+
+		img {
+			display: block;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+
+	&__option {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// View mode: "Inline" (the table) or "Side panel" (compact list + drawer).
+// ---------------------------------------------------------------------------
+.storeengine-variants__view-bar {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.storeengine-variants__view-label {
+	font-size: 13px;
+	color: var(--storeengine-subtitle-color, #646c73);
+}
+
+.storeengine-variants__view-toggle {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	padding: 3px;
+	border: 1px solid var(--storeengine-border-color, #e4e7ec);
+	border-radius: 10px;
+	background: #f2f4f7;
+}
+
+.storeengine-variants__view-btn {
+	appearance: none;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 0;
+	padding: 5px 12px;
+	border: 0;
+	border-radius: 7px;
+	background: transparent;
+	font-size: 12.5px;
+	font-weight: 500;
+	line-height: 1.4;
+	color: #667085;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+
+	&:hover:not(.is-active) {
+		color: var(--storeengine-text-color, #1d2939);
+	}
+
+	&.is-active {
+		background: #fff;
+		color: var(--storeengine-primary-color);
+		box-shadow: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--storeengine-primary-color);
+		outline-offset: 1px;
+	}
+
+	svg {
+		flex-shrink: 0;
+	}
+}
+
+// Side panel mode: no horizontal table, so the scroller/min-width go away.
+.storeengine-variants__scroll--panel {
+	overflow-x: visible;
+
+	.storeengine-variants__contents {
+		min-width: 0;
+		max-height: none;
+	}
+}
+
+.storeengine-variants__summary {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 12px 16px;
+	border-bottom: 1px solid var(--storeengine-border-color);
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	> .storeengine-btn {
+		margin-left: auto;
+	}
+}
+
+.storeengine-variants__summary-main {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+
+.storeengine-variants__summary-name {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 14px;
+	font-weight: 600;
+	overflow-wrap: anywhere;
+}
+
+.storeengine-variants__badge {
+	padding: 1px 7px;
+	border-radius: 999px;
+	background: #eef4ff;
+	color: #3538cd;
+	font-size: 11px;
+	font-weight: 500;
+}
+
+// "$40 · In stock · SKU ABC · Cost $12" as separated facts.
+.storeengine-variants__summary-meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 4px 0;
+	font-size: 12px;
+	color: var(--storeengine-subtitle-color, #646c73);
+}
+
+.storeengine-variants__fact {
+	display: inline-flex;
+	gap: 4px;
+
+	& + &::before {
+		content: '·';
+		margin: 0 8px;
+		color: var(--storeengine-placeholder-color, #d0d5dd);
+	}
+
+	&:first-child {
+		font-weight: 600;
+		color: var(--storeengine-text-color);
+	}
+
+	&--warn {
+		color: #b54708;
+	}
+}
+
+.storeengine-variants__fact-label {
+	color: #98a2b3;
+}
+
+// Drawer: variant list on the left, edit form on the right.
+.storeengine-modal--right.storeengine-variants-drawer .storeengine-modal__panel {
+	width: min(920px, 100vw);
+}
+
+// Wide drawer, compact: image | total on one line, then base | extended
+// price, then SKU | barcode.
+.storeengine-variants__drawer-form .storeengine-variants__variant--panel
+	.storeengine-variants__variant-main {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	grid-template-areas:
+		'image total'
+		'price price'
+		'sku barcode';
+	gap: 16px;
+
+	> .storeengine-variants__col--variant {
+		grid-area: image;
+	}
+
+	> .storeengine-variants__col--total {
+		grid-area: total;
+		align-self: center;
+		flex-direction: row;
+		align-items: baseline;
+		justify-content: flex-end;
+		gap: 8px;
+		font-size: 18px;
+	}
+
+	> .storeengine-variants__col--base-price {
+		grid-area: price;
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+		grid-template-rows: auto auto;
+		grid-auto-flow: column;
+		column-gap: 16px;
+		row-gap: 4px;
+	}
+
+	> .storeengine-variants__col--sku {
+		grid-area: sku;
+	}
+
+	> .storeengine-variants__col--barcode {
+		grid-area: barcode;
+	}
+}
+
+.storeengine-variants__panel-body {
+	padding: 0;
+}
+
+.storeengine-variants__drawer {
+	display: grid;
+	grid-template-columns: 260px minmax(0, 1fr);
+	min-height: 100%;
+}
+
+.storeengine-variants__drawer-list {
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid var(--storeengine-border-color);
+	background: var(--storeengine-background-color, #f9fafb);
+}
+
+.storeengine-variants__drawer-list-head {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	padding: 16px;
+	border-bottom: 1px solid var(--storeengine-border-color);
+}
+
+.storeengine-variants__drawer-product {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--storeengine-text-color);
+	overflow-wrap: anywhere;
+}
+
+.storeengine-variants__drawer-count {
+	font-size: 12px;
+	color: var(--storeengine-subtitle-color, #646c73);
+}
+
+.storeengine-variants__drawer-items {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	padding: 8px;
+	overflow-y: auto;
+}
+
+.storeengine-variants__drawer-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	width: 100%;
+	margin: 0;
+	padding: 8px;
+	border: 1px solid transparent;
+	border-radius: 8px;
+	background: transparent;
+	text-align: left;
+	cursor: pointer;
+	transition: background 0.15s ease, border-color 0.15s ease;
+
+	.storeengine-variants__thumb {
+		width: 36px;
+		height: 36px;
+		border-radius: 6px;
+	}
+
+	&:hover {
+		background: #fff;
+	}
+
+	&.is-active {
+		background: #fff;
+		border-color: var(--storeengine-primary-color);
+		box-shadow: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--storeengine-primary-color);
+		outline-offset: 1px;
+	}
+}
+
+.storeengine-variants__drawer-item-text {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 0;
+}
+
+.storeengine-variants__drawer-item-name {
+	font-size: 13px;
+	font-weight: 600;
+	color: var(--storeengine-text-color);
+	overflow-wrap: anywhere;
+}
+
+.storeengine-variants__drawer-item-meta {
+	font-size: 12px;
+	color: var(--storeengine-subtitle-color, #646c73);
+}
+
+.storeengine-variants__drawer-form {
+	padding: 20px 24px 24px;
+	min-width: 0;
+}
+
+.storeengine-variants__drawer-title {
+	margin: 0 0 16px;
+	font-size: 16px;
+	font-weight: 600;
+	color: var(--storeengine-text-color);
+}
+
+// Phones: the list becomes a horizontal strip above the form.
+@media (max-width: 767px) {
+	.storeengine-variants__drawer {
+		grid-template-columns: minmax(0, 1fr);
+		align-content: start;
+	}
+
+	.storeengine-variants__drawer-form .storeengine-variants__variant--panel
+		.storeengine-variants__variant-main {
+		grid-template-areas:
+			'image total'
+			'price price'
+			'sku sku'
+			'barcode barcode';
+
+		> .storeengine-variants__col--base-price {
+			grid-template-columns: minmax(0, 1fr);
+			grid-auto-flow: row;
+		}
+	}
+
+	.storeengine-variants__drawer-list {
+		border-right: 0;
+		border-bottom: 1px solid var(--storeengine-border-color);
+	}
+
+	.storeengine-variants__drawer-list-head {
+		display: none;
+	}
+
+	.storeengine-variants__drawer-items {
+		flex-direction: row;
+		overflow-x: auto;
+	}
+
+	.storeengine-variants__drawer-item {
+		flex: 0 0 auto;
+		width: auto;
+		max-width: 220px;
+	}
+}
+
+.storeengine-variants__panel-footer {
+	display: flex;
+	justify-content: space-between;
+	gap: 12px;
+	padding-top: 20px;
+}
+
+.storeengine-variants__field-label {
+	display: block;
+	width: 100%;
+	margin-bottom: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--storeengine-subtitle-color, #646c73);
+}
+
+// Warns the admin, right where they bind a variant to one price plan, that
+// the binding is exclusive — otherwise this only surfaces later as a
+// confusing "pricing plan does not apply" block on the storefront.
+.storeengine-variants__field-hint {
+	margin: 2px 0 8px;
+	font-size: 11px;
+	line-height: 1.5;
+	color: var(--storeengine-subtitle-color, #646c73);
+}
+
+// Side panel (drawer): every field stacked full width, one per line.
+.storeengine-variants__variant--panel {
+	padding: 0;
+	border: 0;
+	background: transparent;
+	gap: 16px;
+
+	&:hover {
+		background: transparent;
+	}
+
+	.storeengine-variants__variant-main,
+	.storeengine-variants__variant-meta {
+		display: flex;
+		flex-direction: column;
+		gap: 14px;
+	}
+
+	.storeengine-variants__col--total {
+		width: 100%;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		text-align: left;
+
+		.storeengine-variants__field-label {
+			width: auto;
+			margin: 0;
+		}
+	}
+
+	// The drawer header already names the variant.
+	.storeengine-variants__variant__name-text {
+		display: none;
+	}
+
+	.storeengine-variants__cell {
+		gap: 4px;
+		width: 100%;
+	}
+
+	.variant-select,
+	.storeengine-variants__cell .storeengine-input {
+		width: 100%;
+	}
+
+	.storeengine-variants__inventory {
+		margin-left: 0;
+		padding: 12px;
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Narrow table, inline mode: each row becomes a stacked card. Triggered by
+// the table's own width (container query), so a squeezed editor column on a
+// laptop stacks too instead of scrolling sideways; the media query covers the
+// wrapper itself, which can't query its own size.
+// ---------------------------------------------------------------------------
+@mixin se-variants-stacked {
+	.storeengine-variants__contents {
+		min-width: 0;
+		max-height: none;
+	}
+
+	.storeengine-variants__header {
+		display: none;
+	}
+
+	.storeengine-variants__variant:not(.storeengine-variants__variant--panel) {
+		.storeengine-variants__variant-main {
+			grid-template-columns: 1fr 1fr;
+			row-gap: 12px;
+		}
+
+		.storeengine-variants__col--variant,
+		.storeengine-variants__col--base-price {
+			grid-column: 1 / -1;
+		}
+
+		.storeengine-variants__field-label {
+			display: block;
+			margin-bottom: 0;
+		}
+
+		.storeengine-variants__col--total {
+			justify-content: flex-start;
+			align-items: flex-start;
+			text-align: left;
+		}
+
+		.storeengine-variants__variant-meta {
+			display: block;
+
+			> .storeengine-variants__inventory {
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+@container se-variants (max-width: 699px) {
+	@include se-variants-stacked;
+}
+
+@media (max-width: 782px) {
+	.storeengine-variants__scroll {
+		overflow-x: visible;
+	}
+
+	@include se-variants-stacked;
+}
+
+// "Create new value" inside the variant option editor.
+.storeengine-variants-edit {
+	&__new-term-link {
+		margin-top: 10px;
+		padding: 0;
+		border: 0;
+		background: none;
+		font-size: 13px;
+		color: var(--storeengine-primary-color);
+		cursor: pointer;
+		text-align: left;
+	}
+
+	&__new-term {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		margin-top: 10px;
+		width: 100%;
+
+		.storeengine-quick-terms {
+			width: 100%;
+			margin: 10px 0 0;
+		}
+	}
+
+	&__new-term-row {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 8px;
+		width: 100%;
+
+		.storeengine-input {
+			flex: 1 1 180px;
+			min-width: 0;
+		}
+	}
+
+	&__new-term-color {
+		width: 40px;
+		height: 36px;
+		padding: 2px;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 6px;
+		background: #fff;
+	}
+
+	&__new-term-btn {
+		padding: 8px 14px;
+		font-size: 13px;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 6px;
+		background: #fff;
+		cursor: pointer;
+
+		&.is-primary {
+			color: #fff;
+			background: var(--storeengine-primary-color);
+			border-color: var(--storeengine-primary-color);
+		}
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+		}
+	}
+}
+
+// "Images by <attribute>": one upload per attribute value, shared by all of
+// that value's variants.
+.storeengine-variant-images {
+	margin-top: 24px;
+	padding: 14px 16px;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 12px;
+	background: #fff;
+
+	&__head {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	&__title {
+		display: block;
+		font-size: 14px;
+		font-weight: 600;
+		color: var(--storeengine-text-color);
+	}
+
+	&__hint {
+		display: block;
+		margin-top: 2px;
+		font-size: 12px;
+		color: #6b7280;
+	}
+
+	&__by {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 0;
+		font-size: 13px;
+		color: #6b7280;
+	}
+
+	&__grid {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 16px;
+		margin-top: 14px;
+		padding-top: 14px;
+		border-top: 1px solid var(--storeengine-border-color, #eef0f3);
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		width: 84px;
+	}
+
+	&__name {
+		max-width: 100%;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 1.3;
+		text-align: center;
+		color: var(--storeengine-text-color);
+		overflow-wrap: break-word;
+	}
+}
+
+// The table sits right under the images box, not a full section gap away.
+.storeengine-variant-images + .storeengine-variants__scroll {
+	margin-top: 16px;
+}
+
+// Gear beside the Inline | Side panel switch: opens the attribute editor.
+.storeengine-variants__settings-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 8px;
+	background: #fff;
+	color: #475467;
+	cursor: pointer;
+	transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+	.storeengine-icon {
+		font-size: 16px;
+		line-height: 1;
+	}
+
+	&:hover {
+		background: var(--storeengine-background-color, #f9fafb);
+		color: var(--storeengine-text-color);
+	}
+
+	&.is-active {
+		border-color: var(--storeengine-primary-color);
+		background: color-mix(in srgb, var(--storeengine-primary-color) 10%, #fff);
+		color: var(--storeengine-primary-color);
+	}
+}
+
+// Collapsed attribute editor: "Size Orange, Silver · Color Beige, Green".
+.storeengine-variants__attr-summary {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px 16px;
+	font-size: 13px;
+	color: #475467;
+}
+
+.storeengine-variants__attr-summary-item {
+	display: inline-flex;
+	gap: 6px;
+
+	strong {
+		font-weight: 600;
+		color: var(--storeengine-text-color);
+	}
+}
+
+.storeengine-variants__attr-summary-edit,
+.storeengine-variants__attr-done {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--storeengine-primary-color);
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+.storeengine-variants__attr-done {
+	margin-left: 14px;
+	vertical-align: middle;
+}
+
+// Read-only variant image in the table (set in "Variant images" above).
+.storeengine-variants__thumb {
+	flex: 0 0 auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	overflow: hidden;
+	border-radius: 8px;
+	border: 1px solid var(--storeengine-border-color);
+	background: #fff;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	&--empty {
+		border-style: dashed;
+		background: var(--storeengine-background-color, #f9fafb);
+		color: #98a2b3;
+
+		.storeengine-icon {
+			font-size: 18px;
+		}
+	}
+}
+
+// The drawer shows the image read-only too; keep it on its own line.
+.storeengine-variants__variant--panel .storeengine-variants__thumb {
+	margin-bottom: 4px;
+}
+
+// "+ Add / edit variants" under the drawer's variant list.
+.storeengine-variants__drawer-add {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin: 4px 16px 16px;
+	padding: 6px 0;
+	border: 0;
+	background: none;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--storeengine-primary-color);
+	cursor: pointer;
+
+	.storeengine-icon {
+		font-size: 14px;
+	}
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+// Compact Edit button on Side panel summary rows.
+.storeengine-variants__summary .storeengine-btn--edit-variant {
+	padding: 5px 12px;
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 1.4;
+	min-height: 0;
+	height: auto;
+}
+
+// Attribute editor footer: Update on the left.
+.storeengine-variants-edit__footer {
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px solid var(--storeengine-border-color);
+
+	.storeengine-btn--update-btn {
+		margin-left: 0;
+	}
+}
+
+// "Add or edit variants" modal (portaled to <body>).
+.storeengine-variants--modal {
+	padding: 20px 24px 24px;
+
+	// Inside the modal the attribute picker is an inline list under its
+	// button (pushes the footer down) rather than a floating dropdown that
+	// would spill past the modal and cover its footer.
+	.storeengine-variants__attributes__select {
+		position: static;
+		margin-top: 8px;
+		max-height: 240px;
+		box-shadow: none;
+	}
+
+	.storeengine-variants__modal-hint {
+		margin: 0 0 16px;
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--storeengine-subtitle-color, #646c73);
+	}
+
+	.storeengine-variants__attributes__trigger {
+		display: block;
+	}
+}
+
+// react-sortable-hoc appends the dragged row to <body>; keep it above the
+// modal (.storeengine-modal, 100000) so it stays visible while dragging.
+.storeengine-variants__drag-helper {
+	z-index: 100010 !important;
+}
+
+// The attribute modal can open over the Side panel drawer (both are
+// .storeengine-modal at 100000): keep it on top.
+.storeengine-modal.storeengine-variants-attr-modal {
+	z-index: 100002;
+}
+
+// The remove-value confirmation opens over the attribute modal (100002):
+// keep it on top.
+.storeengine-modal.storeengine-remove-value-modal {
+	z-index: 100004;
+}
+
+// Attribute modal empty state (no attributes exist in the store yet).
+.storeengine-variants__attributes__select .storeengine-variants__attributes__select-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 6px;
+	width: 100%;
+	padding: 28px 20px;
+	border: 1px dashed var(--storeengine-border-color, #d0d5dd);
+	border-radius: 12px;
+	background: var(--storeengine-background-color, #f9fafb);
+	text-align: center;
+	cursor: default;
+}
+
+.storeengine-variants__empty-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	margin-bottom: 4px;
+	border-radius: 50%;
+	background: color-mix(in srgb, var(--storeengine-primary-color, #1570ef) 10%, #fff);
+	color: var(--storeengine-primary-color, #1570ef);
+}
+
+.storeengine-variants__empty-title {
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--storeengine-text-color, #1d2939);
+}
+
+.storeengine-variants__empty-text {
+	max-width: 360px;
+	font-size: 13px;
+	line-height: 1.5;
+	color: #667085;
+}
+
+a.storeengine-variants__empty-cta {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 10px;
+	padding: 8px 14px;
+	border-radius: 8px;
+	background: var(--storeengine-primary-color, #1570ef);
+	font-size: 13px;
+	font-weight: 500;
+	color: #fff;
+	text-decoration: none;
+	transition: filter 0.15s ease;
+
+	&:hover,
+	&:focus {
+		color: #fff;
+		filter: brightness(0.92);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--storeengine-primary-color);
+		outline-offset: 2px;
+	}
+}
+
+.storeengine-variants__attributes__select:has(> .storeengine-variants__attributes__select-empty) {
+	max-height: none;
+	padding: 0;
+	border: 0;
+	box-shadow: none;
+}

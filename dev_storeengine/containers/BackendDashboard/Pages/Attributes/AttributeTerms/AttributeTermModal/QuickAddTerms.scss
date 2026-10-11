@@ -1,0 +1,132 @@
+.storeengine-quick-terms {
+	margin-bottom: 24px;
+	padding: 14px 16px;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: var(--storeengine-radius, 4px);
+	background: var(--storeengine-background-color, #f9fafb);
+
+	&__head {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		margin-bottom: 10px;
+
+		strong {
+			font-size: 14px;
+		}
+
+		span {
+			font-size: 12px;
+			color: var(--storeengine-placeholder-color);
+		}
+	}
+
+	&__tabs {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin-bottom: 10px;
+	}
+
+	&__tab {
+		padding: 5px 12px;
+		font-size: 12px;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 999px;
+		background: #fff;
+		cursor: pointer;
+
+		&.is-active {
+			border-color: var(--storeengine-primary-color);
+			color: var(--storeengine-primary-color);
+			font-weight: 600;
+		}
+	}
+
+	&__chips {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 12px;
+	}
+
+	&__chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 6px 12px;
+		font-size: 13px;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: var(--storeengine-radius, 4px);
+		background: #fff;
+		cursor: pointer;
+		transition: border-color 0.15s ease, background-color 0.15s ease;
+
+		&:hover:not(:disabled) {
+			border-color: var(--storeengine-primary-color);
+		}
+
+		&.is-selected {
+			border-color: var(--storeengine-primary-color);
+			background: var(--storeengine-primary-light);
+			font-weight: 600;
+		}
+
+		&.is-added {
+			opacity: 0.45;
+			cursor: not-allowed;
+			text-decoration: line-through;
+		}
+	}
+
+	&__dot {
+		width: 14px;
+		height: 14px;
+		border-radius: 50%;
+		border: 1px solid rgb(0 0 0 / 15%);
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+
+	&__link {
+		padding: 0;
+		border: 0;
+		background: none;
+		font-size: 12px;
+		color: var(--storeengine-primary-color);
+		cursor: pointer;
+
+		&:disabled {
+			opacity: 0.4;
+			cursor: default;
+		}
+	}
+
+	&__add {
+		margin-left: auto;
+		padding: 8px 16px;
+		font-size: 13px;
+		font-weight: 600;
+		color: #fff;
+		background: var(--storeengine-primary-color);
+		border: 0;
+		border-radius: var(--storeengine-radius, 4px);
+		cursor: pointer;
+		text-transform: none;
+
+		&:disabled {
+			opacity: 0.45;
+			cursor: not-allowed;
+		}
+	}
+
+	&__hint {
+		margin: 10px 0 0;
+		font-size: 12px;
+		color: var(--storeengine-placeholder-color);
+	}
+}

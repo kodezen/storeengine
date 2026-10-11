@@ -1,0 +1,29 @@
+.storeengine-checkbox {
+  .storeengine-title-subtitle {
+    margin-bottom: 0;
+  }
+}
+.storeengine-settings-tag {
+  background: var(--storeengine-border-color);
+  color: var(--storeengine-placeholder-color);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 1.2;
+}
+.storeengine-cf-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.storeengine-cf-text { color: var(--storeengine-text-color); }
+.storeengine-cf-row--disabled .storeengine-cf-text { opacity: .55; }
+.storeengine-cf-required-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--storeengine-placeholder-color);
+}

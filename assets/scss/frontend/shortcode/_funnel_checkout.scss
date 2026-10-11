@@ -1,0 +1,30 @@
+// Funnel checkout shortcode ([storeengine_funnel_checkout]) — lays the checkout
+// form and the order summary side by side (form wider), the way the default
+// StoreEngine checkout splits them across two columns. Falls back to a single
+// stacked column when there's no summary or on narrow screens.
+.storeengine-funnel-checkout-shortcode {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	gap: 32px;
+
+	> .storeengine-funnel-checkout__main {
+		flex: 1.4 1 420px;
+		min-width: 0;
+	}
+
+	> .storeengine-funnel-checkout__summary {
+		flex: 1 1 320px;
+		min-width: 0;
+	}
+
+	// Stack on small screens.
+	@media (max-width: 782px) {
+		gap: 24px;
+
+		> .storeengine-funnel-checkout__main,
+		> .storeengine-funnel-checkout__summary {
+			flex-basis: 100%;
+		}
+	}
+}

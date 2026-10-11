@@ -1,0 +1,38 @@
+.shipping-zone-method {
+    display: flex;
+    border: 1px solid gray;
+    padding: 6px 20px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+
+.shipping-zone-method-active {
+    @extend .shipping-zone-method;
+    border: 2px solid #135E96;
+}
+
+.shipping-zone--method-setting {
+    display: flex;
+    flex-direction: column;
+    margin-top: 24px;
+}
+
+.storeengine-method-content {
+    border: 1px solid #ED9700;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    justify-content: flex-start;
+    margin: 24px 0 0 0;
+    .storeengine-icon--into {
+        &::before {
+            font-size: 20px;
+        }
+    }
+}
+

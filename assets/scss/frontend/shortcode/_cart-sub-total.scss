@@ -1,0 +1,237 @@
+.storeengine-cart-sub-total-table-shortcode {
+	table,
+	td,
+	th,
+	tr {
+		border: none;
+		border-width: 0 !important;
+	}
+
+	table th,
+	table td {
+		text-align: left;
+	}
+
+	.storeengine-cart-sub-total-table {
+		margin: 0 !important;
+		tr {
+			border: none;
+			border-bottom: 1px solid var(--storeengine-border-color, #DDDEDF) !important;
+			display: flex;
+			justify-content: space-between;
+			// A striped-table rule elsewhere greys every other row.
+			background: transparent;
+
+			// Every row gets the same cells. Fee, tax and other in-between rows
+			// had no styles of their own, so global table rules made their label
+			// bold and pushed the amount off the right edge. Header cell padding
+			// is !important because a global `table th` rule elsewhere sets it
+			// that way, which also dropped every label below its amount.
+			th,
+			td {
+				font-weight: 400;
+				font-size: 14px;
+				word-break: keep-all;
+				margin: 0;
+				padding: 8px 0;
+			}
+
+			th {
+				padding: 8px 0 !important;
+			}
+
+			td {
+				text-align: right;
+				color: var(--storeengine-text-color);
+			}
+
+			&:first-child {
+				th {
+					font-weight: 400;
+					font-size: 14px;
+					word-break: keep-all;
+					padding: 0 0 16px 0 !important;
+				}
+			}
+
+			&:last-child {
+				th {
+					font-weight: 400;
+					font-size: 14px;
+					word-break: keep-all;
+					padding: 0 !important;
+					margin: 0;
+				}
+			}
+
+			&:first-child {
+				td {
+					font-weight: 400;
+					font-size: 14px;
+					word-break: keep-all;
+					text-align: right;
+					color: var(--storeengine-text-color);
+					padding: 0 0 16px 0;
+					margin: 0;
+				}
+			}
+			&:last-child {
+				td {
+					font-weight: 400;
+					font-size: 14px;
+					word-break: keep-all;
+					text-align: right;
+					color: var(--storeengine-text-color);
+					padding: 0;
+					margin: 0;
+				}
+			}
+
+			&:last-child {
+				border-bottom: none !important;
+				color : var(--storeengine-text-color);
+			}
+		}
+
+		tr.storeengine-shipping-totals {
+			// Top-align the label with the (multi-line) method + destination
+			// block instead of stretching it.
+			align-items: flex-start;
+			gap: 12px;
+
+			th {
+				// Keep "Shipping" on one line — it's a non-first/last row, so it
+				// doesn't inherit the keep-all override and was wrapping
+				// mid-word when the destination text widened the cell.
+				white-space: nowrap;
+				flex-shrink: 0;
+				font-weight: 400;
+				font-size: 14px;
+			}
+
+			td {
+				font-size: 14px;
+				text-align: right;
+				min-width: 0;
+
+				.storeengine-shipping-methods {
+					list-style: none;
+					margin: 0;
+					padding: 0;
+				}
+
+				.storeengine-shipping-destination {
+					margin: 4px 0 0;
+					font-size: 13px;
+					line-height: 1.5;
+					color: var(--storeengine-subtitle-color, #6b7280);
+				}
+			}
+		}
+
+		.order-total, .recurring-totals, .cart-subtotal {
+			padding: 16px 0;
+		}
+
+		// Give the mid-summary rows (coupons + the installment "Order total")
+		// consistent breathing room instead of sitting tight against the row
+		// divider like the Subtotal / Due-today rows do.
+		.storeengine-cart-sub-total-table__coupon,
+		.order-installment-order-total {
+			th,
+			td {
+				padding: 8px 0;
+			}
+		}
+	}
+
+	.storeengine-shipping-methods {
+		list-style: none;
+	}
+}
+
+.storeengine-sub-total-table {
+	table {
+		border-top: 3px solid;
+		width: 100%;
+		max-width: 400px;
+	}
+
+	tr:last-child {
+		border-top: 1px solid var(--storeengine-border-color, #e0e0e0);
+	}
+}
+
+.storeengine-ajax__cart {
+	input[type="submit"] {
+		padding: 0;
+		border: none;
+		border-bottom: 1px solid;
+		border-radius: 0;
+		height: 21px;
+
+		&:hover {
+			background: transparent;
+			color: inherit;
+		}
+	}
+}
+
+
+.storeengine-cart__quantity {
+	display: inline-block;
+	border: 1px solid var(--storeengine-border-color, #e0e0e0);
+	padding: 0 5px;
+	border-radius: 4px;
+	width: fit-content;
+
+	button {
+		border: initial;
+		background: initial;
+		padding: 0;
+		cursor: pointer;
+
+		&:focus {
+			outline: 0;
+			background: initial;
+		}
+
+		&:hover {
+			background: initial;
+		}
+	}
+
+	.storeengine-cart-qty {
+		appearance: none;
+		width: 60px;
+		height: 30px;
+		border: initial;
+		color: var(--storeengine-text-color);
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 30px;
+		text-align: center;
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			/* display: none; <- Crashes Chrome on hover */
+			appearance: none;
+			margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+		}
+	}
+}
+
+.storeengine-cart__remove {
+	padding: 0;
+	border: none;
+	border-bottom: 1px solid;
+	border-radius: 0;
+	color: initial;
+	cursor: pointer;
+
+	&:hover {
+		background: transparent;
+		color: initial;
+	}
+}
+

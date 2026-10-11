@@ -1,0 +1,30 @@
+.storeengine-order-schedule {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    &__fields {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        .storeengine-flex {
+            margin: 0;
+        }
+        .storeengine-payment-fields {
+            .storeengine-form-group {
+                margin: 0;
+                .storeengine-select {
+                    .storeengine-react-select__control {
+                        height: 40px;
+                    }
+                }
+            }
+        }
+        input {
+            width: 190px;
+			&[type="datetime-local"] {
+				padding: 0 6px;
+			}
+        }
+    }
+}

@@ -1,0 +1,548 @@
+/* Tailwind utilities — scoped to .se-embedded-app via tailwind.config.js's
+   `important` selector, so generated class names (flex, grid, etc.) only apply
+   inside this app's DOM subtree. */
+@tailwind utilities;
+
+/* Scoped to .se-embedded-app to keep theme styles from leaking in */
+.se-embedded-app {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	color: #0f172a;
+	box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+
+	*, *::before, *::after { box-sizing: border-box; }
+
+	/* Legacy two-column grid kept for the inline-shortcode mount and any
+	   third-party usage that referenced these classes; the new Shopify-style
+	   layout in CheckoutApp.jsx uses Tailwind utilities directly and ignores
+	   them. */
+	&__grid {
+		display: grid;
+		gap: 24px;
+		grid-template-columns: 1fr;
+		@media (min-width: 720px) { grid-template-columns: 1fr 320px; }
+	}
+
+	&__main { display: flex; flex-direction: column; gap: 24px; }
+
+	&__section {
+		// background: #fff;
+		// border-radius: 12px;
+		// padding: 20px;
+		// box-shadow: 0 1px 3px rgba(15, 23, 42, .06);
+	}
+
+	&__section-title {
+		margin: 0 0 12px;
+		padding-bottom: 8px;
+		font-size: 16px;
+		font-weight: 600;
+		color: var(--storeengine-text-color);
+		border-bottom: 1px solid var(--storeengine-border-color);
+	}
+
+	&__label {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		span {
+			font-size: 14px;
+			color: var(--storeengine-text-color);
+		}
+
+		input, select {
+			padding: 9px 12px;
+			border: 1px solid #cbd5e1;
+			border-radius: 8px;
+			font-size: 14px;
+			color: #0f172a;
+			background: #fff;
+			width: 100%;
+
+			&:focus {
+				outline: 2px solid #0f172a;
+				outline-offset: 1px;
+			}
+		}
+	}
+
+	&__row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+
+	&__inline {
+		display: flex;
+		gap: 8px;
+		align-items: center;
+		font-size: 13px;
+		margin: 8px 0 16px;
+	}
+
+	&__shipping { margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+
+	&__gateways { display: flex; flex-direction: column; gap: 8px; }
+	&__gateway {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px 12px;
+		border: 1px solid #cbd5e1;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: border-color .15s ease, background .15s ease;
+		&.is-selected { border-color: #0f172a; background: #f8fafc; }
+		span {
+			font-size: 14px;
+			color: var(--storeengine-text-color);
+		}
+	}
+	&__gateway-body { margin-top: 14px; }
+	&__gateway-desc { font-size: 14px; color: #475569; font-weight: 500; }
+
+	&__stripe-mount { padding: 12px; border: 1px solid #cbd5e1; border-radius: 8px; background: #fff; }
+
+	&__hint { font-size: 13px; color: #64748b; }
+
+	&__btn {
+		display: inline-block;
+		padding: 10px 16px;
+		font-size: 14px;
+		border-radius: 8px;
+		border: 0;
+		cursor: pointer;
+		background: #e2e8f0;
+		color: #0f172a;
+
+		&--primary { background: #0f172a; color: #fff; padding: 12px 18px; font-weight: 600; }
+		&--primary:hover:not(:disabled) { background: #1e293b; }
+		&:disabled { opacity: .6; cursor: not-allowed; }
+	}
+
+	&__error {
+		background: #fef2f2;
+		color: #991b1b;
+		border: 1px solid #fecaca;
+		padding: 10px 12px;
+		border-radius: 8px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		margin-bottom: 16px;
+		font-size: 13px;
+	}
+	&__error-close {
+		background: transparent; border: 0; cursor: pointer; font-size: 18px; color: inherit;
+	}
+
+	&__summary {
+		background: #f8fafc;
+		border-radius: 12px;
+		padding: 20px;
+		align-self: start;
+		position: sticky;
+		top: 16px;
+	}
+	&__items { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-direction: column; gap: 10px; }
+	&__item { display: flex; gap: 10px; align-items: center; }
+	&__item-img { width: 44px; height: 44px; border-radius: 6px; object-fit: cover; }
+	&__item-body { flex: 1; }
+	&__item-name { font-size: 13px; font-weight: 500; }
+	&__item-meta { font-size: 12px; color: #64748b; }
+	&__item-price { font-size: 13px; font-weight: 500; }
+
+	&__totals { margin: 0; }
+	&__totals > div {
+		display: flex;
+		justify-content: space-between;
+		font-size: 13px;
+		padding: 4px 0;
+	}
+	&__totals-row--grand {
+		border-top: 1px solid #e2e8f0;
+		margin-top: 8px;
+		padding-top: 10px !important;
+		font-size: 16px !important;
+		font-weight: 600;
+	}
+
+	&__customize-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+	&__customize-syncing { font-size: 12px; color: #64748b; }
+	&__cust-group { display: flex; flex-direction: column; gap: 8px; }
+	&__cust-group--optional { margin-top: 14px; padding-top: 14px; border-top: 1px solid #e2e8f0; }
+	&__cust-hint { margin: 0 0 6px; font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: .04em; }
+	&__cust-row {
+		display: grid;
+		grid-template-columns: auto auto 1fr auto auto;
+		align-items: center;
+		gap: 12px;
+		padding: 10px;
+		border: 1px solid #e2e8f0;
+		border-radius: 8px;
+		background: #fff;
+		&.is-selected { border-color: #0f172a; }
+		&.is-locked { background: #f8fafc; }
+	}
+	&__cust-check { display: flex; align-items: center; }
+	&__cust-img { width: 40px; height: 40px; object-fit: cover; border-radius: 6px; }
+	&__cust-name { font-size: 13px; font-weight: 500; }
+	&__cust-meta { font-size: 12px; color: #64748b; }
+	&__cust-qty { display: inline-flex; align-items: center; gap: 6px; }
+	&__cust-qty button {
+		width: 26px; height: 26px;
+		border: 1px solid #cbd5e1;
+		background: #fff;
+		border-radius: 6px;
+		cursor: pointer;
+		font-size: 14px;
+		line-height: 1;
+		&:disabled { opacity: .4; cursor: not-allowed; }
+	}
+	&__cust-qty-num { min-width: 18px; text-align: center; font-size: 13px; font-weight: 500; }
+	&__cust-line { font-size: 13px; font-weight: 500; min-width: 64px; text-align: right; }
+
+	&--booting {
+		min-height: 240px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	&__spinner {
+		width: 28px; height: 28px;
+		border: 3px solid #e2e8f0;
+		border-top-color: #0f172a;
+		border-radius: 50%;
+		animation: se-embedded-spin .9s linear infinite;
+	}
+	@keyframes se-embedded-spin { to { transform: rotate(360deg); } }
+
+	&__success {
+		background: #fff;
+		border-radius: 12px;
+		padding: 36px 24px;
+		text-align: center;
+		box-shadow: none;
+		max-width: 480px;
+		margin: 24px auto;
+	}
+	&__success-icon {
+		width: 64px; height: 64px;
+		margin: 0 auto 16px;
+		border-radius: 50%;
+		background: #10b981;
+		color: #fff;
+		font-size: 36px;
+		line-height: 64px;
+	}
+	&__success-title { font-size: 20px; font-weight: 600; margin: 0 0 8px; }
+	&__success-msg { font-size: 14px; color: #475569; margin: 0 0 16px; }
+	&__success-meta { font-size: 13px; color: #64748b; margin: 0 0 20px; }
+}
+
+// ---------------------------------------------------------------------------
+// Phone dial-code selector + local number row
+// ---------------------------------------------------------------------------
+.se-phone-row {
+	display: flex;
+	align-items: stretch;
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #fff;
+
+	.se-dial-select {
+		flex: 0 0 auto;
+		min-width: 120px;
+		padding: 9px 22px 9px 8px;
+		border: none;
+		border-right: 1px solid #cbd5e1;
+		background: #f8fafc;
+		font-size: 14px;
+		cursor: pointer;
+		appearance: none;
+		-webkit-appearance: none;
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%236b7280' d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
+		background-repeat: no-repeat;
+		background-position: right 6px center;
+
+		&:focus { outline: 2px solid #0f172a; outline-offset: 1px; }
+	}
+
+	.se-phone-local {
+		flex: 1;
+		padding: 9px 12px;
+		border: none;
+		font-size: 14px;
+		color: #0f172a;
+		background: #fff;
+		min-width: 0;
+
+		&:focus { outline: 2px solid #0f172a; outline-offset: 1px; }
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Email / Phone toggle tabs (phone_or_email mode)
+// When the block follows, tabs connect flush — bottom radius removed.
+// ---------------------------------------------------------------------------
+.se-contact-tabs {
+	display: flex;
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	border-bottom: none;
+	overflow: hidden;
+
+	.se-contact-tab {
+		flex: 1;
+		padding: 8px 14px;
+		font-size: 13px;
+		font-weight: 500;
+		background: #f8fafc;
+		border: none;
+		cursor: pointer;
+		color: #64748b;
+		transition: background 0.12s, color 0.12s;
+		line-height: 1.4;
+
+		& + .se-contact-tab { border-left: 1px solid #cbd5e1; }
+		&--active { background: #fff; color: #0f172a; }
+	}
+}
+
+// ---------------------------------------------------------------------------
+// Unified contact + OTP block
+// ---------------------------------------------------------------------------
+.se-contact-block {
+	border: 1px solid #cbd5e1;
+	border-radius: 8px;
+	overflow: hidden;
+	background: #fff;
+	margin-bottom: 16px;
+
+	// When tabs sit above the block, top radius is already provided by tabs
+	.se-contact-tabs + & {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	// .se-contact-block--tabs is added by React when isMixed
+	&--tabs {
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+}
+
+.se-contact-block__input-row {
+	display: flex;
+	align-items: stretch;
+	min-height: 46px;
+
+	// Bare email input inside the row
+	> .se-cb__input {
+		flex: 1;
+		border: none;
+		outline: none;
+		padding: 0 14px;
+		font-size: 14px;
+		color: #0f172a;
+		background: transparent;
+		min-height: 46px;
+		font-family: inherit;
+
+		&:focus { outline: none; }
+	}
+
+	// Phone row strips its own border when inside the block
+	> .se-phone-row {
+		flex: 1;
+		border: none;
+		border-radius: 0;
+		min-height: 46px;
+
+		.se-dial-select  { min-height: 46px; border-radius: 0; }
+		.se-phone-local  { min-height: 46px; }
+	}
+}
+
+// Action area: right edge of the input row
+.se-contact-block__action {
+	display: flex;
+	align-items: stretch;
+	border-left: 1px solid #cbd5e1;
+	flex-shrink: 0;
+}
+
+// Send code button
+.se-otp__btn--send {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	padding: 0 18px;
+	min-height: 46px;
+	border: none;
+	border-radius: 0;
+	background: #0f172a;
+	color: #fff;
+	font-size: 13px;
+	font-weight: 600;
+	font-family: inherit;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: background 0.15s, opacity 0.15s;
+
+	&:hover:not(:disabled) { background: #1e293b; }
+	&:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+// Verified pill — replaces Send button after successful OTP
+.se-otp__verified-pill {
+	display: flex;
+	align-items: center;
+	gap: 7px;
+	padding: 0 14px;
+	background: #f0fdf4;
+	color: #15803d;
+	font-size: 13px;
+	font-weight: 600;
+	white-space: nowrap;
+	min-height: 46px;
+
+	svg {
+		flex-shrink: 0;
+		width: 14px;
+		height: 14px;
+		stroke: currentColor;
+		fill: none;
+		stroke-width: 2.5;
+		stroke-linecap: round;
+		stroke-linejoin: round;
+	}
+}
+
+// Shared OTP button base (Verify button inside confirm step)
+.se-otp__btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 7px;
+	padding: 0 16px;
+	height: 38px;
+	border-radius: 6px;
+	border: 1px solid transparent;
+	font-size: 13px;
+	font-weight: 500;
+	font-family: inherit;
+	cursor: pointer;
+	white-space: nowrap;
+	transition: background 0.15s, opacity 0.15s;
+	flex-shrink: 0;
+
+	&--primary {
+		background: #0f172a;
+		color: #fff;
+		border-color: #0f172a;
+		&:hover:not(:disabled) { background: #1e293b; }
+	}
+
+	&:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+// Status line (non-empty = visible; React renders null when empty)
+.se-otp__status {
+	display: block;
+	font-size: 12.5px;
+	line-height: 1.45;
+	padding: 8px 14px;
+	border-top: 1px solid #e2e8f0;
+
+	&--error { color: #b91c1c; background: #fef2f2; border-top-color: #fecaca; }
+	&--info  { color: #475569; }
+	&--ok    { color: #15803d; font-weight: 500; }
+}
+
+// Code-entry step
+.se-otp__confirm {
+	padding: 12px 14px;
+	border-top: 1px solid #e2e8f0;
+	background: #f8fafc;
+}
+
+.se-otp__code-row {
+	display: flex;
+	gap: 8px;
+	align-items: stretch;
+}
+
+.se-otp__code-input {
+	flex: 1;
+	min-width: 0;
+	height: 38px;
+	padding: 0 12px;
+	border: 1px solid #cbd5e1;
+	border-radius: 6px;
+	font-size: 15px;
+	letter-spacing: 0.2em;
+	text-align: center;
+	color: #0f172a;
+	background: #fff;
+	font-family: inherit;
+	transition: border-color 0.15s, box-shadow 0.15s;
+
+	&:focus {
+		outline: none;
+		border-color: #6366f1;
+		box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
+	}
+
+	&.is-error {
+		border-color: #ef4444;
+		box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.10);
+	}
+}
+
+// Resend row
+.se-otp__resend {
+	margin-top: 8px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 12.5px;
+	color: #64748b;
+}
+
+.se-otp__timer { min-width: 85px; }
+
+.se-otp__resend-btn {
+	background: none;
+	border: none;
+	padding: 0;
+	font-size: 12.5px;
+	font-family: inherit;
+	color: #0f172a;
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+
+	&:disabled { color: #94a3b8; text-decoration: none; cursor: default; }
+}
+
+// Spinner (inline in both Send and Verify buttons)
+.se-otp__spinner {
+	display: none;
+	width: 12px;
+	height: 12px;
+	border: 2px solid rgba(255, 255, 255, 0.35);
+	border-top-color: #fff;
+	border-radius: 50%;
+	animation: se-otp-spin 0.65s linear infinite;
+	flex-shrink: 0;
+}
+
+.se-otp__btn--loading,
+.se-otp__btn--send.se-otp__btn--loading {
+	.se-otp__spinner  { display: block; }
+	.se-otp__btn-label { opacity: 0.75; }
+}
+
+@keyframes se-otp-spin { to { transform: rotate(360deg); } }

@@ -1,0 +1,153 @@
+.storeengine-notification {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 16px;
+    box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+    border-radius: 4px;
+    background: #FFF;
+    min-width: 300px;
+    z-index: 99999999;
+
+    &--dashboard {
+        position: fixed;
+        right: 50px;
+        top: 10%;
+        .storeengine-btn {
+            padding: 4px;
+			&--close {
+				background: transparent;
+				position: absolute;
+				top: 8px;
+				right: 8px;
+				padding: 0;
+
+				&.storeengine-icon {
+					display:flex;
+				}
+			}
+        }
+
+		.storeengine-notification__message {
+			gap: 10px;
+			.storeengine-icon {
+				margin-top: 5px;
+				font-size: 20px
+			}
+		}
+    }
+    // Fallback literals match _root.scss — a build-pipeline issue can corrupt
+    // that :root block's selector (a stray leading BOM has been observed
+    // turning it into an unmatched `﻿:root`, silently undefining every
+    // --storeengine-*-color custom property). var()'s fallback only kicks in
+    // when the property is genuinely undefined, so this keeps the toast
+    // readable either way without masking the underlying build bug.
+    &--success {
+        background: var(--storeengine-green-color, #00AD6B);
+        color: #fff;
+    }
+
+    &--info {
+        background: var(--storeengine-primary-color, #008DFF);
+        color: #fff;
+    }
+
+    &--warning {
+        background: var(--storeengine-warning-color, #FDB022);
+        color: #fff;
+    }
+
+    &--error {
+        background: var(--storeengine-error-color, #E2483D);
+        color: #fff;
+    }
+    .storeengine-icon {
+        font-size: 24px;
+        &:not(.storeengine-icon--close) {
+            //width: 26px;
+            //height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+			border-width: 1px;
+            border-radius: 50%;
+            border-style: solid;
+			padding: 3px;
+        }
+        &--check {
+            border-color: var(--storeengine-green-color);;
+            &::before {
+                font-size: 8px;
+                color: var(--storeengine-green-color);;
+            }
+        }
+
+        &--success {
+            border: 1px solid #91dcbf;
+            background: #F0FAF6;
+        }
+
+        &--info {
+            border: 1px solid #C6BEF8;
+            background: #F2F0FD;
+        }
+
+        &--warning {
+            border: 1px solid #FEDDA0;
+            background: #FFF7E9;
+        }
+
+        &--error {
+            border: 1px solid #FFB2B2;
+            background: #FFEDED;
+        }
+
+        &--notification {
+            font-size: 25px;
+            &::before {
+                color: #FF9800;
+            }
+        }
+
+        &--information {
+            font-size: 22px;
+
+            &::before {
+                color: var(--storeengine-primary-color);
+            }
+        }
+
+        &--information-error {
+            font-size: 22px;
+
+            &::before {
+                color: var(--storeengine-error-color);
+            }
+        }
+    }
+
+    .storeengine-btn {
+        padding: 12px 0;
+        &--close-notification {
+            padding: 0
+        }
+        .storeengine-icon--close {
+            background: transparent;
+            &::before{
+                color: #fff;
+            }
+        }
+    }
+
+    &__message {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 5px 24px 5px 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 21px;
+        margin: 0;
+    }
+}

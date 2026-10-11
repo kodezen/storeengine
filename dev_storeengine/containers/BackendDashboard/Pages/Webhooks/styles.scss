@@ -1,0 +1,100 @@
+// The Outgoing / Incoming switcher is a standalone tab strip rendered directly
+// on the page — outside any `.kzui-table__sub-header` wrapper. The kodezen table
+// tab styles are scoped to that wrapper, so this strip would otherwise fall back
+// to bare, unstyled stacked text. Style it here to match the app's tab look.
+// Events column — one colour-coded chip per subscribed event, coloured by the
+// entity bucket (see getEventColorSlug). Soft background + matching darker text.
+.storeengine-webhook-events {
+	display: grid;
+	grid-template-columns: repeat(3, max-content);
+	justify-content: center;
+	gap: 4px 6px;
+	padding: 2px 0;
+
+	&__na {
+		color: var(--storeengine-subtitle-color, #6b7280);
+	}
+}
+
+.storeengine-webhook-event-badge {
+	display: inline-flex;
+	align-items: center;
+	border-radius: 4px;
+	padding: 2px 8px;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 18px;
+	white-space: nowrap;
+	// Neutral default — overridden per bucket below.
+	background: #eef2f7;
+	color: #475569;
+
+	&--products {
+		background: #e7f0ff;
+		color: #1d4ed8;
+	}
+	&--orders {
+		background: #e7f7ed;
+		color: #15803d;
+	}
+	&--coupons {
+		background: #f3e8ff;
+		color: #7e22ce;
+	}
+	&--customers {
+		background: #e0f7f5;
+		color: #0f766e;
+	}
+	&--pages {
+		background: #fff3e0;
+		color: #c2620c;
+	}
+	&--posts {
+		background: #ffe9f1;
+		color: #be1259;
+	}
+	&--site-editor {
+		background: #eae8fd;
+		color: #4f46e5;
+	}
+	&--navigation {
+		background: #eef2f7;
+		color: #475569;
+	}
+}
+
+.storeengine-webhook-type-tabs {
+	display: flex;
+	align-items: center;
+	gap: 0;
+	border-bottom: 1px solid var(--storeengine-border-color, #e5e4e6);
+
+	.tab {
+		position: relative;
+		padding: 12px 18px;
+		color: var(--storeengine-subtitle-color, #6b7280);
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 20px;
+		cursor: pointer;
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: var(--storeengine-primary-color, #1364f1);
+		}
+
+		&.is-active {
+			color: var(--storeengine-text-color);
+
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				bottom: -1px;
+				width: 100%;
+				height: 2px;
+				background: var(--storeengine-primary-color, #1364f1);
+			}
+		}
+	}
+}

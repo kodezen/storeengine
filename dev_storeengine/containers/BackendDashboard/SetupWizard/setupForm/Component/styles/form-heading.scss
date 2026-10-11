@@ -1,0 +1,27 @@
+.storeengine-setup-form-step {
+    &__heading {
+        text-align: center;
+        border-bottom: 1px solid var(--storeengine-border-color, #DDDEDF);
+        padding-bottom: 24px;
+        width: 100%;
+        .storeengine-setup-form-title {
+            margin: 0;
+            color: #101828;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 500;
+            line-height: 140%;
+            margin-bottom: 4px;
+        }
+
+        .storeengine-setup-from-subtitle {
+            margin: 0;
+            color: var(--storeengine-subtitle-color, #515A62);
+            text-align: center;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 140%;
+            margin-bottom: 24px;
+        }
+    }
+}

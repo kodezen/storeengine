@@ -1,0 +1,268 @@
+/**
+ * Bundle info UI styles for Bundled Products.
+ */
+
+.storeengine-bundle-info {
+	position: relative;
+	width: 100%;
+	display: block;
+
+	p:empty {
+		display: none !important;
+	}
+
+	.storeengine-bundle-toggle {
+		all: unset;
+		box-sizing: border-box;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 8px;
+		padding: 8px 14px;
+		width: max-content;
+		max-width: 100%;
+		min-height: 36px;
+		border: 1px solid var(--storeengine-primary-color);
+		border-radius: 6px;
+		background: var(--storeengine-white-color);
+		color: var(--storeengine-text-color);
+		font-family: var(--storeengine-primary-font), sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 1.2;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+		margin-bottom: 8px;
+	}
+
+	.storeengine-bundle-toggle:focus-visible {
+		outline: none;
+		border-color: var(--storeengine-primary-color);
+	}
+
+	.storeengine-bundle-toggle__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 12px;
+		color: var(--storeengine-primary-color);
+		transform: rotate(0deg);
+		transition: transform 0.2s ease-out;
+		will-change: transform;
+	}
+
+	.storeengine-bundle-toggle__label {
+		line-height: 1.1;
+	}
+
+	.storeengine-bundle-panel {
+		// Absolute overlay so toggling the panel never reflows the surrounding
+		// page (the price / add-to-cart below stay put). `top` is left as auto
+		// so the panel sits at its natural position right below the toggle.
+		// Cart / mini-cart / order-summary contexts override the geometry below.
+		position: absolute;
+		left: 0;
+		z-index: 1000;
+		box-sizing: border-box;
+		padding: 12px 16px;
+		width: 100%;
+		max-width: 100%;
+		max-height: 260px;
+		overflow: auto;
+		display: none;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 8px;
+		background: var(--storeengine-white-color);
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		margin: 0;
+	}
+
+	.storeengine-bundle-item {
+		display: grid;
+		grid-template-columns: 30px minmax(0, 1fr) auto;
+		gap: 14px;
+		align-items: center;
+		padding: 6px 0;
+		font-size: 18px;
+
+		+ .storeengine-bundle-item {
+			margin-top: 5px;
+		}
+
+		&__thumb {
+			width: 30px;
+			height: 30px;
+			padding: 0;
+			border-radius: 6px;
+			background: transparent;
+			border: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			>img {
+				display: block;
+				width: 100% !important;
+				max-width: 100%!important;;
+				height: auto!important;;
+				object-fit: cover;
+				aspect-ratio: 1;
+				border-radius: 6px;
+			}
+		}
+
+		&__main {
+			min-width: 65px;
+			display: flex;
+			gap: 9px;
+			align-items: center;
+		}
+
+		&__name {
+			font-size: 1em;
+			font-weight: 600;
+			color: var(--storeengine-text-color);
+			margin-bottom: 0;
+			text-decoration: none;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+
+		&__quantity {
+			font-size: 0.85em;
+			color: var(--storeengine-subtitle-color);
+			margin-top: 2px;
+			white-space: nowrap;
+		}
+
+		&__price {
+			text-align: right;
+			font-size: 0.93em;
+			color: var(--storeengine-subtitle-color);
+			white-space: nowrap;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-end;
+			justify-content: center;
+			gap: 4px;
+			min-width: 80px;
+		}
+
+		&__price .bundle-price-amount {
+			display: inline-flex;
+			align-items: center;
+			font-weight: 600;
+			color: var(--storeengine-text-color);
+			line-height: 1.2;
+		}
+
+		&__price .bundle-price-amount ins {
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		&__price .bundle-price-amount del {
+			margin-left: 4px;
+			color: var(--storeengine-placeholder-color);
+			font-size: 12px;
+		}
+
+		&__price .price-name {
+			display: inline-flex;
+			font-weight: 500;
+			font-size: 12px;
+			color: var(--storeengine-subtitle-color);
+		}
+	}
+
+
+
+
+	&.open {
+		.storeengine-bundle-panel {
+			display: block;
+		}
+
+		.storeengine-bundle-toggle {
+			border-color: var(--storeengine-primary-color);
+		}
+
+		.storeengine-bundle-toggle__icon {
+			transform: rotate(180deg);
+		}
+	}
+
+	@media (max-width: 640px) {
+		.storeengine-bundle-panel {
+			width: 100%;
+		}
+
+		.storeengine-bundle-item {
+			grid-template-columns: 30px minmax(0, 1fr);
+			row-gap: 6px;
+
+			&__price {
+				grid-column: 2;
+				text-align: left;
+				//justify-content: flex-start;
+				align-items: flex-start;
+			}
+		}
+	}
+}
+
+//.storeengine-order-summary-shortcode .storeengine-order-summary__item a
+.storeengine-order-summary-shortcode {
+	.storeengine-order-summary__item {
+		.storeengine-bundle-item {
+			font-size: 14px;
+			&__name {
+				font-size: 0.75em;
+				font-weight: 600;
+				color: var(--storeengine-text-color);
+				margin-bottom: 0;
+			}
+		}
+		//a { font-size: 0.75em; }
+	}
+}
+
+.storeengine-cart-product,
+.storeengine-mini-cart-table,
+.storeengine-order-summary-shortcode {
+	.storeengine-bundle-panel {
+		position: absolute;
+		padding: 1px 12px;
+		max-width: 372px;
+		overflow: auto;
+		scroll-behavior: smooth;
+		width: max-content;
+		left: 0;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		margin: 0;
+		z-index: 1000;
+	}
+}
+
+.storeengine-order-summary-shortcode {
+	.storeengine-order-item {
+		.storeengine-bundle-item__thumb,
+		.price-name {
+			display: none;
+		}
+	}
+}
+
+.storeengine-cart-product,
+.storeengine-mini-cart-table {
+	.storeengine-bundle-info {
+		.storeengine-bundle-item {
+			font-size: 14px;
+			.price-name {
+				display: none;
+			}
+		}
+	}
+}

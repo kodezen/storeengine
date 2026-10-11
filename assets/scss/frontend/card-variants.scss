@@ -1,0 +1,106 @@
+/* Shop-card variant switcher: color / image swatches + text pills under a
+ * variable product card. */
+.storeengine-card-variants {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0 0 12px;
+
+	&__group {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		align-items: center;
+		// Card body (title / price) is centred by default, so match it.
+		justify-content: center;
+	}
+
+	&__opt {
+		position: relative;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		flex: 0 0 auto;
+		box-sizing: border-box;
+		padding: 0;
+		border: 1px solid var(--storeengine-border-color, #e5e7eb);
+		background: #fff;
+		cursor: pointer;
+		line-height: 1;
+		transition: transform 0.12s ease, border-color 0.12s ease,
+			box-shadow 0.12s ease;
+
+		&:hover {
+			transform: translateY(-1px);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--storeengine-primary-color, #2563eb);
+			outline-offset: 2px;
+		}
+
+		&.is-active {
+			border-color: var(--storeengine-primary-color, #2563eb);
+			box-shadow: 0 0 0 2px var(--storeengine-primary-color, #2563eb);
+		}
+
+		// Sold-out / impossible combo for the current selection: dim + slash.
+		&.is-unavailable {
+			opacity: 0.45;
+
+			&::after {
+				content: '';
+				position: absolute;
+				inset: 0;
+				border-radius: inherit;
+				background: linear-gradient(
+					to top left,
+					transparent calc(50% - 0.75px),
+					#9ca3af calc(50% - 0.75px),
+					#9ca3af calc(50% + 0.75px),
+					transparent calc(50% + 0.75px)
+				);
+				pointer-events: none;
+			}
+		}
+
+		// Color dot.
+		&--color {
+			width: 26px;
+			height: 26px;
+			border-radius: 50%;
+		}
+
+		// Image thumbnail.
+		&--image {
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			overflow: hidden;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+			}
+		}
+
+		// Text pill (e.g. sizes).
+		&--text {
+			min-width: 30px;
+			height: 28px;
+			padding: 0 10px;
+			border-radius: 6px;
+			font-size: 13px;
+			font-weight: 500;
+			color: var(--storeengine-text-color, #1f2937);
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.storeengine-card-variants__opt {
+		transition: none;
+	}
+}

@@ -1,0 +1,103 @@
+.storeengine-vendor-withdrawals {
+	&__tabs {
+		display: flex;
+		gap: 4px;
+		margin-bottom: 12px;
+		border-bottom: 1px solid var(--storeengine-border-color, #e5e7eb);
+	}
+	&__tab {
+		background: transparent;
+		border: 0;
+		padding: 10px 16px;
+		font-size: 14px;
+		color: #475569;
+		cursor: pointer;
+		border-bottom: 2px solid transparent;
+		&--active {
+			color: #0f172a;
+			border-bottom-color: #2563eb;
+			font-weight: 600;
+		}
+	}
+	&__tab-count {
+		font-size: 12px;
+		background: var(--storeengine-background-color, #f1f5f9);
+		color: #475569;
+		padding: 2px 4px;
+		border-radius: 20px;
+		margin-left: 8px;
+	}
+	&__table-wrap {
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color, #e5e7eb);
+		border-radius: 8px;
+		overflow-x: auto;
+		padding-top: 12px;
+	}
+	&__table {
+		width: 100%;
+		border-collapse: collapse;
+		th, td {
+			padding: 10px 12px;
+			border-bottom: 1px solid var(--storeengine-border-color, #f1f5f9);
+			text-align: left;
+			vertical-align: top;
+			font-size: 13px;
+		}
+		thead th {
+			background: var(--storeengine-background-color, #f9fafb);
+			font-size: 11px;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			color: #6b7280;
+		}
+		pre {
+			background: var(--storeengine-background-color, #f8fafc);
+			padding: 6px 8px;
+			border-radius: 4px;
+			max-width: 240px;
+			overflow: auto;
+		}
+	}
+	&__actions {
+		display: flex;
+		gap: 6px;
+		flex-wrap: wrap;
+	}
+}
+
+.storeengine-vendor-payout {
+	&__option {
+		display: flex;
+		flex-direction: column;
+	}
+	&__option-info {
+		.storeengine-title {
+			margin: 0;
+			font-size: 14px;
+			font-weight: 500;
+		}
+		.storeengine-subtitle {
+			font-weight: 400;
+			color: #6b7280;
+		}
+	}
+	&__option-balance {
+		font-size: 12px;
+		color: #4b5563;
+	}
+	&__available {
+		font-size: 13px;
+		color: #4b5563;
+	}
+	&__note {
+		display: block;
+		width: 100%;
+		padding: 8px 10px;
+		border: 1px solid var(--storeengine-border-color, #e5e7eb);
+		border-radius: 6px;
+		font-size: 14px;
+		box-sizing: border-box;
+		resize: vertical;
+	}
+}

@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress Coding Standards for Plugins">
+	<description>Generally-applicable sniffs for WordPress plugins</description>
+
+	<!-- Check all PHP files in directory tree by default. -->
+	<arg name="extensions" value="php"/>
+	<file>.</file>
+
+	<!-- Exclude lib -->
+	<exclude-pattern>*.github/*</exclude-pattern>
+	<exclude-pattern>*.git/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>.fantasticonrc.js</exclude-pattern>
+	<exclude-pattern>.npmrc</exclude-pattern>
+	<exclude-pattern>.nvmrc</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/autoload/*</exclude-pattern>
+	<exclude-pattern>*/library/*</exclude-pattern>
+	<exclude-pattern>*/lib/*</exclude-pattern>
+	<exclude-pattern>*/libraries/*</exclude-pattern>
+	<exclude-pattern>*/assets/*</exclude-pattern>
+	<exclude-pattern>*/dev_storeengine/*</exclude-pattern>
+	<exclude-pattern>includes/classes/eval-math/eval-math.php</exclude-pattern>
+	<exclude-pattern>includes/classes/eval-math/eval-math-stack.php</exclude-pattern>
+
+	<rule ref="Internal.NoCodeFound">
+		<exclude-pattern>templates/*</exclude-pattern>
+	</rule>
+
+	<!-- PHP 7.4 and higher. -->
+	<config name="testVersion" value="7.4-"/>
+	<!-- Oldest WordPress the plugin supports. WPCS 3.x reads this instead of the
+	     per-sniff minimum_supported_version property it used to take. -->
+	<config name="minimum_wp_version" value="6.5"/>
+
+	<!-- Arguments - extension, parallel, colors, show progress, Show sniff codes in all reports -->
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="20"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+	<arg value="s"/>
+
+	<!-- Rules -->
+	<!-- WordPress.WP.TimezoneChange was dropped in WPCS 3.0; excluding a sniff
+	     that no longer exists aborts the whole run, so the exclusion goes with
+	     it. -->
+	<rule ref="WordPress.WP" />
+	<rule ref="WordPress-Core"/>
+	<rule ref="WordPress-Docs"/>
+	<!-- Validate, sanitize, and escape everything. -->
+	<rule ref="WordPress.Security"/>
+
+	<!-- Direct database access is prohibited. Instead, make use of the WordPress Database API.. -->
+	<rule ref="WordPress.DB"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="storeengine"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.WhiteSpace.ControlStructureSpacing">
+		<properties>
+			<property name="blank_line_check" value="true"/>
+		</properties>
+	</rule>
+
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax.Found">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Universal.Arrays.DisallowShortArraySyntax.Found">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Exclude rules -->
+	<rule ref="WordPress-Core">
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+	</rule>
+
+	<!-- Include sniffs for PHP cross-version compatibility. -->
+	<rule ref="PHPCompatibility">
+		<!-- Marked some internal method with DoubleUnderscore before method name -->
+		<exclude name="PHPCompatibility.FunctionNameRestrictions.ReservedFunctionNames.MethodDoubleUnderscore"/>
+		<exclude name="PHPCompatibility.Syntax.NewShortArray.Found"/>
+		<exclude name="PHPCompatibility.FunctionDeclarations.NewClosure.Found"/>
+	</rule>
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Tabs must be used for indentation. -->
+	<arg name="tab-width" value="4"/>
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+	<!-- Don't end files with closing PHP tags. -->
+	<rule ref="PSR2.Files.ClosingTag"/>
+
+	<rule ref="Squiz.Commenting">
+		<exclude name="Squiz.Commenting.FileComment"/>
+		<exclude name="Squiz.Commenting.PostStatementComment"/>
+		<exclude name="Squiz.Commenting.LongConditionClosingComment"/>
+		<exclude name="Squiz.Commenting.ClassComment.Missing"/>
+		<exclude name="Squiz.Commenting.FileComment.Missing"/>
+		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+		<exclude name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+		<exclude name="Squiz.Commenting.VariableComment.Missing"/>
+	</rule>
+
+	<!-- Rule: The goto statement must never be used. -->
+	<rule ref="Generic.PHP.DiscourageGoto">
+		<type>error</type>
+		<message>The "goto" language construct should not be used.</message>
+	</rule>
+
+	<!-- The eval() function must not be used. -->
+	<rule ref="Squiz.PHP.Eval.Discouraged">
+		<type>error</type>
+		<message>No eval please.</message>
+	</rule>
+
+	<rule ref="WordPress-Extra">
+		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
+<!--		<exclude name="Generic.Formatting.MultipleStatementAlignment"/>-->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax.Found"/>
+
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeOpen"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterOpen"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd"/>
+		<exclude name="Squiz.PHP.EmbeddedPhp.ContentAfterEnd"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.MultipleArguments"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+		<exclude name="Squiz.Commenting.InlineComment.SpacingBefore"/>
+		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
+
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<exclude name="WordPress.NamingConventions.ValidFunctionName.MethodNameInvalid"/>
+		<exclude name="WordPress.NamingConventions.ValidHookName.UseUnderscores"/>
+		<exclude name="WordPress.NamingConventions.ValidHookName.NotLowercase"/>
+		<exclude name="WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase"/>
+	</rule>
+
+	<rule ref="WordPress.WP.DeprecatedFunctions" />
+	<rule ref="WordPress.NamingConventions.ValidHookName">
+		<properties>
+			<property name="additionalWordDelimiters" value="/-"/>
+		</properties>
+	</rule>
+
+	<!-- The create_function() function has been deprecated as of PHP 7.2.0 and must no longer be used. -->
+	<rule ref="WordPress.PHP.RestrictedPHPFunctions"/>
+
+	<!-- The "@" operator must not be used to suppress error messages or notices. -->
+	<rule ref="WordPress.PHP.NoSilencedErrors"/>
+
+	<!-- Using the POSIX Regex functions ereg_* aren’t allowed. -->
+	<rule ref="WordPress.PHP.POSIXFunctions"/>
+	<rule ref="WordPress.PHP">
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+	</rule>
+	<!-- Short ternary is house style. WPCS 3.x moved the sniff to Universal,
+	     so the exclusion above no longer matches on its own. -->
+	<rule ref="Universal.Operators.DisallowShortTernary.Found">
+		<severity>0</severity>
+	</rule>
+	<rule ref="WordPress.PHP">
+		<exclude name="WordPress.PHP.DisallowShortTernary.Found" />
+	</rule>
+
+	<!-- A few rules not mentioned in the official documentation. -->
+	<rule ref="Generic.Files.ByteOrderMark"/>
+
+	<!-- Checks for empty PHP statements -->
+	<rule ref="Generic.CodeAnalysis.EmptyPHPStatement" />
+
+	<!-- Detects empty statement bodies -->
+	<rule ref="Generic.CodeAnalysis.EmptyStatement" />
+
+	<!-- Detects for-loops that use a function call in the test expression -->
+	<!-- Comment: Bad for performance -->
+	<rule ref="Generic.CodeAnalysis.ForLoopWithTestFunctionCall">
+		<type>error</type> <!-- Make this an error instead of a warning -->
+	</rule>
+
+	<!-- Detects unconditional if- and elseif-statements -->
+	<!-- Comment: Hiding code with "if (false)" is sloppy -->
+	<rule ref="Generic.CodeAnalysis.UnconditionalIfStatement">
+		<type>error</type> <!-- Make this an error instead of a warning -->
+	</rule>
+
+	<!-- Detects unnecessary final modifiers inside of final classes -->
+	<rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier">
+		<type>error</type> <!-- Make this an error instead of a warning -->
+	</rule>
+
+	<!-- Checks for unused function parameters -->
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter">
+		<type>error</type> <!-- Make this an error instead of a warning -->
+	</rule>
+
+	<!-- Detects unnecessary overridden methods that simply call their parent -->
+	<rule ref="Generic.CodeAnalysis.UselessOverridingMethod">
+		<type>error</type> <!-- Make this an error instead of a warning -->
+	</rule>
+
+	<!-- Ensures doc blocks follow basic formatting -->
+	<rule ref="Generic.Commenting.DocComment">
+		<!-- Allow single-line doc comments. See https://github.com/squizlabs/PHP_CodeSniffer/issues/258. -->
+		<exclude name="Generic.Commenting.DocComment.ContentAfterOpen" />
+		<exclude name="Generic.Commenting.DocComment.ContentBeforeClose" />
+		<!-- Don't require short description -->
+		<exclude name="Generic.Commenting.DocComment.MissingShort" />
+		<!-- Doesn't work well with annotations -->
+		<exclude name="Generic.Commenting.DocComment.TagValueIndent" />
+	</rule>
+
+	<!-- Other Rules -->
+	<rule ref="Generic.Commenting.Todo">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Generic.Commenting.Fixme">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Allow embedded php tag same line -->
+	<rule ref="Squiz.PHP.EmbeddedPhp.ContentAfterOpen">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Squiz.PHP.EmbeddedPhp.ContentBeforeOpen">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Squiz.PHP.EmbeddedPhp.ContentBeforeEnd">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Squiz.PHP.EmbeddedPhp.ContentAfterEnd">
+		<severity>0</severity>
+	</rule>
+	<!-- PHP keywords MUST be in lower case. -->
+	<rule ref="Generic.PHP.LowerCaseKeyword"/>
+
+	<!-- Visibility MUST be declared on all methods. -->
+	<rule ref="Squiz.Scope.MethodScope"/>
+	<rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
+
+	<!-- Method names SHOULD NOT be prefixed with a single underscore to indicate protected or private visibility. -->
+	<!-- checked in Methods/MethodDeclarationSniff -->
+	<!-- Method names MUST NOT be declared with a space after the method name.
+	The opening brace MUST go on its own line, and the closing brace MUST go
+	on the next line following the body. There MUST NOT be a space after the
+	opening parenthesis, and there MUST NOT be a space before the closing parenthesis. -->
+	<!-- checked in Methods/FunctionClosingBraceSniff -->
+	<rule ref="Squiz.Functions.FunctionDeclaration"/>
+	<rule ref="Squiz.Functions.LowercaseFunctionKeywords"/>
+
+	<!-- There MUST NOT be trailing whitespace at the end of non-blank lines. -->
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.StartFile">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EndFile">
+		<severity>0</severity>
+	</rule>
+	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace.EmptyLines">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Argument lists MAY be split across multiple lines, where each subsequent
+	line is indented once. When doing so, the first item in the list MUST be on
+	the next line, and there MUST be only one argument per line. When the argument
+	list is split across multiple lines, the closing parenthesis and opening brace
+	MUST be placed together on their own line with one space between them. -->
+	<rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+		<!-- But Brace should be on the same line as WordPress requires
+		it to be on the same line WordPress.WhiteSpace.ControlStructureSpacing.ExtraSpaceAfterCloseParenthesis -->
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"/>
+	</rule>
+
+	<!-- There MUST NOT be more than one statement per line. -->
+	<rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+
+	<!-- Code MUST use an indent of 4 spaces -->
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<properties>
+			<property name="ignoreIndentationTokens" type="array">
+				<element value="T_COMMENT"/>
+				<element value="T_DOC_COMMENT_OPEN_TAG"/>
+			</property>
+		</properties>
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+	</rule>
+
+	<!-- The body of each structure MUST be enclosed by braces. This standardizes how the structures look, and reduces the likelihood of introducing errors as new lines get added to the body. -->
+	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+	<!-- Method arguments with default values MUST go at the end of the argument list. -->
+	<rule ref="PEAR.Functions.ValidDefaultValue"/>
+
+	<rule ref="PEAR">
+		<exclude-pattern>.</exclude-pattern>
+		<exclude name="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"/>
+		<exclude name="PEAR.Commenting.FileComment"/>
+	</rule>
+
+	<!-- When making a method or function call, there MUST NOT be a space between the method or function name and the opening parenthesis, there MUST NOT be a space after the opening parenthesis, and there MUST NOT be a space before the closing parenthesis. In the argument list, there MUST NOT be a space before each comma, and there MUST be one space after each comma.
+	Argument lists MAY be split across multiple lines, where each subsequent line is indented once. When doing so, the first item in the list MUST be on the next line, and there MUST be only one argument per line. -->
+	<rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
+	<rule ref="PSR2.Methods.FunctionCallSignature.SpaceAfterCloseBracket">
+		<severity>0</severity>
+	</rule>
+	<rule ref="PSR2.Methods.FunctionCallSignature.OpeningIndent">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Control Structures -->
+
+	<!-- The general style rules for control structures are as follows:
+	There MUST be one space after the control structure keyword
+	There MUST NOT be a space after the opening parenthesis
+	There MUST NOT be a space before the closing parenthesis
+	There MUST be one space between the closing parenthesis and the opening brace
+	The structure body MUST be indented once
+	The closing brace MUST be on the next line after the body -->
+	<rule ref="Squiz.ControlStructures.ControlSignature"/>
+	<rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen" />
+	<rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeClose" />
+	<rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
+	<rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
+	<!-- checked in ControlStructures/ControlStructureSpacingSniff -->
+
+	<!-- The body of each structure MUST be enclosed by braces. This standardizes
+	how the structures look, and reduces the likelihood of introducing errors as
+	new lines get added to the body. -->
+	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
+
+	<!-- Require 1 space char after type casting -->
+	<rule ref="Generic.Formatting.SpaceAfterCast">
+		<properties>
+			<property name="spacing" value="1" />
+		</properties>
+	</rule>
+
+	<rule ref="Generic.Commenting">
+		<exclude-pattern>tests/</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Commenting.Todo">
+		<exclude-pattern>*</exclude-pattern>
+	</rule>
+
+	<rule ref="PEAR.Functions.FunctionCallSignature.EmptyLine">
+		<exclude-pattern>tests/e2e-tests/</exclude-pattern>
+	</rule>
+
+	<rule ref="Generic.Files.LineLength">
+		<!-- The soft limit on line length MUST be 120 characters; automated style checkers MUST warn but MUST NOT error at the soft limit. -->
+		<properties>
+			<property name="lineLimit" value="120"/>
+			<property name="absoluteLineLimit" value="0"/>
+		</properties>
+	</rule>
+
+	<rule ref="Generic.Files.LineEndings">
+		<properties>
+			<property name="eolChar" value="\n"/>
+		</properties>
+	</rule>
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.Commenting">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpen">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="Squiz.PHP.DisallowMultipleAssignments.FoundInControlStructure">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassBeforeLastUsed">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter.FoundBeforeLastUsed">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter.FoundInExtendedClassAfterLastUsed">
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+	<rule ref="PHPCompatibility.LanguageConstructs.NewEmptyNonVariable.Found">
+		<!-- Min PHP Requirement is 7.*, so it can be safely ignored. -->
+		<exclude-pattern>.</exclude-pattern>
+	</rule>
+</ruleset>

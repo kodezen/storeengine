@@ -1,0 +1,87 @@
+.order-installment-remaining {
+	// The order-summary table styles EVERY <tr> as a flex row (label left /
+	// amount right). The collapsible details row has a single cell, so let it
+	// grow to fill the flex row — otherwise it shrinks to content and the inner
+	// schedule never reaches full width.
+	&--row > td {
+		flex: 1;
+		min-width: 0;
+	}
+
+	&--installments {
+		font-size: 0.875em;
+		padding: 0 0 0 20px;
+
+		*:not(small) {
+			font-size: 1em !important;
+		}
+
+		// The inner schedule rows are flexed by the parent rule too, so the
+		// table/rows can't do normal table layout. Make them full-width flex
+		// rows and split the name (left) from the amount (right).
+		table,
+		tbody {
+			display: block;
+			width: 100%;
+		}
+
+		.installment-payable {
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			gap: 8px;
+			width: 100%;
+		}
+
+		.installment-payable th,
+		.installment-payable td {
+			display: block;
+			padding: 2px 0 !important;
+		}
+
+		.installment-payable td {
+			text-align: right;
+			white-space: nowrap;
+		}
+	}
+}
+.col-actions {
+	.order-installment-remaining {
+		&--installments {
+			th, td {
+				font-weight: normal;
+				padding: 2px !important;
+			}
+		}
+	}
+}
+
+// Order-summary line item: the installment deposit note sits on its own muted
+// line below the price instead of running inline (which cramped the item).
+.storeengine-installment-cart-note {
+	display: block;
+	margin-top: 2px;
+	font-size: 0.8em;
+	font-weight: 400;
+	line-height: 1.4;
+	color: var(--storeengine-placeholder-color, #6b7280);
+}
+
+// "Future Payments" block in the order summary.
+.order-installment-remaining--title b {
+	font-weight: 600;
+}
+
+.storeengine-installment-future-payments {
+	color: var(--storeengine-primary-color, #2563eb);
+	cursor: pointer;
+
+	&:hover {
+		text-decoration: underline;
+	}
+
+	.storeengine-icon {
+		transition: transform 0.2s ease;
+	}
+}
+

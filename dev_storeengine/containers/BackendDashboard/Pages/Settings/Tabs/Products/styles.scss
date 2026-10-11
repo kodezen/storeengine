@@ -1,0 +1,176 @@
+.storeengine-weight-dimension {
+    display: flex;
+    gap: 16px;
+    .storeengine-select-item {
+        width: 100%;
+    }
+}
+
+.storeengine-content-section {
+    &--products {
+        .form-group {
+            &--tax-calculations {
+                margin-bottom: 0;
+            }
+            &__radio {
+                margin-top: 24px;
+                .form-info {
+                    font-size: 14px;
+                    font-weight: 500;
+                }
+                .form-body {
+                    display: flex;
+                    align-items: center;
+                    gap: 20px;
+                    input[type="radio"] {
+                        width: 14px;
+                        height: 16px;
+                    }
+                }
+            }
+
+            &__product-row {
+                .form-body {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 24px;
+                    width: 100%;
+                    .form-info {
+                        font-size: 14px;
+                        font-weight: 500;
+                    }
+                    .storeengine-row-option {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        gap: 10px;
+                        width: 100%;
+                        .form-info {
+                            display: flex;
+                            flex-direction: column;
+                            &__title {
+                                font-size: 14px;
+                                font-weight: 500;
+                            }
+                            &__subtitle {
+                                font-size: 12px;
+                                font-weight: 400;
+                                color: var(--storeengine-subtitle-color, #595959);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .storeengine-text {
+            &--product-title {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .storeengine-form-group {
+            &--archive-per-page {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+
+        .storeengine-btn {
+            &--config-filter {
+                width: 166px;
+            }
+        }
+
+        .storeengine-d-flex {
+            .storeengine-input {
+                width: 177px;
+            }
+        }
+    }
+}
+
+.storeengine-react-modal--settings-sort {
+    .storeengine-react-modal {
+        &__content {
+            padding: 24px;
+            .storeengine-sortable-list__item {
+                width: auto;
+            }
+        }
+    }
+    .form-group {
+        display: block;
+    }
+}
+
+.storeengine-archive-card-styles {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin: 24px 0;
+    column-gap: 16px;
+    row-gap: 16px;
+    flex: 25%;
+    &__option {
+        flex: 1 1 calc(25% - 16px);
+        max-width: calc(25% - 16px);
+        img {
+            width: 100%;
+        }
+
+        .storeengine-archive-card-style {
+            &--selected {
+                cursor: default;
+                border: 1px solid var(--storeengine-primary-color);
+                border-radius: 4px;
+            }
+            &--not-selected {
+                cursor: pointer;
+                border: 1px solid var(--storeengine-border-color);
+                border-radius: 4px;
+                &:hover {
+                    border: 1px solid var(--storeengine-primary-color);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .storeengine-archive-card-styles__option {
+        flex: 1 1 calc(50% - 16px);
+        max-width: calc(50% - 16px);
+    }
+}
+
+@media (max-width: 480px) {
+    .storeengine-archive-card-styles__option {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+// Reload hint shown when FAQ settings change (menu + editor need a page reload).
+.storeengine-faq-reload-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin: -8px 0 20px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    background: #fef9c3;
+    border: 1px solid #fde68a;
+    color: #854d0e;
+    font-size: 13px;
+    line-height: 1.5;
+
+    .storeengine-icon {
+        font-size: 16px;
+        line-height: 1.5;
+        flex: 0 0 auto;
+    }
+}

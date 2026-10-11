@@ -1,0 +1,137 @@
+
+@forward './archive/product';
+@forward './archive/widgets';
+@forward './archive/Installment';
+@forward './archive/vendor-filter';
+
+// Below CSS need to delete after confirm
+.storeengine-products__header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 16px 0;
+
+	h1 {
+		margin: 0;
+	}
+}
+.storeengine-products__filter-wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+}
+.storeengine-products__filter {
+	display: flex;
+	justify-content: flex-end;
+	.storeengine__header-ordering {
+		select {
+			width: 236px;
+			border: 1px solid var(--storeengine-border-color);
+			color: var(--storeengine-text-color);
+			border-radius: 4px;
+			font-size: 18px;
+			font-weight: 400;
+			outline: 0;
+			height: 36px;
+			padding: 0 10px;
+			appearance: none; /* Remove default browser styles */
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			position: relative;
+			background-color: #fff;
+			background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+			background-repeat: no-repeat;
+			background-position: right 10px center;
+			background-size: 26px 26px;
+		}
+	}
+}
+
+.storeengine-pagination {
+	&, .nav-links {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 0.3125rem;
+	}
+
+	.displaying-num {
+		font-size: 0.8em;
+	}
+
+	.page-numbers {
+		display: inline-flex;
+		align-items: center;
+		color: var(--storeengine-primary-color);
+		font-size: 1em;
+		font-weight: 500;
+		text-decoration: none;
+		line-height: 1.4rem;
+		padding: 11px 19px;
+		outline: none;
+
+		i {
+			color: var(--storeengine-subtitle-color);
+			display: flex;
+		}
+
+		&.current {
+			background: var(--storeengine-background-color, #F7F7F8);
+			border-radius: 50px;
+			color: var(--storeengine-text-color);
+		}
+
+		&.prev,
+		&.next {
+			//font-size: 1.4em;
+		}
+
+		// AJAX pagination: spinner INSIDE the clicked page button, replacing the
+		// old full-grid `.processing` dim overlay.
+		&.storeengine-pagination-loading {
+			position: relative;
+			color: transparent !important;
+			pointer-events: none;
+
+			i {
+				visibility: hidden;
+			}
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				width: 16px;
+				height: 16px;
+				margin: -8px 0 0 -8px;
+				border: 2px solid rgba(0, 0, 0, 0.15);
+				border-top-color: var(--storeengine-primary-color, #008dff);
+				border-radius: 50%;
+				animation: storeengine-pagination-spin 0.6s linear infinite;
+			}
+		}
+	}
+
+	// While a page is loading, mute the other page buttons so they can't be
+	// clicked mid-request.
+	&.storeengine-pagination-busy .page-numbers:not(.storeengine-pagination-loading) {
+		pointer-events: none;
+		opacity: 0.5;
+	}
+}
+
+@keyframes storeengine-pagination-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+// While filters / search / sort refresh the grid via AJAX, show a page-wide
+// loading cursor instead of the old full-grid dim overlay. Scoped to the
+// transient `.storeengine-filtering` class so it only applies during the fetch.
+html.storeengine-filtering,
+html.storeengine-filtering * {
+	cursor: wait !important;
+}

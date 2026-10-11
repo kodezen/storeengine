@@ -1,0 +1,157 @@
+/* :root needed for non-dashboard-page */
+//:root {
+//	--storeengine-primary-font: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+//	/*--storeengine-secondary-font: 'Inter', sans-serif;*/
+//	--storeengine-primary-color: #008DFF;
+//	--storeengine-secondary-color: #FF5000;
+//	--storeengine-text-color: #101828;
+//	--storeengine-placeholder-color: #8E949A;
+//	--storeengine-border-color: #DDDEDF;
+//	--storeengine-gray-color: #646C73;
+//	--storeengine-background-color: #FAFAFA;
+//	--storeengine-green-color: #00AD6B;
+//	--storeengine-warning-color: #FDB022;
+//	--storeengine-error-color: #FF4D4D;
+//	--storeengine-white-color: #ffffff;
+//	--storeengine-violet-color: #9A6EFF;
+//}
+
+/* Mirrors assets/css/notices.css — the redesigned card used by the React
+   (SPA) notices so they match the classic ones: tinted severity icon, body,
+   right-aligned actions. Keep the two in sync. */
+.storeengine-admin-notice {
+	--base-color: var(--storeengine-primary-color);
+	--icon-background: color-mix(in srgb, var(--base-color) 14%, transparent);
+
+	font-family: var(--storeengine-primary-font) sans-serif;
+	display: flex;
+	align-items: flex-start;
+	gap: 14px;
+	padding: 14px 16px;
+	background: #fff;
+	border: 1px solid var(--storeengine-border-color);
+	border-left: 3px solid var(--base-color);
+	border-radius: 10px;
+	box-sizing: border-box;
+	/* Inset from the SPA edges — this stylesheet only ships on StoreEngine
+	   admin pages, so the side space stays scoped to them. */
+	margin: 12px 20px 10px 20px;
+
+	* {
+		font-family: var(--storeengine-primary-font) sans-serif;
+		box-sizing: border-box;
+	}
+
+	&.notice-info    { --base-color: var(--storeengine-primary-color); }
+	&.notice-success { --base-color: var(--storeengine-green-color); }
+	&.notice-warning { --base-color: var(--storeengine-warning-color); }
+	&.notice-error   { --base-color: var(--storeengine-error-color); }
+
+	&__icon {
+		flex: 0 0 38px;
+		width: 38px;
+		height: 38px;
+		border-radius: 10px;
+		background: var(--icon-background);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		.storeengine-icon {
+			display: flex;
+			font-size: 18px;
+			color: var(--base-color);
+		}
+	}
+
+	&__body {
+		flex: 1 1 auto;
+		min-width: 0;
+		padding-top: 1px;
+	}
+
+	&__title,
+	&__content h3 {
+		font-size: 0.9375rem;
+		font-weight: 700;
+		line-height: 1.35;
+		color: var(--storeengine-text-color);
+		margin: 0 0 2px 0;
+	}
+
+	&__content {
+		font-size: 0.8125rem;
+		line-height: 1.5;
+		color: var(--storeengine-subtitle-color);
+
+		p {
+			font-weight: 400;
+			font-size: 0.8125rem;
+			line-height: 1.5;
+			color: var(--storeengine-subtitle-color);
+			margin: 0;
+			padding: 0;
+
+			&:not(:first-child) { margin-top: 0.4em; }
+		}
+
+		ul { margin: 0.4em 0 0; }
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		flex-shrink: 0;
+		align-self: center;
+		margin-left: auto;
+
+		// Matches the standard button geometry (ui <Button size="sm">, 32px
+		// tall): this used to set its own 13px/600/9px-16px, so the notice's
+		// action button (e.g. "Manage License", shown on nearly every admin
+		// page) was visibly smaller and bolder than every other primary
+		// button next to it.
+		.storeengine-btn {
+			color: #fff;
+			font-size: 14px;
+			font-weight: 500;
+			line-height: 1;
+			padding: 8px 14px;
+			white-space: nowrap;
+			text-decoration: none !important;
+		}
+	}
+
+	&-close.notice-dismiss {
+		position: static;
+		width: 28px;
+		height: 28px;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border: 1px solid var(--storeengine-border-color);
+		border-radius: 8px;
+		background: transparent;
+		color: var(--storeengine-subtitle-color);
+		cursor: pointer;
+
+		&:hover {
+			border-color: var(--base-color);
+			color: var(--storeengine-text-color);
+			background: var(--icon-background);
+		}
+
+		&::before { display: none; }
+
+		.storeengine-icon {
+			display: flex;
+			font-size: 15px;
+		}
+	}
+
+	&.notice-large {
+		padding: 18px 20px;
+		gap: 16px;
+	}
+}

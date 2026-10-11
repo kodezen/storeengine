@@ -1,0 +1,151 @@
+.storeengine-select-tree {
+	position: relative;
+	width: 100%;
+	input[type="checkbox"] {
+		margin-bottom: -4px;
+	}
+
+	&__control {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		border: 1px solid var(--storeengine-border-color);
+		padding: 8px;
+		border-radius: 4px;
+		background: #fff;
+		cursor: pointer;
+		gap: 6px;
+		max-height: 200px;
+		overflow-y: scroll;
+		scrollbar-width: none; /* Firefox */
+  		-ms-overflow-style: none; /* Internet Explorer 10+ */
+		input {
+			flex: 1;
+			border: none;
+			outline: none;
+			padding: 4px;
+			font-size: 14px;
+		}
+	}
+
+	&__control::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+
+	&__tags {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+	}
+
+	&__tag {
+		background: var(--storeengine-border-color);
+		padding: 4px 8px;
+		border-radius: 4px;
+		font-size: 12px;
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		.storeengine-icon--close {
+			cursor: pointer;
+		}
+	}
+
+	&__dropdown {
+		position: absolute;
+		top: calc(100% + 6px);
+		left: 0;
+		width: calc(100% - 44px);
+		max-height: 400px;
+		overflow-y: auto;
+		border: 1px solid var(--storeengine-border-color);
+		background: #fff;
+		border-radius: 4px;
+		padding: 20px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		z-index: 20;
+		animation: backwards 0.2s ease-out;
+	}
+
+	&__parent {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		&:not(:last-child) {
+			margin-bottom: 12px;
+		}
+
+		label {
+			font-weight: 600;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+	}
+
+	&__brunch {
+		padding-left: 24px;
+		margin: 8px 0;
+		border-left: 1px solid var(--storeengine-border-color);
+	}
+
+	&__children {
+		margin-bottom: 12px;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		label {
+			font-weight: 400;
+			font-size: 14px;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+	}
+
+	&__children-items {
+		padding-left: 24px;
+		margin: 8px 0;
+		border-left: 1px solid var(--storeengine-border-color);
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		label {
+			padding: 6px 0;
+			display: flex;
+			gap: 10px;
+			align-items: center;
+		}
+	}
+
+	&__grand-children {
+		label {
+			font-size: 13px;
+			font-weight: 400;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			margin-bottom: 4px;
+		}
+	}
+
+	.storeengine-btn {
+		&--select-tree {
+			background: transparent;
+			padding: 0;
+		}
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: scale(0.98);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

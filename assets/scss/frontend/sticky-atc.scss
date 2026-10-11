@@ -1,0 +1,254 @@
+/* Sticky Add-to-Cart bar. Rendered in the footer on single product pages and
+ * slid up once the shopper scrolls past the real Add-to-Cart button — on every
+ * viewport, not just phones.
+ *
+ * Row shape: [thumb + name/price] ......... [variant selects] [Add to Cart]
+ * The info block takes the slack so the controls sit hard right, mirroring
+ * where the real add-to-cart lives on the page above. */
+
+$se-atc-control-height: 44px;
+
+.storeengine-sticky-atc {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9990;
+	display: block;
+	padding: 12px 16px;
+	background: #fff;
+	border-top: 1px solid var(--storeengine-border-color, #e5e7eb);
+	box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+	// Parked off-screen; .is-visible slides it up.
+	transform: translateY(110%);
+	transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+
+	&[hidden] {
+		display: none !important; // pre-JS / no-JS: stay hidden
+	}
+
+	&.is-visible {
+		transform: translateY(0);
+	}
+
+	// The bar spans the viewport, but its content tracks the page width so it
+	// lines up with the product above instead of hugging the screen edges.
+	&__inner {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		width: 100%;
+		max-width: 1140px;
+		margin: 0 auto;
+	}
+
+	// Grows, so the selects and button are pushed to the right edge. Setting
+	// this to `0 1 auto` left nothing in the row growing, and the whole thing
+	// bunched up against the left with dead space beside the button.
+	&__info {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		min-width: 0;
+		flex: 1 1 auto;
+	}
+
+	&__thumb img,
+	&__img {
+		width: 46px;
+		height: 46px;
+		border-radius: 8px;
+		object-fit: cover;
+		display: block;
+	}
+
+	&__meta {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+	}
+
+	&__name {
+		font-size: 14px;
+		font-weight: 600;
+		line-height: 1.25;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__price {
+		font-size: 15px;
+		font-weight: 700;
+		line-height: 1.2;
+		color: var(--storeengine-primary-color, #2563eb);
+
+		&:empty {
+			display: none;
+		}
+	}
+
+	// Variable products: a segmented pill control per attribute, so the shopper
+	// can resolve a variant without scrolling back up. Same shape as the unit
+	// switcher in the size-guide modal — grey track, white active pill.
+	&__variants {
+		display: flex;
+		flex-wrap: nowrap;
+		align-items: center;
+		gap: 10px; // between attribute groups
+		flex: 0 0 auto;
+		min-width: 0;
+	}
+
+	&__variant-group {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		// 4px track + 36px pill = the shared 44px control height.
+		height: $se-atc-control-height;
+		padding: 4px;
+		border-radius: 10px;
+		background: var(--storeengine-background-color, #f1f5f9);
+	}
+
+	// Visually hidden but still focusable, so arrow keys and :checked work.
+	&__radio {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: 0;
+		padding: 0;
+		opacity: 0;
+		pointer-events: none;
+
+		&:checked + .storeengine-sticky-atc__pill {
+			background: #fff;
+			color: var(--storeengine-text-color, #1f2937);
+			font-weight: 600;
+			box-shadow: none;
+		}
+
+		&:focus-visible + .storeengine-sticky-atc__pill {
+			outline: 2px solid var(--storeengine-primary-color, #2563eb);
+			outline-offset: 1px;
+		}
+
+		&:disabled + .storeengine-sticky-atc__pill {
+			opacity: 0.4;
+			cursor: not-allowed;
+		}
+	}
+
+	&__pill {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 34px;
+		height: 36px;
+		margin: 0;
+		padding: 0 12px;
+		border-radius: 8px;
+		color: #475569;
+		font-size: 13px;
+		font-weight: 500;
+		line-height: 1;
+		white-space: nowrap;
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease;
+
+		&[hidden] {
+			display: none;
+		}
+
+		&:hover {
+			color: var(--storeengine-text-color, #1f2937);
+		}
+	}
+
+	&__btn {
+		flex: 0 0 auto;
+		white-space: nowrap;
+		// The shared button style gives add-to-cart variants width:100%, which
+		// would swallow the whole row here.
+		width: auto;
+		min-width: 170px;
+		height: $se-atc-control-height;
+		// Match the selects exactly rather than inheriting the button preset's
+		// own vertical padding, so the row reads as one control strip.
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	/* ---- Tablet: tighten the pills, shrink the CTA ---- */
+	@media (max-width: 1024px) {
+		.storeengine-sticky-atc__inner {
+			gap: 12px;
+		}
+
+		.storeengine-sticky-atc__pill {
+			min-width: 30px;
+			padding: 0 9px;
+			font-size: 12px;
+		}
+
+		.storeengine-sticky-atc__btn {
+			min-width: 140px;
+		}
+	}
+
+	/* ---- Phone: name + price on one row, controls beneath ---- */
+	@media (max-width: 640px) {
+		padding: 10px 12px;
+
+		.storeengine-sticky-atc__thumb {
+			display: none;
+		}
+
+		.storeengine-sticky-atc__name {
+			font-size: 13px;
+		}
+
+		&.has-variants {
+			.storeengine-sticky-atc__inner {
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+
+			// Name + price on their own row above the controls.
+			.storeengine-sticky-atc__info {
+				flex: 1 1 100%;
+			}
+
+			// Several groups of pills will not fit a phone row, so let the
+			// strip scroll sideways rather than wrap into a tall stack that
+			// eats the viewport.
+			.storeengine-sticky-atc__variants {
+				flex: 1 1 100%;
+				overflow-x: auto;
+				scrollbar-width: none;
+				padding-bottom: 2px;
+
+				&::-webkit-scrollbar {
+					display: none;
+				}
+			}
+
+			.storeengine-sticky-atc__variant-group {
+				flex: 0 0 auto;
+			}
+
+			.storeengine-sticky-atc__btn {
+				flex: 1 1 100%;
+				min-width: 0;
+			}
+		}
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.storeengine-sticky-atc {
+		transition: none;
+	}
+}

@@ -1,0 +1,118 @@
+.kzui-table {
+    &--purchase-product {
+        border: none;
+        .kzui-table__container .kzui-table__table {
+            padding: 0;
+            width: 100% !important;
+            .kzui-table__body .kzui-table__body-row {
+                .kzui-table__row-cell {
+                    .storeengine-btn--trash-product {
+                        padding: 0;
+                        .storeengine-icon {
+                            &::before {
+                                font-size: 20px;
+                            }
+                        }
+
+                        &:hover {
+                            .storeengine-icon {
+                                &::before {
+                                    color: var(--storeengine-error-color);
+                                }
+                            }
+                        }
+                    }
+
+                    .storeengine-orders-quantity {
+                        display: flex;
+                        border: 1px solid var(--storeengine-border-color);
+                        border-radius: 4px;
+                        width: 130px;
+                        height: 20px;
+                        input[type="number"] {
+                            min-height: 20px;
+                            height: 20px;
+                            border: none;
+                            width: 100%;
+                            border-radius: 0;
+                            border-top: none;
+                            border-bottom: none;
+                            border-left: 1px solid var(--storeengine-border-color);
+                            border-right: 1px solid var(--storeengine-border-color);
+                            text-align: center;
+                            &:focus, &:active, &:hover {
+                                box-shadow: none;
+                                outline: none;
+                            }
+
+                            &::-webkit-inner-spin-button {
+                                display: none;
+                            }
+                        }
+
+                        .storeengine-btn {
+                            padding: 8px 12px;
+                            border: none;
+                        }
+                    }
+
+                    .storeengine-btn--trash-product {
+                        padding: 0;
+                        .storeengine-icon {
+                            &::before {
+                                font-size: 20px;
+                            }
+                        }
+
+                        &:hover {
+                            .storeengine-icon {
+                                &::before {
+                                    color: var(--storeengine-error-color);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Empty order: compact illustration, message, then the primary "Add Product"
+// centered right under it (instead of a grey button stranded bottom-left).
+.storeengine-product-table.is-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    > .kzui-table {
+        width: 100%;
+    }
+
+    .kzui-table__empty {
+        padding: 24px 0 0;
+    }
+
+    .storeengine-oops__message {
+        padding: 0;
+
+        .storeengine-oops__icon img {
+            display: block;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .storeengine-oops__heading {
+            padding-top: 0;
+            font-size: 18px;
+            line-height: 28px;
+        }
+    }
+
+    .storeengine-product-select {
+        display: flex;
+        justify-content: center;
+        padding: 16px 0 32px;
+    }
+}

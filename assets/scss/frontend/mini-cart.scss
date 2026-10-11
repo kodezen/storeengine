@@ -1,0 +1,143 @@
+.storeengine-mini-cart {
+	padding: 0 20px;
+	position: relative;
+
+	& > button.storeengine-mini-cart-link  {
+		background-color: transparent;
+		box-shadow: none;
+		border: none;
+		cursor: pointer;
+		position: relative;
+		color: inherit;
+		& > .storeengine-min-cart-count {
+			position: absolute;
+			top: -10px;
+			left: 100%;
+			margin-left: -35%;
+			font-size: 14px;
+			line-height: 18px;
+			background-color: var(--storeengine-primary-color);
+			color: #fff;
+			padding: 2px 7px;
+			border-radius: 100%;
+		}
+	}
+
+	& .storeengine-mini-cart-drawer {
+		width: 100% !important;
+	}
+
+	& .storeengine-mini-cart-drawer-content {
+		height: 100vh;
+		position: relative;
+		overflow: scroll;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		& .storeengine-mini-cart-empty-container {
+			max-width: 320px;
+			margin: auto;
+		}
+
+		& .storeengine-mini-cart-drawer-close-btn {
+			border: none;
+			box-shadow: none;
+			background-color: transparent;
+			cursor: pointer;
+			position: absolute;
+			top: 0;
+			right: 20px;
+			z-index: 1;
+			color: inherit;
+		}
+
+		& h2.storeengine-mini-cart-title {
+			font-size: 24px;
+			font-weight: 600;
+			margin: 0px 12px;
+			padding-bottom: 32px;
+			color: var(--storeengine-text-color);
+			border-bottom: 1px solid var(--storeengine-border-color);
+
+			& .storeengine-mini-cart-title-items-counter {
+				margin-left: 8px;
+			}
+		}
+
+		// Narrow drawer: stack the controls and right-align them, with the
+		// remove icon on top, then the stepper, then the line total.
+		.storeengine-cart-product-quantity-wrap {
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 10px;
+
+			.storeengine-remove-cart-item {
+				order: 1;
+			}
+
+			.storeengine-quantity-input {
+				order: 2;
+			}
+
+			.storeengine-cart-item-subtotal {
+				order: 3;
+			}
+		}
+
+		& .storeengine-mini-cart-table {
+			padding: 0 16px;
+		}
+
+		& .storeengine-cart-product__thumbnail img {
+			width: 72px;
+			height: 72px;
+		}
+
+		& .storeengine-cart-product__content .storeengine-cart-product-title {
+			max-width: 265px;
+		}
+
+		& .storeengine-mini-cart-footer {
+			padding: 24px 16px;
+			border-top: 1px solid var(--storeengine-border-color, #ddd);
+
+			& .storeengine-mini-cart-sub-total {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				margin-bottom: 16px;
+				color : var(--storeengine-text-color);
+
+				& .storeengine-mini-cart-sub-total-label {
+					font-size: 18px;
+					font-weight: 600;
+				}
+				& .storeengine-mini-cart-sub-description {
+					width: 100%;
+					font-size: 14px;
+					color: var(--storeengine-subtitle-color);
+				}
+			}
+
+			& .storeengine-mini-cart-footer-actions {
+				margin-bottom: 20px;
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+			}
+		}
+	}
+
+	@media (min-width: 767px) {
+		& .storeengine-mini-cart-drawer {
+			width: 500px !important;
+		}
+	}
+}
+
+.admin-bar .storeengine-mini-cart-drawer-content {
+	height: calc(100dvh - 40px);
+	margin-top: 56px;
+}

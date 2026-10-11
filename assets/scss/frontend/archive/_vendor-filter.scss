@@ -1,0 +1,77 @@
+// Shop / archive vendor filter — a polished, full-width dropdown shown in the
+// archive sidebar (multi-vendor addon). Styles live here, not inline.
+.storeengine-vendor-filter {
+	&__form {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 10px;
+	}
+
+	// Wrapper carries the custom chevron so we can hide the native one.
+	&__control {
+		position: relative;
+		display: block;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			right: 14px;
+			width: 7px;
+			height: 7px;
+			margin-top: -5px;
+			border-right: 2px solid #6b7280;
+			border-bottom: 2px solid #6b7280;
+			transform: rotate(45deg);
+			pointer-events: none;
+		}
+	}
+
+	&__select {
+		width: 100%;
+		appearance: none;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		margin: 0;
+		padding: 10px 38px 10px 14px;
+		font-size: 14px;
+		line-height: 1.4;
+		color: var(--storeengine-text-color, #1e1e1e);
+		background: #fff;
+		border: 1px solid var(--storeengine-border-color, #d5d8dc);
+		border-radius: 8px;
+		box-shadow: none;
+		cursor: pointer;
+		transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+		&:hover {
+			border-color: #b3b8be;
+		}
+
+		&:focus {
+			outline: none;
+			border-color: var(--storeengine-primary-color, #2563eb);
+			box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+		}
+	}
+
+	&__clear {
+		align-self: flex-start;
+		display: inline-flex;
+		align-items: center;
+		padding: 6px 12px;
+		font-size: 13px;
+		line-height: 1;
+		color: #6b7280;
+		text-decoration: none;
+		background: #f3f4f6;
+		border-radius: 8px;
+		transition: background 0.15s ease, color 0.15s ease;
+
+		&:hover {
+			background: #e5e7eb;
+			color: var(--storeengine-text-color, #1e1e1e);
+		}
+	}
+}

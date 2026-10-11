@@ -1,0 +1,40 @@
+.storeengine-tab-content--abandoned-cart {
+    .storeengine-form-group--abn-cut-off-time {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .storeengine-checkbox.abn-cart {
+        margin-bottom: 0;
+        flex: 1 1 50%;
+        width: 50%;
+    }
+
+    .storeengine-checkbox.discount_expire {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+
+    }
+
+    .storeengine-form-group--cart-abn {
+        margin-bottom: 16px;
+
+		.storeengine-tooltip__text {
+			width: 180px;
+		}
+    }
+
+	.storeengine-checkbox.early_track {
+		.storeengine-tooltip__text {
+			width: 180px;
+		}
+	}
+     .storeengine-tab-content--abandoned-cart_email-link {
+        display: flex;
+        justify-content: end;
+        color: var(--storeengine-subtitle-color);
+        font-weight: 500;
+    }
+}

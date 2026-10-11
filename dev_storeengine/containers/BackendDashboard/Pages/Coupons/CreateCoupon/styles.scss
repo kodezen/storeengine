@@ -1,0 +1,349 @@
+.storeengine-btn--coupon-select-product {
+    gap: 8px;
+}
+
+.storeengine-page-content.storeengine-page-content__coupon {
+    // The title lines up with the cards below it.
+    .storeengine-sub-top-header {
+        padding: 0;
+    }
+
+    // The "no products selected" notice spans the whole card, like on Products.
+    .storeengine-specific-product-warning.storeengine-product-notice {
+        box-sizing: border-box;
+        width: 100%;
+        margin-bottom: 16px;
+    }
+
+    // This list already spaces its rows with a 16px flex gap; the checkbox's
+    // own 24px bottom margin made the gap under "Exclude sale items" 40px.
+    .storeengine-checkbox--coupon-restriction {
+        margin-bottom: 0;
+    }
+
+    // Cards end with the same 24px padding on every side. Fields carry a
+    // bottom margin of their own, so the LAST element of a card (at any depth
+    // of the trailing chain) must not add a second 24px under it.
+    .storeengine-content-section > :last-child,
+    .storeengine-content-section > :last-child > :last-child,
+    .storeengine-content-section > :last-child > :last-child > :last-child,
+    .storeengine-content-section > :last-child > :last-child > :last-child > :last-child,
+    .storeengine-content-section > :last-child > :last-child > :last-child > :last-child > :last-child,
+    .storeengine-content-section > :last-child > :last-child > :last-child > :last-child > :last-child > :last-child {
+        margin-bottom: 0;
+    }
+}
+
+.storeengine-page-content--coupon-list {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    .storeengine-page-content {
+        &__right, &__left {
+            .storeengine-content-section {
+                &__general {
+                    padding-bottom: 0;
+                    .storeengine-flex {
+                        position: relative;
+                        .storeengine-generate-coupon {
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            button {
+                                cursor: pointer;
+                                color: var(--storeengine-primary-color);
+                                padding: 0;
+                                span {
+                                    padding: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &__amount {
+                    &--body {
+                        .storeengine-form-group {
+                            margin-top: 24px;
+                        }
+                    }
+                }
+
+                &__duration {
+                    .storeengine-mt-4 {
+                        .storeengine-title {
+                            width: 160px;
+                        }
+                    }
+
+                    .form-group {
+                        &--create-coupon-checkbox {
+                            justify-content: start;
+                            flex-direction: row-reverse;
+                            gap: 12px;
+                        }
+                    }
+
+                    .storeengine-text--time-duration {
+                        margin-bottom: 0;
+                    }
+                }
+
+                &__who-can-use {
+                    &--field {
+                        width: 90%;
+                        padding: 10px;
+                    }
+                }
+
+                &__limit {
+                    .storeengine-number-field {
+                        margin-bottom: 4px;
+						.storeengine-title-container {
+							display: flex;
+							flex: 1 0 auto;
+							align-items: center;
+							.storeengine-title-subtitle {
+								margin: 0;
+							}
+						}
+						.storeengine-number-field--items {
+							flex: 0 1 auto;
+						}
+                    }
+                }
+            }
+        }
+
+        &__right {
+            .storeengine-content-section {
+                &__customer {
+                    .storeengine-form-group {
+                        margin-bottom: 24px;
+                    }
+                }
+            }
+        }
+
+        &__left {
+            .storeengine-content-section {
+                &__product-canvas {
+                    width: 100%;
+                    height: 240px;
+                    border: 1px solid var(--storeengine-border-color, #DFE1E2);
+                    border-radius: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    text-align: center;
+                    .select-product {
+                        background-color: var(--storeengine-primary-color);
+                        color: #ffff;
+                        border-radius: 4px;
+                        padding: 8px 16px;
+                        border: 0;
+                        cursor: pointer;
+                        margin: 0 8px;
+                        box-shadow: none;
+                    }
+
+                    .product-subtitle {
+                        font-size: 14px;
+                        color: var(--storeengine-subtitle-color, #8E949A);
+                    }
+                }
+
+                &__payment {
+                    display: flex;
+                    flex-direction: column;
+                    &--details {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        .label {
+                            text-transform: capitalize;
+                        }
+
+                        .title {
+                            font-weight: 500;
+                        }
+
+                        .currency {
+                            color: var(--storeengine-gray-color);
+                            text-transform: uppercase;
+                        }
+                    }
+
+                    .border-bottom {
+                        border-bottom: 1px solid var(--storeengine-border-color);
+                    }
+
+                    .payment-method {
+                        margin-top: 16px;
+                        display: flex;
+                        justify-content: end;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.storeengine-coupon-create-radio-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.storeengine-coupon-radio-buttons {
+    padding: 12px 16px;
+    border: 1px solid var(--storeengine-border-color);
+    border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+    &:not(:last-child) {
+		margin-bottom: 16px;
+	}
+
+	&:first-child {
+        .storeengine-coupon-amount-type {
+            display: none;
+        }
+    }
+
+    .storeengine-coupon-amount-type {
+        .storeengine-number-field {
+            margin-bottom: 0;
+        }
+    }
+
+	.storeengine-desc-field {
+		font-size: 12px;
+		font-style: normal;
+		color: var(--storeengine-subtitle-color, #757575);
+		text-align: right;
+	}
+}
+
+.storeengine-btn--coupon-code {
+    border: 1px solid var(--storeengine-border-color);
+    padding: 8px 12px;
+    transition: border-color 0.3s, color 0.3s;
+    &:hover {
+        border-color: var(--storeengine-primary-color);
+		--text-color: var(--storeengine-primary-color);
+        color: var(--storeengine-primary-color);
+    }
+}
+
+.storeengine-content-section {
+    &__minimum-purchase-requirements {
+        .storeengine-minimum-purchase-requirements {
+			&__items {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 24px;
+			}
+
+            &__label {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+                cursor: pointer;
+                white-space: nowrap;
+            }
+        }
+    }
+    
+}
+
+/* ----------------------------------------------------------------------------
+   Product / price repeater.
+
+   Shared component (ProductPricePicker): the coupon product restriction and any
+   add-on reusing it — Pro's Buy X Get Y reward list, for one. Its layout is
+   therefore NOT scoped to a single section; scoping it meant an add-on section
+   rendered the rows with no gaps at all.
+   -------------------------------------------------------------------------- */
+.storeengine-specific-product-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    // Each row carries its own Product / Prices / Qty labels, so rows need more
+    // separation than a plain stack of inputs would.
+    gap: 16px;
+    width: 100%;
+
+    // Only when something follows the repeater (an add-on's extra controls) —
+    // as the last element in a section the surrounding padding is enough.
+    &:not(:last-child) {
+        margin-bottom: 24px;
+    }
+
+    &__item {
+        width: 100%;
+        .storeengine-react-select__value-container{
+            padding: 0 8px;
+        }
+    }
+
+    // Optional per-row quantity (add-on reward rows). Narrow and fixed so the
+    // two selects keep the available width instead of splitting it three ways.
+    &__qty {
+        flex: 0 0 88px;
+
+        .storeengine-input {
+            width: 100%;
+        }
+    }
+
+    .storeengine-specific-product-warning {
+        margin-bottom: 8px;
+        .storeengine-icon {
+            margin-top: 4px;
+            &::before {
+                font-size: 18px;
+            }
+        }
+        .storeengine-title-subtitle {}
+    }
+}
+
+/* ---- Advanced Coupons: soft Pro-feature lock ---- */
+.storeengine-coupon-radio-buttons--locked {
+    .storeengine-title {
+        opacity: 0.55;
+    }
+}
+
+// Small "Requires …" hint shown just below a disabled Advanced Coupons field.
+.storeengine-pro-lock__hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #6b7280;
+    text-decoration: none;
+
+    .storeengine-pro-lock__lockicon {
+        font-size: 11px;
+    }
+
+    &:hover {
+        color: #4338ca;
+        text-decoration: underline;
+    }
+}
+
+.storeengine-pro-lock {
+    // Field shown but disabled (greyed, non-interactive).
+    .storeengine-pro-lock__body {
+        opacity: 0.55;
+        pointer-events: none;
+    }
+}

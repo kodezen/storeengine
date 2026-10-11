@@ -1,0 +1,65 @@
+.storeengine-setup-screen--congrats {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.storeengine-setup-screen-modal {
+    width: 600px;
+    height: 360px;
+    position: relative;
+
+    &__image {
+        width: 120px;
+        position: absolute;
+        top: 5%;
+        left: 40%;
+    }
+
+    &__text {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        position: absolute;
+        z-index: 9999;
+        top: 43%;
+        left: 13%;
+        right: 13%;
+        text-align: center;
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 47px;
+        color: var(--storeengine-primary-color);
+        margin: -14px 0 0 0;
+        padding-bottom: 4px;
+    }
+
+    .storeengine-setup-screen-modal-text {
+        padding-bottom: 32px;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 32px;
+        color: var(--storeengine-subtitle-color, #74777C);
+        margin: 0;
+    }
+
+    .storeengine-setup-screen-modal-redirect-text {
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 32px;
+        color: var(--storeengine-subtitle-color, #555);
+        margin: 0;
+    }
+
+    .storeengine-btn--to-dashboard {
+        .storeengine-btn--label {
+            color: var(--storeengine-text-color);
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+    }
+}

@@ -1,0 +1,67 @@
+.storeengine-form-field,
+.storeengine-form-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 16px;
+
+	// Safety net for templates that emit a wrapper whose only children are
+	// disabled-by-config fields (e.g. checkout state/postcode row when both are
+	// turned off). Without this, the empty flex container still consumes
+	// `margin-bottom: 16px` and leaves a visible gap between sections.
+	&:empty {
+		display: none;
+	}
+
+	p:empty{
+		display: none;
+	}
+
+	label {
+		font-size: 18px;
+		font-weight: 500;
+		line-height: 26px;
+		color: var(--storeengine-subtitle-color, #545454);
+		display: block;
+	}
+
+	.storeengine-description {
+		display: block;
+		//padding: 0 10px 0 40px;
+		padding: 0 10px;
+		font-size: 0.833em;
+		line-height: 1;
+		margin-top: 0.7em;
+		font-style: italic;
+		color: var(--storeengine-subtitle-color, #545454);
+	}
+
+
+
+	.store-form-control {
+		margin: 0;
+		height: 44px;
+		padding: 0 15px 2px 15px;
+		border-radius: 8px;
+		border: 1px solid var(--storeengine-border-color);
+		color: var(--storeengine-text-color, #111);
+		font-size: 14px;
+		width: 100%;
+		outline: 0;
+		&:hover,
+		&:focus {
+			border-color: var(--storeengine-border-color);
+		}
+	}
+	textarea.store-form-control {
+		padding-top: 15px;
+		min-height: 75px;
+		height: auto;
+	}
+	.store-block-editor {
+		border-radius: 10px;
+		border: 1px solid var(--storeengine-border-color, #EAEBEE);
+		box-sizing: border-box;
+		overflow: hidden;
+	}
+}

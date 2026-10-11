@@ -1,0 +1,71 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig.json",
+	"compilerOptions": {
+		/* === Language & Runtime === */
+		"target": "ESNext",
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		/* === Types === */
+		"types": [
+			"node"
+		],
+		"typeRoots": [
+			"./dev_storeengine",
+			"./node_modules/@types",
+			"./node_modules/@stripe/stripe-js"
+		],
+		/* Language & environment */
+		"declaration": true,
+		"declarationMap": true,
+		/* React (for @wordpress/element), let webpack/babel compile */
+		"jsx": "preserve",
+		"isolatedModules": true,
+		/* Type checking */
+		"strict": true,
+		/* === Type safety === */
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"skipLibCheck": true,
+		/* JS interop */
+		"allowJs": true,
+		"checkJs": false,
+		/* === Interop === */
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": false,
+		"resolveJsonModule": true,
+		/* Paths / aliases */
+		"baseUrl": ".",
+		"paths": {
+			"@Components/*": [
+				"dev_storeengine/components/*"
+			],
+			"@Utils/*": [
+				"dev_storeengine/utils/*"
+			]
+		},
+		/* Build behavior */
+		"noEmit": true,
+		/* Consistency: Output diagnostics */
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+		"dev_storeengine/**/*",
+		"dev_storeengine/index.d.ts",
+		"dev_storeengine/**/*.d.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"build",
+		"dist",
+		"assets/build",
+		"assets/dist",
+		"**/*.test.*",
+		"**/__tests__/**"
+	]
+}

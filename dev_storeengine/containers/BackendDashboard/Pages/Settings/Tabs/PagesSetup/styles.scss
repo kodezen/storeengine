@@ -1,0 +1,61 @@
+.storeengine-page-content--settings {
+    .storeengine-tab-content-pages-setup {
+        .storeengine-tab {
+            &__heading {
+                &--label {
+                    border-bottom: 0;
+                }
+            }
+        }
+    
+        &__filter-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+    
+            .filter-actions-label {
+                font-weight: 500;
+                padding-bottom: 16px;
+                border-bottom: 1px solid var(--storeengine-border-color);
+                margin: 0;
+                margin-bottom: 16px;
+            }
+    
+            .filter-section {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+    
+                .form-group {
+                    &--filter-box {
+                        display: flex;
+                        align-items: center;
+                        width: 100%;
+                        gap: 16px;
+    
+                        .form-info {
+                            width: 100%;
+                            border: 1px solid var(--storeengine-border-color);
+                            border-radius: 4px;
+                            padding: 10px 12px;
+                        }
+    
+                        .form-body {
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    
+        &__display-options {
+            div {
+                .form-group {
+                    &--display-action {
+                        display: flex;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,121 @@
+.storeengine-install-plugin {
+    position: relative;
+
+    &__top {
+        border: 1px solid var(--storeengine-border-color);
+        padding: 20px;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    &__label {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin: 0;
+    }
+
+    &__left {
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    &__title {
+        color: var(--storeengine-text-color, #0A0D14);
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    &__subtitle {
+        color: var(--storeengine-subtitle-color, #595959);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    &__description {
+        color: var(--storeengine-subtitle-color, #595959);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+    }
+
+    &__installed {
+        padding: 4px 8px;
+        background: #00AD6B;
+        color: #fff;
+        border-radius: 4px;
+    }
+
+    &__installing {
+        padding: 4px 16px;
+        border: 1px solid var(--storeengine-border-color);
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        border-radius: 4px;
+
+        .storeengine-preloader {
+            svg {
+                width: 18px;
+                height: 18px;
+                margin: 4px !important;
+            }
+        }
+    }
+
+    &__ablocks-preview {
+        margin-top: 24px;
+        position: relative;
+
+        img {
+            max-width: 1200px;
+            width: 100%;
+        }
+    }
+
+    &__ablocks-preview-icon {
+        display: flex;
+        justify-content: center;
+
+        .storeengine-icon--lock {
+            display: flex;
+            font-size: 24px;
+            border-radius: 50%;
+            border: 1px solid var(--storeengine-border-color, #DDDEDF);
+            padding: 16px;
+        }
+    }
+
+    &__ablocks-preview-content {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        width: 402px;
+        position: absolute;
+        top: 92px;
+        right: 402px;
+        padding: 34px 22px 34px 24px;
+        border-radius: 6px;
+        box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+
+        h2 {
+            color: #101828;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 28px;
+            margin: 0 0 0 4px;
+        }
+
+        p {
+            color: var(--storeengine-subtitle-color, #515A62);
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 22.4px;
+            margin: 0;
+        }
+    }
+}

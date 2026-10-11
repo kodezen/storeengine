@@ -1,0 +1,33 @@
+.storeengine-auth-redirect {
+    .storeengine-title-subtitle {
+        width: 50%;
+    }
+}
+
+.storeengine-auth-redirect--items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.storeengine-content-section--pages--item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.storeengine-auth-redirect--item {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    input[type="radio"] {
+        margin-bottom: -2px;
+    }
+}
+
+.storeengine-radio:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}

@@ -1,0 +1,55 @@
+// stylelint-disable declaration-no-important
+
+@use 'sass:map';
+@use '../variables' as *;
+@use '../mixins/breakpoints' as *;
+
+// Flex variation
+//
+// Custom styles for additional flex alignment options.storeengine-
+
+@each $breakpoint in map.keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .storeengine-flex#{$infix}-row            { flex-direction: row !important; }
+    .storeengine-flex#{$infix}-column         { flex-direction: column !important; }
+    .storeengine-flex#{$infix}-row-reverse    { flex-direction: row-reverse !important; }
+    .storeengine-flex#{$infix}-column-reverse { flex-direction: column-reverse !important; }
+
+    .storeengine-flex#{$infix}-wrap         { flex-wrap: wrap !important; }
+    .storeengine-flex#{$infix}-nowrap       { flex-wrap: nowrap !important; }
+    .storeengine-flex#{$infix}-wrap-reverse { flex-wrap: wrap-reverse !important; }
+    .storeengine-flex#{$infix}-fill         { flex: 1 1 auto !important; }
+    .storeengine-flex#{$infix}-grow-0       { flex-grow: 0 !important; }
+    .storeengine-flex#{$infix}-grow-1       { flex-grow: 1 !important; }
+    .storeengine-flex#{$infix}-shrink-0     { flex-shrink: 0 !important; }
+    .storeengine-flex#{$infix}-shrink-1     { flex-shrink: 1 !important; }
+
+    .storeengine-justify-content#{$infix}-start   { justify-content: flex-start !important; }
+    .storeengine-justify-content#{$infix}-end     { justify-content: flex-end !important; }
+    .storeengine-justify-content#{$infix}-center  { justify-content: center !important; }
+    .storeengine-justify-content#{$infix}-between { justify-content: space-between !important; }
+    .storeengine-justify-content#{$infix}-around  { justify-content: space-around !important; }
+
+    .storeengine-align-items#{$infix}-start    { align-items: flex-start !important; }
+    .storeengine-align-items#{$infix}-end      { align-items: flex-end !important; }
+    .storeengine-align-items#{$infix}-center   { align-items: center !important; }
+    .storeengine-align-items#{$infix}-baseline { align-items: baseline !important; }
+    .storeengine-align-items#{$infix}-stretch  { align-items: stretch !important; }
+
+    .storeengine-align-content#{$infix}-start   { align-content: flex-start !important; }
+    .storeengine-align-content#{$infix}-end     { align-content: flex-end !important; }
+    .storeengine-align-content#{$infix}-center  { align-content: center !important; }
+    .storeengine-align-content#{$infix}-between { align-content: space-between !important; }
+    .storeengine-align-content#{$infix}-around  { align-content: space-around !important; }
+    .storeengine-align-content#{$infix}-stretch { align-content: stretch !important; }
+
+    .storeengine-align-self#{$infix}-auto     { align-self: auto !important; }
+    .storeengine-align-self#{$infix}-start    { align-self: flex-start !important; }
+    .storeengine-align-self#{$infix}-end      { align-self: flex-end !important; }
+    .storeengine-align-self#{$infix}-center   { align-self: center !important; }
+    .storeengine-align-self#{$infix}-baseline { align-self: baseline !important; }
+    .storeengine-align-self#{$infix}-stretch  { align-self: stretch !important; }
+  }
+}

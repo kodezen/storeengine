@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"lib": ["esnext", "dom"],
+		"baseUrl": "./dev_storeengine",
+		"paths": {
+			"@Components/*": ["components/*"],
+			"@Containers/*": ["containers/*"],
+			"@Frontend/*": ["frontend/*"],
+			"@Global/*": ["global/*"],
+			"@Redux/*": ["redux/*"],
+			"@Utils/*": ["utils/*"],
+			"@Hooks/*": ["hooks/*"],
+			"@Hooks": ["hooks/index.js"]
+		}
+	},
+	"include": [ "./dev_storeengine/index.d.ts" ]
+}

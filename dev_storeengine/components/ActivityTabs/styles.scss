@@ -1,0 +1,129 @@
+.storeengine-activity-tabs {
+	background: #fff;
+	border: 1px solid var(--storeengine-border-color, #e5e5e5);
+	border-radius: 4px;
+	margin-bottom: 16px;
+
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		padding: 16px 16px 0;
+	}
+
+	&__title {
+		margin: 0;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	// Tighter padding inside the per-entity card vs. the page-level Logs nav.
+	&__nav {
+		margin-top: 8px;
+
+		.tab {
+			padding: 8px 14px;
+			font-size: 13px;
+		}
+	}
+
+	&__body {
+		padding: 12px 16px 16px;
+
+		// The embedded EmailActivity component carries its own card chrome; strip
+		// the duplicate frame so it fits inside this wrapper cleanly.
+		.storeengine-email-activity {
+			border: 0;
+			padding: 0;
+			margin: 0;
+			background: transparent;
+		}
+
+		.storeengine-email-activity-title {
+			display: none;
+		}
+	}
+
+	&__empty {
+		margin: 0;
+		color: var(--storeengine-subtitle-color, #888);
+		font-size: 13px;
+		padding: 8px 0;
+	}
+}
+
+.storeengine-system-logs-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	&__item {
+		border-bottom: 1px solid var(--storeengine-border-color, #f0f0f0);
+		padding: 10px 0;
+
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		&--error {
+			border-left: 3px solid #e07171;
+			padding-left: 10px;
+			margin-left: -10px;
+		}
+
+		&--warning {
+			border-left: 3px solid #d4a72c;
+			padding-left: 10px;
+			margin-left: -10px;
+		}
+	}
+
+	&__row {
+		display: flex;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	&__main {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		flex: 1;
+		min-width: 0;
+	}
+
+	&__module {
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.5px;
+		color: var(--storeengine-subtitle-color, #888);
+	}
+
+	&__title {
+		font-weight: 500;
+		color: var(--storeengine-text-color, #222);
+	}
+
+	&__meta {
+		font-size: 12px;
+		color: var(--storeengine-subtitle-color, #666);
+	}
+
+	&__side {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 6px;
+	}
+
+	&__content {
+		background: var(--storeengine-background-color, #f5f5f5);
+		padding: 12px;
+		max-height: 240px;
+		overflow: auto;
+		font-size: 12px;
+		border-radius: 4px;
+		margin: 8px 0 0;
+	}
+}

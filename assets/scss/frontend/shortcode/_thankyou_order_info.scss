@@ -1,0 +1,101 @@
+.storeengine-thankyou-order-info-shortcode {
+	margin-bottom: 30px;
+
+	.storeengine-thankyou-order-info-success {
+		&__content {
+			display: flex;
+			gap: 16px;
+			align-items: center;
+			justify-content: space-between;
+
+			.storeengine-thankyou-order-info-success__icon {
+				font-size: 68px;
+
+				.storeengine-icon--checkmark-badge {
+					color: #00ad6b;
+				}
+			}
+
+			h4 {
+				font-size: 24px;
+				font-style: normal;
+				font-weight: 600;
+				line-height: 33.6px;
+				color: var(--storeengine-text-color);
+				margin: 0;
+			}
+
+			p {
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 22.4px;
+				color: var(--storeengine-gray-color);
+					.storeengine-pending,
+					.storeengine-on_hold,
+					.storeengine-processing,
+					.storeengine-completed,
+					.storeengine-payment_confirmed,
+					.storeengine-cancelled {
+						padding: 3px 10px 8px 10px;
+						border-radius: 8px;
+					}
+					.storeengine-pending {
+						margin: 0;
+					}
+					.storeengine-pending{
+						background: #808080;
+						color: #ffffff;
+					}
+					.storeengine-on_hold{
+						background: #FFF7E9;
+						color: #FDB022;
+					}
+					.storeengine-processing{
+						background: #FFF7E9;
+						color: #FDB022;
+					}
+					.storeengine-completed {
+						background: #E6F7F0;
+						color: #00AD6B;
+					}
+					.storeengine-payment_confirmed{
+						background: #F9ECFB;
+						color: #C63FD4;
+					}
+					.storeengine-cancelled {
+						background: #FFEDED;
+						color: #FF4D4D;
+					}
+			}
+			.storeengine-thankyou-order-info-success__content-order{
+				display: flex;
+				gap: 12px;
+				align-items: center;
+			}
+		}
+
+		&__email {
+			p {
+				font-size: 16px;
+				font-style: normal;
+				font-weight: 500;
+				line-height: 22.4px;
+				color: var(--storeengine-gray-color);
+				margin-bottom: 0px;
+			}
+		}
+	}
+
+	.storeengine-button {
+		background: #101828;
+		color: var(--storeengine-white-color);
+		font-size: 16px;
+		font-style: normal;
+		font-weight: 500;
+		text-decoration: none;
+		padding: 12px 16px;
+		border-radius: 8px;
+		text-transform: uppercase;
+	}
+}

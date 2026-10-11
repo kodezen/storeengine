@@ -1,0 +1,94 @@
+.affiliate-password-field {
+    position: relative;
+    .storeengine-generate-coupon {
+        position: absolute;
+        right: 0;
+        top: 0;
+        button {
+            cursor: pointer;
+            color: var(--storeengine-primary-color, #008DFF);
+            padding: 0;
+            span {
+                padding: 0;
+            }
+        }
+    }
+}
+
+.storeengine-react-modal--affiliate {
+    .storeengine-react-modal__content {
+        .storeengine-modal-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--storeengine-border-color);
+			&__item {
+				color: var(--storeengine-text-color);
+			}
+
+            .storeengine-active {
+                padding-bottom: 12px;
+                border-bottom: 2px solid var(--storeengine-primary-color);
+                cursor: default;
+                font-size: 14px;
+                font-weight: 500;
+            }
+
+            .storeengine-not-active {
+                position: relative;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 400;
+                padding-bottom: 12px;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background-color: var(--storeengine-primary-color);
+                    transition: width 0.3s ease;
+                }
+
+                &:hover {
+                    color: var(--storeengine-primary-color);
+
+                    &::after {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+
+        .storeengine-btn-close-modal {
+            position: absolute;
+            right: 24px;
+            top: 12px;
+            border: 1px solid var(--storeengine-border-color);
+            border-radius: 4px;
+            background: transparent;
+
+            &:hover {
+                color: var(--storeengine-primary-color);
+                cursor: pointer;
+            }
+        }
+        .storeengine-react-select__control {
+            margin-bottom: 24px;
+        }
+    }
+
+    .storeengine-btn--create-referral {
+        margin-bottom: 24px;
+    }
+}
+
+.storeengine-react-modal--create-referral {
+    .storeengine-react-modal__footer {
+        margin-top: 24px;
+    }
+}
+

@@ -1,0 +1,18 @@
+.storeengine-analytics-section-header {
+  margin-bottom: 16px;
+  &__title {
+    color: var(--storeengine-text-color);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 140%;
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: var(--storeengine-subtitle-color);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 140%;
+    margin: 0;
+  }
+}

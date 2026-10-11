@@ -1,0 +1,70 @@
+.storeengine-secondary-topbar {
+    padding: 0 24px;
+    height: 88px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__title {
+        margin: 0;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 140%;
+        z-index: 9;
+        pointer-events: none;
+    }
+}
+
+.storeengine-content-section {
+    &__billing-header, &__shipping-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--storeengine-border-color);
+        margin: 0 0 24px 0;
+		padding-bottom: 16px;
+        .storeengine-heading {
+            border-bottom: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
+}
+
+.storeengine-page-content{
+    &--update-subscriptions {
+        display: flex;
+        flex-direction: row;
+        width: 1120px;
+        margin: 0 auto;
+        gap: 24px;
+
+        .storeengine-sub-top-header {
+            &__title {
+                font-size: 20px;
+                font-weight: 500;
+                line-height: 30px;
+                margin: 0;
+                padding: 0;
+            }
+
+            &__content {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .kzui-table {
+            &--subscription-purchase-items {
+                .kzui-table__container {
+                    .kzui-table__table {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+}

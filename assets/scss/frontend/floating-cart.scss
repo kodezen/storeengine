@@ -1,0 +1,50 @@
+.storeengine-floating-cart {
+	position: fixed;
+	top: 50%;
+	right: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+	cursor: pointer;
+	z-index: 2;
+	transition: transform 0.2s ease-in-out;
+	background-color: transparent;
+	box-shadow: none;
+	padding: 0;
+	border: none;
+	margin-top: -25px;
+
+	& .storeengine-floating-cart-button {
+		text-decoration: none;
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+		background: var(--storeengine-primary-color);
+		width: 50px;
+		height: 50px;
+		border-radius: 4px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+	}
+
+	& .storeengine-floating-cart-count {
+		position: absolute;
+		top: 0;
+		right: 0;
+		background: var(--storeengine-secondary-color);
+		color: white;
+		font-size: 11px;
+		min-width: 20px;
+		height: 20px;
+		padding: 0 5px;
+		box-sizing: border-box;
+		border-radius: 10px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: bold;
+		white-space: nowrap;
+	}
+}

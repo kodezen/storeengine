@@ -1,0 +1,71 @@
+// Bundle rows: a grid instead of the shared table so the content lines up with
+// the card edge (no 10px cell padding) and the two selects sit 16px apart.
+.storeengine-product-bundle-list {
+	display: block;
+	margin-bottom: 16px;
+
+	.se-ui-thead,
+	.se-ui-tbody {
+		display: block;
+	}
+
+	.se-ui-tbody {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.se-ui-thead .se-ui-tr {
+		margin-bottom: 8px;
+	}
+
+	.se-ui-tr {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 40px;
+		column-gap: 16px;
+		align-items: center;
+	}
+
+	.se-ui-th,
+	.se-ui-td {
+		display: block;
+		width: auto !important;
+		padding: 0;
+		text-align: left;
+	}
+
+	.se-ui-th {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--storeengine-text-color);
+	}
+
+	&__remove {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+.storeengine-product-bundle-actions {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+// Add-row button: dashed, primary-tinted. Reads as "add" rather than "submit",
+// and stays clear of the solid primary (Publish) and the red remove buttons.
+.storeengine-product-bundle-actions .storeengine-product-bundle-add {
+	flex: 1;
+	justify-content: center;
+	padding: 10px 16px;
+	color: var(--storeengine-primary-color);
+	background: transparent;
+	border: 1px dashed var(--storeengine-border-color);
+
+	&:hover,
+	&:focus-visible {
+		color: var(--storeengine-primary-color);
+		background: var(--storeengine-primary-light);
+		border-color: var(--storeengine-primary-color);
+	}
+}

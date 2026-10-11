@@ -1,0 +1,207 @@
+// Connected split-button: solid primary action fused with an attached caret that
+// opens the status menu. Same metrics as the Academy course editor's
+// `.academy-status-split` (8px 16px primary, 34px caret, 280px menu), recolored
+// with the StoreEngine primary.
+.storeengine-status-split {
+	position: relative;
+	display: inline-flex;
+
+	&__primary {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		margin: 0;
+		padding: 8px 16px;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 20px;
+		color: #fff;
+		background: var(--storeengine-primary-color);
+		border: 1px solid var(--storeengine-primary-color);
+		border-radius: 4px 0 0 4px;
+		cursor: pointer;
+		white-space: nowrap;
+		transition: filter 0.2s ease;
+
+		&:hover:not(:disabled) {
+			filter: brightness(0.92);
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
+	}
+
+	&__caret {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		box-sizing: border-box;
+		min-width: 34px;
+		margin: 0;
+		padding: 0 8px;
+		color: #fff;
+		cursor: pointer;
+		background: var(--storeengine-primary-color);
+		border: 0;
+		border-left: 1px solid rgba(255, 255, 255, 0.5);
+		border-radius: 0 4px 4px 0;
+		transition: filter 0.2s ease;
+
+		.storeengine-icon {
+			font-size: 16px;
+			color: inherit;
+			transition: transform 0.2s ease;
+		}
+
+		&:hover,
+		&--open {
+			filter: brightness(0.92);
+		}
+
+		&--open .storeengine-icon {
+			transform: rotate(180deg);
+		}
+
+		&--muted {
+			opacity: 0.5;
+			filter: none;
+
+			&:hover,
+			&.storeengine-status-split__caret--open {
+				opacity: 0.65;
+				filter: none;
+			}
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+			filter: none;
+		}
+	}
+
+	// Nothing to save: faded, but still clickable (the status menu stays reachable).
+	&--muted &__primary:not(:disabled) {
+		opacity: 0.5;
+
+		&:hover {
+			opacity: 0.65;
+			filter: none;
+		}
+	}
+}
+
+.storeengine-status-menu {
+	position: fixed;
+	z-index: 100000;
+	box-sizing: border-box;
+	width: 280px;
+	max-height: calc(100vh - 132px);
+	overflow-y: auto;
+	padding: 6px;
+	background: #fff;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 8px;
+	box-shadow: var(--storeengine-shadow-overlay);
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	&__option {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		width: 100%;
+		margin: 0;
+		padding: 8px 10px;
+		border: 0;
+		border-radius: 6px;
+		background: transparent;
+		color: var(--storeengine-text-color);
+		font: inherit;
+		text-align: left;
+		cursor: pointer;
+
+		&:hover:not(:disabled):not(.is-selected),
+		&:focus-visible {
+			background: var(--storeengine-background-color);
+			outline: none;
+		}
+
+		&.is-selected {
+			background: color-mix(in srgb, var(--storeengine-primary-color) 14%, #fff);
+		}
+
+		&--success.is-selected {
+			background: color-mix(in srgb, var(--storeengine-green-color) 14%, #fff);
+		}
+
+		&--warning.is-selected {
+			background: color-mix(in srgb, var(--storeengine-warning-color) 18%, #fff);
+		}
+
+		&--danger.is-selected {
+			background: color-mix(in srgb, var(--storeengine-error-color) 14%, #fff);
+		}
+
+		&:disabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
+	}
+
+	&__text {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		min-width: 0;
+	}
+
+	&__name {
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 20px;
+	}
+
+	&__desc {
+		overflow: hidden;
+		font-size: 12px;
+		line-height: 16px;
+		color: var(--storeengine-subtitle-color);
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+
+	&__section {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		margin-top: 6px;
+		padding-top: 6px;
+		border-top: 1px solid var(--storeengine-border-color);
+	}
+
+	&__heading {
+		display: block;
+		margin-bottom: 4px;
+		font-size: 12px;
+		font-weight: 500;
+		line-height: 16px;
+		color: var(--storeengine-subtitle-color);
+	}
+
+	// Time only: the date comes from the calendar, kept compact like Academy's.
+	&__schedule {
+		padding: 8px 10px 4px;
+
+		.components-datetime__time {
+			margin: 0;
+		}
+	}
+}

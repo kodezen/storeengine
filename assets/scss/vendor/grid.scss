@@ -1,0 +1,8 @@
+//
+// Grid Options
+
+@use "grid-option-variables" as *;
+
+// Bootstrap file imports
+@use "breakpoints/mixins/breakpoints" as *;
+@forward "grid/bootstrap-grid";

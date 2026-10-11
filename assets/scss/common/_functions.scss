@@ -1,0 +1,22 @@
+// Common Utility Functions
+
+@use 'sass:math';
+
+// Define a default base font size (usually 16px)
+$root-font-size: 16px !default;
+
+// Private helper to handle the math
+@function _convert($pixels, $context, $unit) {
+	@if math.is-unitless($pixels) { $pixels: $pixels * 1px; }
+	@if math.is-unitless($context) { $context: $context * 1px; }
+
+	@return math.div($pixels, $context) * $unit;
+}
+
+@function rem($pixels, $context: $root-font-size) {
+	@return _convert($pixels, $context, 1rem);
+}
+
+@function em($pixels, $context: $root-font-size) {
+	@return _convert($pixels, $context, 1em);
+}

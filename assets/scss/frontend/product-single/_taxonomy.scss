@@ -1,0 +1,45 @@
+.storeengine-entry_taxonomy{
+	.storeengine-single-product-categories,
+	.storeengine-single-product-tags {
+		display: flex;
+		// baseline, not center: the label (400/19.6px line-height) and the
+		// value links (600/20px line-height) have different box heights, so
+		// centering the boxes doesn't put their text on the same line — only
+		// baseline alignment does, regardless of the line-height mismatch.
+		align-items: baseline;
+		margin-bottom: 5px;
+		&__label {
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 19.6px;
+			color: var(--storeengine-subtitle-color, #515A62);
+		}
+		&__items {
+			a {
+				font-size: 14px;
+				font-weight: 600;
+				line-height: 20px;
+				color: var(--storeengine-subtitle-color, #515A62);
+				text-decoration: none;
+				margin-left: 5px;
+			}
+		}
+	}
+	.storeengine-single-product-tags {
+		margin-bottom: 20px;
+	}
+
+}
+.storeengine-cart_sidebar-wrapper .storeengine-accordion-drawer__trigger:checked ~ .storeengine-accordion-drawer__content-wrapper {
+	padding: 0 20px 20px 0;
+}
+
+@media screen and (max-width: 768px) {
+	.storeengine-entry_taxonomy{
+		flex-direction: column;
+		.storeengine-single_categories , .storeengine-single_tag{
+			width:  100%;
+			margin: 10px 5px;
+		}
+	}
+}

@@ -1,0 +1,229 @@
+@forward './root';
+@forward './classes-library';
+@forward './editor-global';
+@forward './notification';
+@forward './button';
+@forward './list-table';
+@forward './tab-panel';
+@forward './block-ui';
+
+body.no-scroll {
+	overflow: hidden !important;
+}
+
+input, textarea {
+    &::placeholder {
+        color: var(--storeengine-placeholder-color);
+        opacity: 1;
+    }
+
+    &::-webkit-input-placeholder {
+        color: var(--storeengine-placeholder-color);
+    }
+
+    &::-moz-placeholder {
+        color: var(--storeengine-placeholder-color);
+        opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+        color: var(--storeengine-placeholder-color);
+    }
+
+    &::-ms-input-placeholder {
+        color: var(--storeengine-placeholder-color);
+    }
+}
+
+.storeengine-icon {
+	pointer-events: none;
+}
+
+.storeengine-select {
+	&__width-full {
+		width: 100%;
+	}
+	&__50 {
+		width: 50%;
+	}
+    .storeengine-react-select__input-container {
+        color: var(--storeengine-placeholder-color);
+    }
+    .storeengine-react-select__input {
+        &::placeholder {
+            color: var(--storeengine-placeholder-color);
+            opacity: 1;
+        }
+
+        &::-webkit-input-placeholder {
+            color: var(--storeengine-placeholder-color);
+        }
+
+        &::-moz-placeholder {
+            color: var(--storeengine-placeholder-color);
+            opacity: 1;
+        }
+
+        &:-ms-input-placeholder {
+            color: var(--storeengine-placeholder-color);
+        }
+
+        &::-ms-input-placeholder {
+            color: var(--storeengine-placeholder-color);
+        }
+    }
+	&--default-product-type {
+		.storeengine-react-select__control  {
+			width: 220px;
+		}
+	}
+	&--multi-price-display, &--single-price-display, &--archive-order, &--multi-currency-rate-source {
+		.storeengine-react-select__control  {
+			width: 200px;
+		}
+	}
+
+	&--multi-currency-formatting-locale {
+		.storeengine-react-select__control  {
+			width: 300px;
+		}
+	}
+}
+
+.kz-datepicker-input-wrapper {
+	.kz-datepicker-input {
+		border: 1px solid var(--storeengine-border-color);
+		box-shadow: none;
+		margin: 0;
+		padding: 20px;
+		&:active, &:focus {
+			border: 1px solid var(--storeengine-border-color);
+			box-shadow: none;
+		}
+	}
+}
+
+@media only screen and (max-width: 768px) {
+    .storeengine-page-content {
+        &__left, &__right {
+            width: 100%;
+        }
+    }
+}
+
+.storeengine-checkbox {
+	&[readonly],
+	&[disabled] {
+		pointer-events: none;
+		cursor: not-allowed;
+		accent-color: #000;
+		box-shadow: none;
+		opacity: 0.3;
+	}
+	&.payment-section {
+		margin-bottom: 0;
+	}
+}
+
+input[type=date], input[type=email],
+input[type=url], input[type=text],
+input[type=tel], input[type=search],
+input[type=color], input[type=time],
+input[type=datetime-local], input[type=datetime],
+input[type=month], input[type=password],
+input[type=number], textarea, select {
+	color: var(--storeengine-input-text-color);
+}
+
+.storeengine-quantity-input {
+	display: inline-flex;
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 8px;
+	width: max-content;
+	max-width: 150px;
+	padding: 0;
+
+	&:focus-within {
+		outline: 1px solid var(--storeengine-primary-color);
+	}
+
+	& &__input {
+		appearance: none;
+		border: none;
+		color: var(--storeengine-text-color);
+		text-align: center;
+		padding: 10px 8px;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 0;
+		outline: none;
+		flex: 1 1 auto;
+		min-width: 0;
+		&:disabled,
+		&:read-only {
+			color: var(--storeengine-placeholder-color);
+		}
+
+		&::-webkit-outer-spin-button,
+		&::-webkit-inner-spin-button {
+			appearance: none;
+			-webkit-appearance: none;
+			margin: 0;
+		}
+	}
+
+	& button {
+		background: inherit;
+		color: var(--storeengine-text-color);
+		font-size: 18px;
+		padding: 10px;
+		line-height: 0;
+		border: none;
+		outline: none;
+		border-radius: 8px 0 0 8px;
+		box-shadow: none;
+
+		&.increment {
+			border-radius: 0 8px 8px 0;
+		}
+
+		&:hover, &:focus {
+			background: var(--storeengine-primary-color);
+			color: #fff;
+		}
+
+		&[disabled] {
+			cursor: not-allowed;
+			background: var(--storeengine-border-color);
+			color: var(--storeengine-placeholder-color);
+			box-shadow: none;
+			&:hover, &:focus {
+				background: var(--storeengine-border-color);
+				color: var(--storeengine-placeholder-color);
+			}
+		}
+	}
+}
+
+.storeengine-cart-item-subtotal {
+	margin-top: 12px;
+}
+
+// Radio option: keep the radio control and its text label on one row with a
+// consistent gap so the label never sits cramped against the control. `label`
+// is inline by default (ignores `gap`); inline-flex adds the gap without
+// changing how sibling options flow, so it's safe to apply globally wherever
+// `.storeengine-radio-option` is used (affiliate/product/payment/order settings…).
+.storeengine-radio-option {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	margin: 0;
+	cursor: pointer;
+
+	input[type='radio'],
+	.storeengine-radio {
+		margin: 0;
+		flex: 0 0 auto;
+	}
+}

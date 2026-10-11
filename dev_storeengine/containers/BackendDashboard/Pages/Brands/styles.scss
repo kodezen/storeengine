@@ -1,0 +1,24 @@
+.storeengine-react-modal--brand {
+    .storeengine-react-modal__content {
+        .storeengine-brand {
+            width: 100%;
+            &-field {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+    }
+    .storeengine-react-modal__footer {
+        margin: 24px 24px 0 24px;
+    }
+}
+
+
+@media all and (max-width: 480px) {
+    .storeengine-react-modal {
+        &--term {
+            width: 100%;
+        }
+    }
+}

@@ -1,0 +1,83 @@
+.storeengine-btn {
+    &--affiliate-modal {
+        border: 1px solid var(--storeengine-border-color) !important;
+        padding: 4px 6px;
+        transition: border-color 0.3s, color 0.3s;
+        &:hover {
+            border-color: var(--storeengine-primary-color) !important;
+            color: var(--storeengine-primary-color);
+        }
+    }
+    &--referralUrl {
+        padding: 0 4px !important;
+    }
+}
+
+.storeengine-affiliate-request {
+    &__row {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    &__label {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--storeengine-subtitle-color, #6b7280);
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+    }
+
+    &__value {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 12px;
+        border: 1px solid var(--storeengine-border-color);
+        border-radius: 6px;
+        background: var(--storeengine-bg-light, #f9fafb);
+        word-break: break-word;
+
+        &--link {
+            color: var(--storeengine-primary-color);
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        &--multiline {
+            white-space: pre-wrap;
+            min-height: 60px;
+        }
+    }
+
+    &__footer {
+        margin-top: 20px;
+        padding-top: 16px;
+        border-top: 1px solid var(--storeengine-border-color);
+        align-items: center;
+    }
+}
+
+// Referral URL cell: text and copy icon share one centered baseline.
+.storeengine-referral-url {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &__text {
+        line-height: 20px;
+    }
+
+    .storeengine-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 24px;
+        height: 24px;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+    }
+}

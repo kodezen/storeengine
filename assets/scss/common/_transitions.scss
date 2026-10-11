@@ -1,0 +1,75 @@
+@keyframes storeengine-fade-in-page {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.storeengine-element-fade-in-transition {
+    animation: storeengine-fade-in-page 0.4s ease-out forwards;
+}
+.storeengine-page-transition {
+    animation: storeengine-fade-in-page 0.4s ease-out forwards;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.storeengine-expandable-section {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-out;
+
+    &--open {
+        grid-template-rows: 1fr;
+    }
+
+    &-content {
+        min-height: 0;
+        opacity: 0;
+        transition: opacity 0.3s ease-out;
+    }
+
+    &--open &-content {
+        opacity: 1;
+    }
+}
+
+
+.storeengine-skeleton-pulse {
+    animation: storeengine-skeleton-pulse 1.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes storeengine-skeleton-pulse {
+    from {
+        background-position: 200% 0;
+    }
+    to {
+        background-position: -200% 0;
+    }
+}
+
+
+.storeengine-element-transition {
+    max-height: 200px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+.storeengine-element-close-transition {
+    max-height: 16px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+
+    .storeengine-flex.storeengine-width-full {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+    }
+}

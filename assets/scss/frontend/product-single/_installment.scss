@@ -1,0 +1,139 @@
+.storeengine-single-product-price {
+  display: block;
+  border: 1px solid var(--storeengine-border-color, #e5e7eb);
+  border-radius: 12px;
+  padding: 14px;
+  background: #fff;
+  font-family: Inter, system-ui, sans-serif;
+
+  &-summery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &-name {
+    font-weight: 600;
+    color: #111827;
+  }
+
+  &-value {
+    font-size: 14px;
+    del {
+      color: var(--storeengine-placeholder-color, #9ca3af);
+    }
+
+    ins {
+      text-decoration: none;
+      color: #2563eb;
+      font-size: 18px;
+      font-weight: 700;
+    }
+  }
+}
+
+.storeengine-price-meta-installments {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.storeengine-installment-plan-wrapper {
+  outline: none;
+  border: none;
+  &,
+  & *,
+  & *:focus,
+  & *:focus-visible,
+  & *:focus-within {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+.storeengine-installment-plan-info {
+  color: var(--storeengine-text-color);
+  justify-content: space-between;
+  font-weight: 400;
+  font-size: 14px;
+  font-style: normal;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--storeengine-border-color);
+}
+
+.storeengine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px;
+  background: var(--storeengine-background-color, #f9fafb);
+  border-radius: 8px;
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+.storeengine-installment-plan-header {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  justify-content: space-between;
+  font-weight: 500;
+  font-size: 14px;
+  vertical-align: middle;
+  padding: 15px 12px 0 0;
+}
+
+.storeengine-icon {
+  transition: transform 0.3s ease;
+}
+
+.storeengine-installment-plan-details {
+   &:first-child {
+	  font-family: var(--storeengine-primary-font) sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      letter-spacing: 0;
+      vertical-align: middle;
+
+    }
+}
+
+.installment {
+  background: var(--storeengine-background-color, #f9fafb);
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 6px;
+  font-size: 14px;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.storeengine-installment {
+  background: var(--storeengine-background-color);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+
+  > :first-child {
+    font-size: inherit;
+    font-weight: 600;
+
+    > span,
+    .storeengine-price {
+      font-size: inherit;
+      font-weight: inherit;
+    }
+  }
+
+  .storeengine-price {
+    color: #111827;
+  }
+}

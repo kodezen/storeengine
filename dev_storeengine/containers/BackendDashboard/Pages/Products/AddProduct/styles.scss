@@ -1,0 +1,797 @@
+.storeengine-content-checkbox {
+	display: flex;
+	gap: 8px;
+	align-items: flex-end;
+	margin: 12px 0 16px 0;
+	padding-bottom: 16px;
+	border-bottom: 1px solid var(--storeengine-primary-border-color);
+
+	.storeengine-icon--info {
+		font-size: 16px;
+	}
+
+	.storeengine-btn--add-new-template {
+		--text-color: var(--storeengine-primary-color);
+		color: var(--storeengine-primary-color);
+		padding: 12px 0;
+		font-weight: 400;
+	}
+}
+
+.storeengine-label-disable {
+	pointer-events: none;
+	color: var(--storeengine-subtitle-color, #8E949A);
+}
+
+.storeengine-btn--add-new-product {
+	gap: 8px;
+}
+
+.storeengine-page-content {
+	.storeengine-sub-top-header {
+		padding: 0;
+	}
+
+	// Product editor only: same 24px gutter as the top bar, on both sides.
+	&.storeengine-page-content--product .storeengine-sub-top-header {
+		padding: 0 24px;
+	}
+
+	.storeengine-page-content--add-product {
+		display: flex;
+		justify-content: space-between;
+		gap: 24px;
+		padding: 0 24px;
+		box-sizing: border-box;
+		color: #101828;
+		.storeengine-page-content {
+			&__left, &__right {
+				.storeengine-content-section {
+					&--heading {
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						border-bottom: 1px solid var(--storeengine-border-color, #DFE1E2);
+						margin-bottom: 24px;
+						padding-bottom: 20px;
+					}
+
+					&__details {
+						.storeengine-post-title {
+							margin: 8px 0 24px 0;
+						}
+
+						.storeengine-product-description {
+							.storeengine-title {
+								margin-bottom: 8px;
+							}
+						}
+
+						&--form {
+							.storeengine-form-group {
+								margin-top: 24px;
+								.form-info {
+									font-size: 14px;
+									color: #101828;
+									margin-bottom: 8px;
+								}
+
+								.form-body {
+									.text-field {
+										width: 100%;
+										height: 40px;
+										border: 1px solid var(--storeengine-border-color, #DFE1E2);
+										border-radius: 4px;
+										//padding: 8px 12px 8px 12px;
+									}
+
+									textarea {
+										border: 1px solid var(--storeengine-border-color, #DFE1E2);
+										border-radius: 6px;
+										width: 100%;
+										min-height: 300px;
+										padding: 8px 14px;
+									}
+
+									div {
+										.storeengine-select {
+											width: 328px;
+										}
+									}
+								}
+							}
+						}
+					}
+
+					&__media {
+						&--canvas {
+							width: 100%;
+							height: 240px;
+							background-color: var(--storeengine-border-color);
+							border: 2px dashed var(--storeengine-border-color, #DFE1E2);
+							border-radius: 4px;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							flex-direction: column;
+							text-align: center;
+							.media-canvas-actions {
+								.media-btn {
+									background-color: var(--storeengine-primary-color);
+									color: #ffff;
+									border-radius: 4px;
+									padding: 8px 16px;
+									border: 0;
+									cursor: pointer;
+									margin: 0 8px;
+									&--upload {
+										box-shadow: none;
+									}
+
+									&--url {
+										background-color: transparent;
+										color: var(--storeengine-primary-color);
+									}
+
+									span {
+										border-bottom: 1px solid;
+									}
+								}
+							}
+
+							.media-format {
+								font-size: 14px;
+								color: var(--storeengine-subtitle-color, #8E949A);
+							}
+						}
+					}
+
+					&__basic-seo {
+						.storeengine-result-preview {
+							border: 1px solid var(--storeengine-border-color, #DFE1E2);
+							border-radius: 4px;
+							margin-bottom: 24px;
+							padding: 12px;
+							&--title {
+								font-size: 14px;
+								color: var(--storeengine-primary-color);
+								font-weight: 500;
+								margin: 0;
+								line-height: 20px;
+							}
+
+							&--url {
+								color: var(--storeengine-green-color);
+								font-weight: 400;
+								font-size: 12px;
+								line-height: 16px;
+								margin: 10px 0 10px 0;
+							}
+
+							&--description {
+								color: var(--storeengine-gray-color);
+								font-weight: 400;
+								font-size: 12px;
+								line-height: 18px;
+								margin: 0;
+							}
+						}
+
+						&--form-control {
+							.storeengine-form-group {
+								width: 100%;
+								margin-top: 24px;
+								.form-info {
+									margin-bottom: 8px;
+
+									label {
+										color: #101828;
+									}
+								}
+
+								.form-body {
+									.text-field {
+										width: 100%;
+										height: 40px;
+										border-radius: 6px;
+										border: 1px solid var(--storeengine-border-color, #DDDDDF);
+										color: var(--storeengine-subtitle-color, #8E949A);
+										padding: 8px 12px;
+									}
+
+									textarea {
+										height: 100px;
+										width: 100%;
+										border-radius: 4px;
+										border: 1px solid var(--storeengine-border-color, #DFE1E2);
+										padding: 8px 12px;
+									}
+								}
+							}
+						}
+					}
+
+					&__inventory {
+						&__actions-section {
+							.storeengine-form-group {
+								&--inventory {
+									.form-body {
+										width: 200px;
+									}
+								}
+							}
+						}
+					}
+
+					&__shipping {
+						&__actions-section {
+							display: flex;
+							flex-direction: column;
+							gap: 10px;
+							.storeengine-content-radio {
+								border: 1px solid var(--storeengine-border-color);
+								border-radius: 4px;
+								&__label {
+									display: flex;
+									justify-content: space-between;
+									align-items: center;
+									gap: 8px;
+									padding: 12px 16px;
+									color:var(--storeengine-subtitle-color)
+								}
+
+								.storeengine-physical-product-weight-area {
+									display: flex;
+									align-items: center;
+									justify-content: space-between;
+									gap: 8px;
+									padding: 8px 16px;
+
+									.storeengine-number-field {
+										width: 65%;
+									}
+								}
+
+								&--active {
+									border-color: var(--storeengine-primary-color);
+									.storeengine-checkbox--product-checkbox-reverse {
+										border-top: 1px solid var(--storeengine-primary-color);
+										padding: 12px 16px 0 16px;
+									}
+								}
+							}
+						}
+					}
+
+					&__template {
+						&--form-control {
+							&-select {
+								padding: 6px 0;
+								width: 260px;
+								margin-top: 8px;
+							}
+
+							.storeengine-btn--preset-light-blue {
+								--bg-color: transparent;
+								background: transparent;
+								padding-left: 4px;
+								margin-top: 10px;
+							}
+						}
+					}
+				}
+			}
+
+			&__right {
+				.storeengine-content-section {
+					&__customer {
+						.storeengine-form-group {
+							margin-bottom: 24px;
+						}
+					}
+
+					&--product-organize {
+						.storeengine-btn {
+							&--add-new-template {
+								color: var(--storeengine-primary-color);
+								padding: 0;
+								margin-top: 24px;
+							}
+						}
+
+						.storeengine-checkbox-content {
+							display: flex;
+							align-items: center;
+							gap: 8px;
+							// margin-top: -12px;
+							input[type="checkbox"] {
+								margin: 0;
+							}
+							.storeengine-sub-title-bold--hide-product {
+                font-weight: 500;
+							}
+
+							.storeengine-tooltip {
+								margin-bottom: -2px;
+								margin-left: 0;
+							}
+						}
+					}
+
+					.storeengine-title-subtitle {
+						&--link-product {
+							flex-direction: row;
+							align-items: center;
+						}
+					}
+				}
+			}
+
+			&__left {
+				.storeengine-content-section {
+					&__product-canvas {
+						width: 100%;
+						height: 240px;
+						border: 1px solid var(--storeengine-border-color, #DFE1E2);
+						border-radius: 4px;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						flex-direction: column;
+						text-align: center;
+						.select-product {
+							background-color: var(--storeengine-primary-color);
+							color: #ffff;
+							border-radius: 4px;
+							padding: 8px 16px;
+							border: 0;
+							cursor: pointer;
+							margin: 0 8px;
+							box-shadow: none;
+						}
+
+						.product-subtitle {
+							font-size: 14px;
+							color: var(--storeengine-subtitle-color, #8E949A);
+						}
+					}
+
+					.storeengine-btn {
+						&--edit-permalink {
+							padding: 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.storeengine-content-section__pricing--form-control {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	.storeengine-custom-select--payment-type {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 8px;
+	}
+
+	.price-section {
+		display: flex;
+		justify-content: space-between;
+		gap: 24px;
+		.storeengine-mb-6 {
+			margin: 0;
+		}
+
+		.storeengine-form-group {
+			width: 100%;
+			.form-info {
+				margin-bottom: 8px;
+				label {
+					color: #101828;
+				}
+			}
+
+			.form-body {
+				.text-field {
+					width: 100%;
+					height: 40px;
+					border-radius: 6px;
+					border: 1px solid var(--storeengine-border-color, #DDDDDF);
+					color: var(--storeengine-subtitle-color, #8E949A);
+				}
+			}
+		}
+	}
+
+	.storeengine-payment-subscription {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		&__field {
+			display: flex;
+			align-items: center;
+			gap: 24px;
+			.storeengine-mb-6 {
+				margin: 0;
+			}
+
+			.storeengine-custom-select--payment-duration {
+				.storeengine-custom-select--container {
+					width: 80px;
+				}
+			}
+		}
+	}
+}
+
+.storeengine-product-editor-pricing__form {
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 4px;
+	padding: 16px;
+	.storeengine-custom-select {
+		&--payment-duration-type, &--setup-fee-type {
+			.storeengine-custom-select--container {
+				min-height: 38px;
+				margin-top: 4px;
+				width: 100px;
+			}
+		}
+
+		&--setup-fee-type {
+			gap: 0;
+		}
+	}
+
+	.storeengine-price {
+		&--onetime, &--subscription {
+			cursor: pointer;
+		}
+	}
+
+	.storeengine-product-expire,
+	.storeengine-product-license-activation-limit {
+		.storeengine-checkbox {
+			width: 100%;
+		}
+
+		.storeengine-number-field {
+			flex: 0 0 160px;
+			width: 160px;
+		}
+	}
+
+	.storeengine-price-action {
+		display: flex;
+		justify-content: flex-end;
+		gap: 8px;
+		border-top: 1px solid var(--storeengine-border-color);
+		padding-top: 16px;
+	}
+}
+
+.storeengine-product-editor-pricing__payment-type {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	.storeengine-item-label {
+		input[type="checkbox"] {
+			margin-bottom: -2px;
+		}
+	}
+}
+
+.storeengine-setup-fee {
+	.storeengine-select {
+		width: 350px;
+		.storeengine-react-select__control {
+			height: 42px;
+		}
+	}
+}
+.storeengine-repeated-type {
+	.storeengine-form-group--product-price {
+		margin-bottom: 0;
+	}
+	.storeengine-select {
+		width: 250px;
+		.storeengine-react-select__control {
+			height: 42px;
+		}
+	}
+}
+
+.storeengine-single-product {
+	border: 1px solid var(--storeengine-border-color);
+	border-radius: 4px;
+	padding: 10px 12px;
+	justify-content: space-between;
+	background-color: #FFF;
+
+	.storeengine-product-editor-price-item {
+		display: flex;
+		gap: 8px;
+		align-items: flex-start;
+		width: 100%;
+
+		&__details {
+			.storeengine-flex {
+				font-size: 14px;
+			}
+			.storeengine-product-name,
+			.storeengine-product-price {
+				font-size: 14px;
+				font-weight: 400;
+				margin: 0;
+				line-height: 20px;
+			}
+
+			.storeengine-product-regular-price {
+				font-size: 14px;
+				font-weight: 400;
+				color: var(--storeengine-subtitle-color, #8E949A);
+				text-decoration: line-through;
+				margin: 0;
+				line-height: 20px;
+			}
+		}
+	}
+
+	.storeengine-product-price-title {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 4px;
+		svg {
+			cursor: pointer;
+			width: 14px;
+		}
+
+		p {
+			margin: 0 !important;
+		}
+		.storeengine-product-name {
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 140%;
+		}
+		.storeengine-product-editor-price-item {
+			&__details {
+				font-size: 14px;
+				font-weight: 400;
+				line-height: 140%;
+			}
+		}
+
+		.storeengine-btn--edit-price {
+			padding: 0;
+			--icon-size: 15px;
+		}
+	}
+
+	.storeengine-highlight {
+		border: none;
+		position: relative;
+		padding: 4px 6px;
+		border-radius: 4px;
+		background: #F4F5F5;
+		.storeengine-btn--p-id-copy {
+			color: var(--storeengine-text-color);
+			padding: 0;
+		}
+
+		&__tooltip {
+			visibility: hidden;
+			opacity: 0;
+			transition: opacity 0.2s ease;
+			position: absolute;
+			top: 50%;
+			left: 100%;
+			transform: translateY(-50%);
+			margin-left: 8px;
+			background: #0F0E16;
+			color: #fff;
+			padding: 4px 8px;
+			border-radius: 4px;
+			white-space: nowrap;
+			z-index: 1000;
+			&::after {
+				content: '';
+				position: absolute;
+				top: 50%;
+				left: -5px;
+				transform: translateY(-50%);
+				width: 0;
+				height: 0;
+				border-top: 10px solid transparent;
+				border-bottom: 10px solid transparent;
+				border-right: 10px solid #0F0E16;
+			}
+		}
+
+		&:hover .storeengine-highlight__tooltip {
+			visibility: visible;
+			opacity: 1;
+		}
+	}
+}
+
+.is-price-hidden {
+	opacity: 0.55 !important;
+}
+
+.drag-handler {
+	text-decoration: none;
+	cursor: move;
+	user-select: none;
+}
+
+.sorting-price {
+	z-index: 99;
+	opacity: 0.75;
+	user-select: none;
+	cursor: grabbing;
+}
+
+.storeengine-item-label {
+	input {
+		margin-top: 2px;
+	}
+	p {
+		pointer-events: painted;
+		cursor: pointer;
+		span {
+			color: var(--storeengine-text-color);
+		}
+	}
+}
+
+.storeengine-btn--md.storeengine-btn {
+	&--product-price,
+	&--add-variants,
+	&--add-integrations {
+		--icon-size: 20px;
+	}
+	&--product-price {
+		font-size: 12px;
+    font-weight: 500;
+    line-height: 140%;
+		--icon-size: 16px;
+		padding: 6px 8px;
+	}
+}
+
+.storeengine-btn {
+	&--view-product {
+		padding: 0 !important;
+		&:hover {
+			color: var(--storeengine-primary-color);
+		}
+	}
+}
+
+.storeengine-form-group--license_activation_limit {
+	width: calc(100% - 50px) !important;
+	margin-left: auto;
+}
+
+@media only screen and (max-width: 768px) {
+	.storeengine-page-content--add-product {
+		flex-direction: column;
+	}
+}
+
+.storeengine-add-product__purchase-redirect {
+	.storeengine-post-form-group {
+		display: block;
+		gap: 4px;
+		.storeengine-post-form-info {
+			margin-bottom: 8px;
+		}
+	}
+}
+
+
+.form-group--product-status {
+	.storeengine-select .storeengine-react-select__control {
+		height: 42px;
+	}
+}
+
+// Settings → Product form: a field the admin marked "Required".
+.storeengine-pf-field {
+	position: relative;
+	min-width: 0;
+
+	&__badge {
+		position: absolute;
+		top: 0;
+		right: 0;
+		font-size: 11px;
+		line-height: 1;
+		font-weight: 600;
+		color: var(--storeengine-primary-color);
+		background: var(--storeengine-primary-light);
+		border-radius: 999px;
+		padding: 3px 8px;
+		pointer-events: none;
+	}
+
+	&__error {
+		margin: 6px 0 0;
+		font-size: 12px;
+		color: var(--storeengine-error-color);
+	}
+
+	&.has-error {
+		input,
+		textarea,
+		.storeengine-react-select__control {
+			border-color: var(--storeengine-error-color);
+		}
+	}
+}
+
+// Keep the field's share of a flex row when it's wrapped in the gate.
+.storeengine-flex > .storeengine-pf-field,
+.flex > .storeengine-pf-field {
+	flex: 1 1 0;
+}
+
+// The gallery has no label row of its own, so its tag sits above it in the flow.
+.storeengine-pf-field[data-pf-field='featured_image'] > .storeengine-pf-field__badge {
+	position: static;
+	display: inline-block;
+	margin-bottom: 8px;
+}
+
+
+// "Hide this product" card: rows are spaced by the card, not by their own
+// margins, and a row that renders nothing (e.g. the slug before the product
+// exists) must not leave a gap behind.
+.storeengine-product-publishing {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	.inside:empty {
+		display: none;
+	}
+}
+
+// Inline notice inside a product editor card (soft amber, text-first).
+.storeengine-warning.storeengine-product-notice {
+	align-items: flex-start;
+	gap: 12px;
+	padding: 12px 16px;
+	background: var(--storeengine-warning-light);
+	border: 1px solid color-mix(in srgb, var(--storeengine-warning-color) 45%, #fff);
+	border-radius: 6px;
+
+	.storeengine-icon--info-primary::before {
+		font-size: 20px;
+		line-height: 20px;
+		color: #B45309;
+	}
+
+	.storeengine-product-notice__body {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+	}
+
+	.storeengine-product-notice__title {
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 20px;
+		color: var(--storeengine-text-color);
+	}
+
+	.storeengine-product-notice__text {
+		font-size: 13px;
+		line-height: 18px;
+		color: var(--storeengine-subtitle-color);
+	}
+}

@@ -1,0 +1,50 @@
+.storeengine-table-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+    }
+    box-shadow: none;
+    outline: none;
+    a {
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:focus {
+            box-shadow: none;
+            outline: none;
+        }
+    }
+    .storeengine-table-title__link {
+        text-decoration: none !important;
+        padding: 4px;
+        margin-top: 2px
+    }
+}
+.storeengine-dropdown-menu--product-table {
+    box-sizing: border-box;
+    padding: 2px 4px;
+}
+
+.storeengine-page-content--product {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.storeengine-btn--storeengine-product-edit {
+    padding: 4px !important;
+    .storeengine-icon--edit {
+        font-size: 14px;
+    }
+}
+
+.storeengine-btn--storeengine-wordpress-button {
+    padding: 4px !important;
+    .storeengine-icon--wordpress{
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,112 @@
+.storeengine-currency-switcher {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	// Sits next to the wishlist heart button (both hook into
+	// header_right_content as plain inline-flex siblings with no shared flex
+	// container), so there's no `gap` between them by default — just
+	// incidental inline whitespace — and two inline-flex elements of
+	// different heights (36px trigger vs 38px button) land on mismatched
+	// `vertical-align: baseline` positions. Middle-align this and give the
+	// very next sibling a real margin instead.
+	vertical-align: middle;
+
+	& + .storeengine-wishlist-btn {
+		margin-left: 12px;
+		vertical-align: middle;
+	}
+
+	&__label {
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--storeengine-text-color, #333);
+		white-space: nowrap;
+		cursor: default;
+	}
+
+	&__dropdown {
+		position: relative;
+	}
+
+	&__trigger {
+		display: inline-flex !important;
+		align-items: center;
+		gap: 6px;
+		height: 36px;
+		padding: 0 10px;
+		font-size: 14px;
+		font-weight: 400;
+		color: var(--storeengine-text-color, #333);
+		background-color: #fff;
+		border: 1px solid var(--storeengine-border-color, #d1d5db);
+		border-radius: 4px;
+		cursor: pointer;
+		outline: none;
+		transition: border-color 0.2s ease;
+		white-space: nowrap;
+		box-sizing: border-box;
+
+		&:focus,
+		&:hover {
+			border-color: var(--storeengine-primary-color, #2563eb);
+			outline: none;
+			box-shadow: none;
+		}
+
+		&[aria-expanded="true"] {
+			border-color: var(--storeengine-primary-color, #2563eb);
+
+			.storeengine-currency-switcher__chevron {
+				transform: rotate(180deg);
+			}
+		}
+	}
+
+	&__chevron {
+		flex-shrink: 0;
+		transition: transform 0.2s ease;
+	}
+
+	&__options {
+		position: absolute;
+		top: calc(100% + 4px);
+		left: 0;
+		z-index: 9999;
+		min-width: 100%;
+		margin: 0;
+		padding: 4px 0;
+		list-style: none;
+		background-color: #fff;
+		border: 1px solid var(--storeengine-border-color, #d1d5db);
+		border-radius: 4px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		display: none;
+
+		&.is-open {
+			display: block;
+		}
+
+		&.opens-upward {
+			top: auto;
+			bottom: calc(100% + 4px);
+		}
+	}
+
+	&__option {
+		padding: 7px 12px;
+		font-size: 14px;
+		color: var(--storeengine-text-color, #333);
+		cursor: pointer;
+		white-space: nowrap;
+		transition: background-color 0.15s ease;
+
+		&:hover {
+			background-color: var(--storeengine-light-bg, #f3f4f6);
+		}
+
+		&.is-selected {
+			font-weight: 500;
+			color: var(--storeengine-primary-color, #2563eb);
+		}
+	}
+}

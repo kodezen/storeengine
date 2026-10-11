@@ -1,0 +1,86 @@
+.form-group {
+    &--additional-content {
+        display: flex;
+        flex-direction: column;
+
+        // --- Easy Mail Builder inspector: shield from wp-admin/forms.css ---
+        //
+        // The block builder mounts on a normal wp-admin page, so core's
+        // `forms.css` is loaded and styles bare form controls with attribute
+        // selectors like `input[type="number"]` (specificity 0,1,1). Those
+        // out-specify the editor's single-class control styles (`.emb-field-input`,
+        // 0,1,0) and its inline sizing, so wp-admin's 30px min-height, grey
+        // border/box-shadow and custom checkbox glyph bleed into the inspector —
+        // the panel renders but every field (39 number + 25 color inputs, the
+        // toggles) looks oversized and misaligned. This is the reported
+        // "block settings UI broken (mis-styled)".
+        //
+        // Scope everything to the editor container only (the additional-content
+        // group holds nothing but <EmbBuilder>).
+        .form-body {
+            // 1. Neutralise the box bloat wp-admin imposes on every bare control.
+            input[type="text"],
+            input[type="search"],
+            input[type="url"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="password"],
+            input[type="number"],
+            input[type="color"],
+            textarea,
+            select {
+                min-height: 0;
+                box-shadow: none;
+                line-height: normal;
+            }
+
+            // 2. Re-assert the editor's own field styling. Its inspector controls
+            //    (number/select/color — Border width, radius, style, colour, …)
+            //    all carry `.emb-field-input`, but that single class (0,1,0) loses
+            //    to wp-admin's `input[type=number]` (0,1,1), so EMB's intended
+            //    border/padding/radius never render and the fields look flat &
+            //    unstyled. This nested selector is (0,3,0) — it beats wp-admin —
+            //    and mirrors the library's `.emb-field-input` rule (via its own
+            //    `--emb-*` tokens, so it tracks the editor theme). Inline styles
+            //    on the colour swatch (36×32, padding 0) still win over this.
+            .emb-field-input {
+                box-sizing: border-box;
+                width: 100%;
+                padding: 6px 8px;
+                border: 1px solid var(--emb-border-strong, #cbd5e1);
+                border-radius: 4px;
+                font-size: 13px;
+                font-family: inherit;
+                background: var(--emb-surface-bg, #fff);
+                color: var(--emb-text, #0f172a);
+                min-height: 0;
+                box-shadow: none;
+                line-height: normal;
+            }
+
+            input[type="checkbox"],
+            input[type="radio"] {
+                -webkit-appearance: auto;
+                appearance: auto;
+                width: auto;
+                height: auto;
+                min-width: 0;
+                min-height: 0;
+                margin: 0;
+                padding: 0;
+                border: initial;
+                background: initial;
+
+                &::before {
+                    content: none;
+                }
+            }
+        }
+    }
+    .form-body {
+        .desc {
+            display: flex;
+            justify-content: flex-start;
+        }
+    }
+}

@@ -1,0 +1,501 @@
+.storeengine-settings{
+    overflow: unset !important;
+}
+
+// Compact, single-line nav items — descriptions (subtitles) hidden so the menu
+// takes less vertical space.
+.storeengine-page-content--settings .storeengine-tab-item--sub-title {
+    display: none;
+}
+
+// Transient highlight applied by ScrollToField when the settings search (or a
+// deep link) jumps to a specific field.
+.storeengine-settings-field--highlight {
+    border-radius: 6px;
+    animation: storeengine-settings-field-pulse 2.2s ease-out;
+}
+
+@keyframes storeengine-settings-field-pulse {
+    0%,
+    15% {
+        box-shadow: 0 0 0 2px var(--storeengine-primary-color, #5b3df6),
+            0 0 0 6px rgba(91, 61, 246, 0.18);
+    }
+    100% {
+        box-shadow: 0 0 0 0 transparent;
+    }
+}
+
+.storeengine-tab-children {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 2px 0 6px 26px;
+    padding-left: 10px;
+    border-left: 1px solid var(--storeengine-border-color, #DEDEDE);
+}
+
+// Dropdown children: title-only (subtitles hidden) for a compact, tidy list;
+// smaller icon, comfortable hit area.
+.storeengine-tab-panel__item--child .storeengine-tab-item {
+    padding: 8px 10px;
+    gap: 8px;
+    width: calc(100% - 20px);
+
+    .storeengine-tab-item--title {
+        font-size: 13px;
+        font-weight: 500;
+    }
+
+    .storeengine-tab-item--sub-title {
+        display: none;
+    }
+
+    .storeengine-icon::before {
+        font-size: 16px;
+    }
+}
+
+// Active dropdown child = text-based highlight (brand colour + bold), no solid
+// background fill. Higher specificity so it wins over the shared solid
+// `--is-active` fill.
+.storeengine-tab-panel__item--child .storeengine-tab-item.storeengine-tab-item--is-active {
+    background: transparent;
+    color: var(--storeengine-primary-color);
+
+    .storeengine-tab-item--title {
+        color: var(--storeengine-primary-color);
+        font-weight: 600;
+    }
+
+    .storeengine-icon::before {
+        color: var(--storeengine-primary-color);
+    }
+}
+
+.storeengine-tab-item--wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+// "Manage License" is pinned to the bottom of the settings nav with a
+// highlighted, accent-bordered look so it stands apart from the regular tabs.
+.storeengine-tab-item--highlight {
+    margin-top: 12px;
+    border: 1px solid var(--storeengine-primary-color);
+    background: var(--storeengine-primary-light, rgba(0, 107, 255, 0.08));
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -7px;
+        left: 0;
+        right: 0;
+        border-top: 1px solid var(--storeengine-border-color);
+    }
+
+    position: relative;
+
+    .storeengine-tab-item--title {
+        color: var(--storeengine-primary-color);
+        font-weight: 600;
+    }
+
+    .storeengine-icon::before {
+        color: var(--storeengine-primary-color);
+    }
+
+    &:hover {
+        background: var(--storeengine-primary-light, rgba(0, 107, 255, 0.14));
+    }
+}
+
+// The settings nav tabs are <a> links, so WordPress core paints an `a:focus`
+// box-shadow ring that lingers after a pointer click. Suppress that ring for
+// pointer focus (the selected-tab fill already shows position); keyboard
+// `:focus-visible` still gets a ring for accessibility.
+.storeengine-page-content--settings .storeengine-tab-item:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}
+
+.storeengine-page-content--settings {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    overflow: unset !important;
+    gap: 24px;
+
+    .storeengine-settings-content {
+        width: 70%;
+        background: #FFF;
+        padding: 24px;
+        border: 1px solid var(--storeengine-border-color);
+        border-radius: 4px;
+        .storeengine-react-select {
+            &__control {
+                width: 100%;
+            }
+        }
+    
+        .storeengine-settings-course-page {
+            .storeengine-select--full .storeengine-react-select__control {
+                width: 200px;
+            }
+        }
+    
+        .storeengine-course-archive-order {
+            .form-group {
+                .form-body {
+                    .storeengine-select {
+                        width: 260px;
+                    }
+                }
+            }
+        }
+    
+        .components-notice {
+            margin-bottom: 12px;
+        }
+    
+        .form-group {
+            .form-body {
+                input[type="text"] {
+                    height: 40px;
+                }
+    
+                .storeengine-select {
+                    .storeengine-react-select__control {
+                        width: 200px;
+                    }
+                }
+            }
+        }
+    
+        .storeengine-custom-select {
+            &--recaptcha-type {
+                .storeengine-custom-select--container {
+                    width: 200px;
+                }
+            }
+        }
+    
+        .storeengine-textarea-width {
+            .storeengine-textarea-container .storeengine-column-items textarea {
+                min-width: 300px;
+            }
+        }
+    }
+
+    .storeengine-tab-content {
+        border-radius: 4px;
+        background: #fff;
+        color: #101828;
+        padding: 24px;
+        border: 1px solid var(--storeengine-border-color);
+    }
+
+    .storeengine-tab-content-payment-method {
+        &__payment-container {
+            .payment-method {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                justify-content: space-between;
+                .form-group {
+                    &--payment-section {
+                        display: flex;
+                        align-items: center;
+                        gap: 16px;
+                        width: 100%;
+                        margin-bottom: -7px;
+                        .form-info {
+                            width: 100%;
+                            .payment-image {
+                                border: 1px solid var(--storeengine-border-color);
+                                border-radius: 4px;
+                                display: flex;
+                                align-items: center;
+                                padding: 10px 12px;
+
+                                img {
+                                    height: 25px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .storeengine-tab-content--emails {
+        padding-bottom: 0;
+    }
+}
+
+.storeengine-email-setting-wrap {
+    padding: 40px;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    .storeengine-email-template-preview {
+        width: 45%;
+        overflow: hidden;
+        background: #fff;
+        padding: 24px;
+        border: 1px solid var(--storeengine-border-color);
+        border-radius: 4px;
+        &__heading {
+            text-align: start;
+            margin-left: 24px;
+        }
+
+        iframe {
+            width: 100%;
+            min-height: 450px;
+            height: 100%;
+        }
+
+        // The on-demand Preview modal renders as a DOM descendant of the
+        // editor wrap, so the 45% width above (meant for the old side-by-side
+        // live preview) leaks in and leaves the right half of the modal blank.
+        // In the modal the preview owns the full body — full-bleed, no card
+        // chrome, since the iframe already paints the email's own canvas.
+        // min-height keeps the modal at a stable size so it doesn't collapse
+        // into a thin strip while the preview is loading.
+        &--modal {
+            width: 100%;
+            padding: 0;
+            border: 0;
+            min-height: 70vh;
+        }
+
+        // Shimmering "email loading" skeleton — mimics the header + copy + CTA
+        // of the real email on its own canvas, so there's no blank flash or
+        // layout jump between the loading state and the rendered iframe.
+        &__skeleton {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 55px 20px 40px;
+            background: var(--storeengine-background-color, #f6f6f6); // matches the email body canvas
+        }
+
+        &__skeleton-card {
+            width: 100%;
+            max-width: 580px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            padding: 45px;
+            background: #fff;
+            border-radius: 4px;
+            box-shadow: none;
+        }
+
+        .se-skel {
+            display: block;
+            height: 14px;
+            border-radius: 6px;
+            background: linear-gradient(90deg, #ececf0 25%, #f5f6f8 37%, #ececf0 63%);
+            background-size: 400% 100%;
+            animation: storeengine-email-skel-shimmer 1.4s ease infinite;
+
+            &--heading {
+                height: 26px;
+                width: 60%;
+                margin-bottom: 10px;
+            }
+
+            &--line { width: 100%; }
+            &--short { width: 45%; }
+
+            &--gap {
+                height: 8px;
+                background: none;
+                animation: none;
+            }
+
+            &--button {
+                height: 42px;
+                width: 168px;
+                margin-top: 18px;
+            }
+        }
+
+        &__loading {
+            margin: 0;
+            color: #6b7280;
+            font-size: 13px;
+            letter-spacing: 0.02em;
+        }
+    }
+
+    @keyframes storeengine-email-skel-shimmer {
+        0%   { background-position: 100% 0; }
+        100% { background-position: 0 0; }
+    }
+
+    .storeengine-email-settings-control {
+        border-right: 1px solid var(--storeengine-border-color, #E5E4E6);
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+            .form-info {
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 24px;
+                letter-spacing: 0.02em;
+                color: var(--storeengine-text-color, #1E1E1E);
+            }
+
+            &--email-checkbox {
+                flex-direction: row;
+                margin-top: 0;
+                .form-info {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 3px;
+                    width: 100%
+                }
+            }
+        }
+    }
+}
+
+.storeengine-settings-radio-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+}
+
+.content-box {
+    border: 1px solid var(--storeengine-border-color, #DFE1E2);
+    padding: 24px;
+    border-radius: 4px;
+    margin-top: 24px;
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--storeengine-border-color, #DFE1E2);
+        padding-bottom: 24px;
+        &--title {
+            font-weight: 500;
+            margin: 0;
+            font-size: 14px;
+        }
+    }
+
+    &--title {
+        font-weight: 500;
+        margin: 0;
+        border-bottom: 1px solid var(--storeengine-border-color, #DFE1E2);
+        padding-bottom: 24px;
+    }
+}
+
+.storeengine-settings-radio-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.storeengine-custom-select--currency {
+    margin-bottom: 24px;
+}
+
+.kzui-table {
+    &--tax-settings {
+        box-shadow: none !important;
+        padding: 24px 0 0 0 !important;
+        .kzui-table__container .kzui-table__table {
+            padding: 0;
+            border: none;
+            overflow-x: scroll;
+        }
+    }
+}
+
+/* Smooth transitions for settings components */
+.storeengine-fade-in-up {
+    animation: storeengineFadeInUp 0.3s ease-in-out;
+}
+
+.storeengine-heading-with-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--storeengine-border-color);
+    &__heading {
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 25.2px;
+        color: var(--storeengine-text-color);
+        margin: 0 !important;
+    }
+}
+
+@keyframes storeengineFadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.storeengine-fade-in {
+    animation: storeengineFadeIn 0.2s ease-in-out;
+}
+
+@keyframes storeengineFadeIn {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.storeengine-settings {
+    /* Smooth transitions for common interactive elements and components that toggle or collapse */
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    .storeengine-btn,
+    .components-base-control,
+    .components-form-toggle,
+    .components-panel__body,
+    .storeengine-accordion,
+    .storeengine-toggle,
+    .storeengine-collapse {
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+    }
+
+    /* Transition applied to component switching container */
+    .storeengine-tab-panel-content {
+        transition: height 0.3s ease-in-out;
+        
+        /* Elements typically used for collapsible panels */
+        [class*="collapse"], 
+        [class*="toggle"], 
+        [class*="accordion"], 
+        [class*="panel-body"] {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+        }
+    }
+}

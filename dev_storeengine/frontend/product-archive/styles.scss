@@ -1,0 +1,521 @@
+/**
+ * Product-archive card enhancements: card image carousel, Quick View button,
+ * and the Quick View modal.
+ */
+
+$se-border: var(--storeengine-border-color, #e5e7eb);
+$se-primary: var(--storeengine-primary-color, #2563eb);
+
+/* ---------------- Card image carousel ---------------- */
+.storeengine-product__header {
+	position: relative;
+}
+
+.storeengine-card-carousel {
+	position: relative;
+	display: block;
+	overflow: hidden;
+
+	&__track {
+		display: flex;
+		transition: transform 0.3s ease;
+	}
+
+	&__slide {
+		flex: 0 0 100%;
+		min-width: 0;
+
+		img {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	// A bare chevron, no disc. The white circle read as a button and competed
+	// with the real circular controls stacked in the same corner of the
+	// thumbnail (wishlist, compare). A drop-shadow keeps it legible over a
+	// light image now that there is no plate behind it.
+	&__arrow {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 32px;
+		height: 32px;
+		border: 0;
+		border-radius: 0;
+		background: none;
+		box-shadow: none;
+		cursor: pointer;
+		opacity: 0;
+		transition: opacity 0.2s ease;
+		z-index: 3;
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 52%;
+			width: 9px;
+			height: 9px;
+			border-top: 2px solid #fff;
+			border-left: 2px solid #fff;
+			filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.55));
+		}
+
+		&--prev {
+			left: 4px;
+			&::before {
+				transform: translate(-30%, -50%) rotate(-45deg);
+			}
+		}
+		&--next {
+			right: 4px;
+			&::before {
+				transform: translate(-70%, -50%) rotate(135deg);
+			}
+		}
+	}
+
+	&__dots {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 8px;
+		display: flex;
+		justify-content: center;
+		gap: 5px;
+		z-index: 3;
+	}
+
+	&__dot {
+		width: 7px;
+		height: 7px;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.65);
+		box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12);
+		cursor: pointer;
+
+		&.is-active {
+			background: #fff;
+			box-shadow: 0 0 0 2px $se-primary;
+		}
+	}
+}
+
+.storeengine-product__header:hover .storeengine-card-carousel__arrow {
+	opacity: 1;
+}
+
+/* ---------------- Quick View button ---------------- */
+.storeengine-quick-view-btn {
+	position: absolute;
+	left: 50%;
+	bottom: 14px;
+	transform: translate(-50%, 8px);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 16px;
+	border: 0;
+	border-radius: 999px;
+	background: rgba(17, 17, 17, 0.85);
+	color: #fff;
+	font-size: 13px;
+	font-weight: 500;
+	cursor: pointer;
+	opacity: 0;
+	transition: opacity 0.2s ease, transform 0.2s ease;
+	z-index: 4;
+
+	&__icon {
+		width: 14px;
+		height: 14px;
+		border: 2px solid #fff;
+		border-radius: 50%;
+		position: relative;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 3px;
+			height: 3px;
+			border-radius: 50%;
+			background: #fff;
+			transform: translate(-50%, -50%);
+		}
+	}
+
+	&:hover {
+		background: $se-primary;
+	}
+}
+
+// Reveal on hover over the whole card, not just the thumbnail, so shoppers can
+// trigger Quick View from anywhere on the card (Shopify-style). Keyboard focus
+// on the button also reveals it for accessibility.
+.storeengine-product:hover .storeengine-quick-view-btn,
+.storeengine-product-wrapper:hover .storeengine-quick-view-btn,
+.storeengine-quick-view-btn:focus-visible {
+	opacity: 1;
+	transform: translate(-50%, 0);
+}
+
+/* ---------------- Quick View modal ---------------- */
+:root.storeengine-qv-open {
+	overflow: hidden;
+}
+
+.storeengine-qv {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: rgba(0, 0, 0, 0.55);
+	transition: opacity 0.28s ease;
+
+	&[hidden] {
+		display: none;
+	}
+
+	&__dialog {
+		position: relative;
+		width: min(960px, 100%);
+		max-height: 90vh;
+		overflow: auto;
+		background: #fff;
+		border-radius: 12px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+			opacity 0.28s ease;
+	}
+
+	/* ---- Position: left / right sidebar (admin setting) ---- */
+	&--pos-left,
+	&--pos-right {
+		padding: 0;
+
+		.storeengine-qv__dialog {
+			width: min(520px, 100%);
+			height: 100vh;
+			max-height: 100vh;
+			border-radius: 0;
+		}
+
+		// One column in a narrow panel.
+		.storeengine-quick-view {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&--pos-left {
+		justify-content: flex-start;
+	}
+
+	&--pos-right {
+		justify-content: flex-end;
+	}
+
+	/* ---- Open / close animations (driven by .is-open; admin setting) ---- */
+	// Every animated variant fades the dim overlay in; None is instant. The
+	// dialog itself then does something visibly distinct per variant so the
+	// admin setting is actually perceptible: Fade = opacity only, Zoom = a
+	// spring "pop" from small, Slide = a clear directional glide.
+	&--anim-fade,
+	&--anim-zoom,
+	&--anim-slide {
+		opacity: 0;
+
+		&.is-open {
+			opacity: 1;
+		}
+	}
+
+	// Fade: dialog fades in place — no movement at all.
+	&--anim-fade .storeengine-qv__dialog {
+		opacity: 0;
+		transform: none;
+	}
+
+	// Zoom: dialog scales up from clearly-small with a slight overshoot so it
+	// "pops" rather than just fading. Opacity fades faster than the scale so the
+	// scale is what the eye tracks.
+	&--anim-zoom .storeengine-qv__dialog {
+		opacity: 0;
+		transform: scale(0.8);
+		transition: transform 0.36s cubic-bezier(0.34, 1.56, 0.64, 1),
+			opacity 0.2s ease;
+	}
+
+	// Slide: from the docked edge for sidebars, from well below for center. A
+	// larger travel + decelerate easing makes the glide unmistakable, and the
+	// dialog stays fully opaque so the motion (not a fade) reads as the effect.
+	&--anim-slide .storeengine-qv__dialog {
+		opacity: 0;
+		transform: translateY(72px);
+		transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+			opacity 0.32s ease;
+	}
+	&--anim-slide.storeengine-qv--pos-left .storeengine-qv__dialog,
+	&--anim-slide.storeengine-qv--pos-right .storeengine-qv__dialog {
+		opacity: 1;
+	}
+	&--anim-slide.storeengine-qv--pos-left .storeengine-qv__dialog {
+		transform: translateX(-100%);
+	}
+	&--anim-slide.storeengine-qv--pos-right .storeengine-qv__dialog {
+		transform: translateX(100%);
+	}
+
+	&--anim-fade.is-open .storeengine-qv__dialog,
+	&--anim-zoom.is-open .storeengine-qv__dialog,
+	&--anim-slide.is-open .storeengine-qv__dialog {
+		opacity: 1;
+		transform: none;
+	}
+
+	// None: appear instantly, no transition.
+	&--anim-none,
+	&--anim-none .storeengine-qv__dialog {
+		transition: none;
+	}
+
+	/* ---- Prev / next product navigation ---- */
+	&__nav {
+		position: fixed;
+		top: 50%;
+		transform: translateY(-50%);
+		width: 46px;
+		height: 46px;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(255, 255, 255, 0.92);
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		cursor: pointer;
+		z-index: 100001;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&::before {
+			content: '';
+			width: 10px;
+			height: 10px;
+			border-top: 2px solid #333;
+			border-left: 2px solid #333;
+		}
+
+		&--prev {
+			left: 20px;
+			&::before {
+				transform: translateX(2px) rotate(-45deg);
+			}
+		}
+		&--next {
+			right: 20px;
+			&::before {
+				transform: translateX(-2px) rotate(135deg);
+			}
+		}
+
+		&[disabled] {
+			opacity: 0.3;
+			cursor: default;
+		}
+
+		&:not([disabled]):hover {
+			background: #fff;
+		}
+	}
+
+	/* ---- Loading skeleton ---- */
+	&__skeleton {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 24px;
+		padding: 24px;
+
+		@media (max-width: 720px) {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	&__sk-block,
+	&__sk-line {
+		border-radius: 8px;
+		background: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0.06) 25%,
+			rgba(0, 0, 0, 0.03) 37%,
+			rgba(0, 0, 0, 0.06) 63%
+		);
+		background-size: 400% 100%;
+		animation: storeengine-qv-shimmer 1.3s ease infinite;
+	}
+
+	&__sk-block {
+		aspect-ratio: 1;
+	}
+
+	&__sk-line {
+		height: 16px;
+		margin-bottom: 14px;
+
+		&--lg {
+			height: 30px;
+			width: 70%;
+		}
+		&--sm {
+			width: 45%;
+		}
+	}
+
+	&__close {
+		position: absolute;
+		top: 12px;
+		right: 12px;
+		width: 36px;
+		height: 36px;
+		border: 0;
+		border-radius: 50%;
+		background: rgba(0, 0, 0, 0.06);
+		cursor: pointer;
+		z-index: 5;
+
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			width: 16px;
+			height: 2px;
+			background: #333;
+		}
+		&::before {
+			transform: translate(-50%, -50%) rotate(45deg);
+		}
+		&::after {
+			transform: translate(-50%, -50%) rotate(-45deg);
+		}
+
+		&:hover {
+			background: rgba(0, 0, 0, 0.12);
+		}
+	}
+
+	&__loading,
+	&__error {
+		padding: 60px 24px;
+		text-align: center;
+		color: var(--storeengine-subtitle-color, #646c73);
+	}
+}
+
+.storeengine-quick-view {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	padding: 24px;
+
+	@media (max-width: 720px) {
+		grid-template-columns: 1fr;
+	}
+
+	// Cap the media so a large (or placeholder) product image can't blow the
+	// modal up to full height — it stays contained and the modal fits the viewport.
+	&__media {
+		align-self: start;
+
+		img,
+		video {
+			max-height: min(60vh, 520px);
+			width: 100%;
+			object-fit: contain;
+		}
+
+		.storeengine-gallery-root {
+			max-height: min(60vh, 520px);
+			overflow: hidden auto;
+		}
+	}
+
+	&__title {
+		margin: 0 0 10px;
+		font-size: 22px;
+		line-height: 1.25;
+
+		a {
+			color: inherit;
+			text-decoration: none;
+		}
+	}
+
+	// Star-rating summary (Shopify-style).
+	&__rating {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin: 6px 0 12px;
+		font-size: 14px;
+		color: var(--storeengine-subtitle-color, #646c73);
+	}
+
+	// Low-stock urgency pill ("Only N left").
+	&__stock-urgency {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin: 8px 0;
+		padding: 4px 12px;
+		border-radius: 999px;
+		background: rgba(220, 38, 38, 0.08);
+		color: #dc2626;
+		font-size: 13px;
+		font-weight: 600;
+	}
+
+	&__cart {
+		margin: 14px 0;
+	}
+
+	&__excerpt {
+		color: var(--storeengine-subtitle-color, #646c73);
+		font-size: 14px;
+		margin-bottom: 14px;
+	}
+
+	&__full-link {
+		display: inline-block;
+		font-weight: 500;
+		color: $se-primary;
+	}
+}
+
+@keyframes storeengine-qv-shimmer {
+	0% {
+		background-position: 100% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.storeengine-qv,
+	.storeengine-qv__dialog {
+		transition: none !important;
+	}
+
+	.storeengine-qv__sk-block,
+	.storeengine-qv__sk-line {
+		animation: none;
+	}
+}

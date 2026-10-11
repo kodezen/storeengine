@@ -1,0 +1,34 @@
+.storeengine-tab-content--general {
+    .storeengine-tab-content {
+        &--currency-options {
+            .storeengine-city-info, .storeengine-currency-details {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 16px;
+            }
+            
+            .storeengine-currency {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                gap: 16px;
+                .storeengine-select--currency {
+                    .storeengine-react-select__control {
+                        height: 42px;
+                    }
+                }
+            }
+        }
+
+        &--store-address {
+            padding-bottom: 0;
+        }
+    }
+
+    .storeengine-text {
+        &--store-name, &--store-email, &--custom-login {
+            margin-bottom: 0;
+        }
+    }
+}

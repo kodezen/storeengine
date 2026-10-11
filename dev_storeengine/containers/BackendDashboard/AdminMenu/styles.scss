@@ -1,0 +1,88 @@
+#adminmenu {
+	--text-color: rgba(240, 246, 252, 0.7);
+	--hover-color: #72aee6;
+	--active-color: #fff;
+    .wp-submenu-wrap {
+        li {
+            &.current > a {
+                color: #fff;
+                font-weight: 600;
+                .storeengine-icon {
+                    rotate: 90deg;
+                }
+            }
+            &:not(.current) {
+                &:focus {
+                    color: var( --text-color ) !important;
+					&::before {
+						color: var( --text-color ) !important;
+					}
+                }
+            }
+            a {
+                .storeengine-icon {
+                    margin-left: auto;
+                    margin-top: 3px;
+                    float: right;
+					transition: rotate 120ms ease;
+                    //&::before{
+                    //    font-size: 8px;
+                    //}
+                }
+            }
+
+            // Second nesting level (e.g. Orders → Fraud Shield → Rules).
+            // Indent it further so the hierarchy reads clearly.
+            ul.wp-submenu.storeengine-submenu-l2 {
+                li a::before {
+                    content: "↳";
+                    padding-left: 18px;
+                }
+            }
+
+            ul.wp-submenu {
+                padding: 0 !important;
+                margin: 0 !important;
+                li {
+                    position: relative;
+                    a {
+                        font-size: 14px;
+                        line-height: 1.4;
+                        font-weight: 400;
+                        color: var( --text-color ) !important;
+                        box-shadow: none;
+                        &::before {
+                            content: "↳";
+                            padding: 0 5px;
+                            color: var( --text-color ) !important;
+                        }
+                        &:hover {
+                            font-weight: 400;
+                            box-shadow: none;
+							color: var( --hover-color ) !important;
+							&::before {
+								color: var( --hover-color ) !important;
+							}
+                        }
+                        &:focus {
+							color: var( --hover-color ) !important;
+							&::before {
+								color: var( --hover-color ) !important;
+							}
+                        }
+
+                    }
+                    &.current {
+                        a {
+                            color: var( --active-color ) !important;
+                            font-weight: 500;
+                            &::before {
+                                color: #E1E3EA !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,44 @@
+// Grey track, active tile raised in white. Square-ish (4px) on purpose.
+.kzui-segmented-tabs {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	box-sizing: border-box;
+	padding: 3px;
+	background: #e1e5ea;
+	border: 1px solid #d0d5dd;
+	border-radius: 6px;
+
+	&__item {
+		min-width: 104px;
+		height: 32px;
+		margin: 0;
+		padding: 0 16px;
+		font: inherit;
+		font-size: 14px;
+		font-weight: 500;
+		line-height: 20px;
+		color: #475467;
+		white-space: nowrap;
+		background: transparent;
+		border: 0;
+		border-radius: 4px;
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+
+		&:hover {
+			color: var(--storeengine-text-color);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--storeengine-primary-color);
+			outline-offset: 1px;
+		}
+
+		&.is-active {
+			color: var(--storeengine-text-color);
+			background: #fff;
+			box-shadow: 0 1px 3px rgba(16, 24, 40, 0.18);
+		}
+	}
+}

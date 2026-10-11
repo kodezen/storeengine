@@ -1,0 +1,101 @@
+/* Wishlist: heart toggle (cards / product page / Quick View), count badge and
+ * the wishlist page empty state. */
+.storeengine-wishlist-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	padding: 0;
+	border: 1px solid var(--storeengine-border-color, #e5e7eb);
+	border-radius: 50%;
+	background: #fff;
+	cursor: pointer;
+	transition: transform 0.15s ease, border-color 0.15s ease;
+
+	&__icon {
+		width: 20px;
+		height: 20px;
+		background-color: #c9ccd1;
+		-webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") center / contain no-repeat;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") center / contain no-repeat;
+		transition: background-color 0.15s ease, transform 0.15s ease;
+	}
+
+	&:hover {
+		transform: scale(1.06);
+	}
+
+	&.is-active {
+		border-color: var(--storeengine-primary-color, #e11d48);
+
+		.storeengine-wishlist-btn__icon {
+			background-color: var(--storeengine-primary-color, #e11d48);
+			transform: scale(1.05);
+		}
+	}
+}
+
+// On shop cards: float over the top-right of the image, revealed on card hover
+// (like the Quick View button) — hidden otherwise, even when already wishlisted.
+// Touch devices (no hover) always show it so it stays reachable.
+.storeengine-product__header {
+	.storeengine-wishlist-btn {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		z-index: 4;
+		// Smaller than the standalone button: on a card these float over the
+		// artwork, and at 38px they crowded it (and the compare toggle stacked
+		// underneath). The product page / Quick View keep the larger size.
+		width: 32px;
+		height: 32px;
+		box-shadow: var(--storeengine-shadow-overlay, 0 8px 24px -8px rgba(16, 24, 40, 0.14));
+		opacity: 0;
+		transition: opacity 0.2s ease, transform 0.15s ease;
+
+		.storeengine-wishlist-btn__icon {
+			width: 16px;
+			height: 16px;
+		}
+	}
+}
+
+.storeengine-product:hover .storeengine-product__header .storeengine-wishlist-btn,
+.storeengine-product-wrapper:hover .storeengine-product__header .storeengine-wishlist-btn,
+.storeengine-product__header .storeengine-wishlist-btn:focus-visible {
+	opacity: 1;
+}
+
+@media (hover: none) {
+	.storeengine-product__header .storeengine-wishlist-btn {
+		opacity: 1;
+	}
+}
+
+// Count badge (e.g. next to a header wishlist link).
+.storeengine-wishlist-count {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 5px;
+	border-radius: 999px;
+	background: var(--storeengine-primary-color, #e11d48);
+	color: #fff;
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 1;
+
+	&.is-empty {
+		display: none;
+	}
+}
+
+.storeengine-wishlist-page__empty {
+	padding: 48px 0;
+	text-align: center;
+	color: var(--storeengine-subtitle-color, #646c73);
+	font-size: 16px;
+}
